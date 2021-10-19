@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>TICKET</title>
+</head>
+<body>
+<form id="home" method="get" ></form>
+<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<h1>Form</h1>
+<form action="#" th:action="@{/ticket/book}" th:object="${ticket}" method="post">
+    <p>ИМЯ: <input type="text"  required th:field="*{firstNamePassenger}" /></p>
+    <p>ФАМИЛИЯ: <input type="text" required  th:field="*{secondNamePassenger}" /></p>
+    <p>ТЕЛЕФОН: <input type="text"  th:field="*{phoneNumberPassenger}"  /></p>
+    <p>ПАССПОРТ: <input type="text"  th:field="*{passportNumberPassenger}"  /></p>
+    <p><input type="text"  th:field="*{seat.id}"  hidden="true"/></p>
+    <p><input type="text"  th:field="*{client.id}"  hidden="true"/></p>
+    <p><input type="submit" value="ЗАРЕГЕСТРИРОВАТЬ" /> <input type="reset" value="Сбросить" /></p>
+</form>
+<br>
+<h1>Список пассажирова для подстановки:</h1>
+<hr>
+<div th:if= "${ticket.client.passengers != null}">
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>имя</th>
+            <th>фамилия</th>
+            <th>номер телефона</th>
+            <th>номер пасспорта</th>
+        </tr>
+        <tr th:each="pass : ${ticket.client.passengers}">
+            <td th:text="${pass.id}">Nothing</td>
+            <td th:text="${pass.firstName}">Nothing</td>
+            <td th:text="${pass.secondName}">Nothing</td>
+            <td th:text="${pass.phoneNumber}">Nothing</td>
+            <td th:text="${pass.passportNumber}">Nothing</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

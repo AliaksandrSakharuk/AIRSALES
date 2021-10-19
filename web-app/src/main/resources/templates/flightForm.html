@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>FLIGHT</title>
+</head>
+<body>
+<h1>Form</h1>
+<form action="#" th:action="@{/admin/flight/new}" th:object="${flights}" method="post">
+    <p>НОМЕР РЕЙСА: <input type="text" required th:field="*{numberFlight}" /></p>
+    <p>ГОРОД ОТПРАВЛЕНИЯ: <input type="text"  required  th:field="*{departureCity}" /></p>
+    <p>ДАТА И ВРЕМЯ ОТПРАВЛЕНИЯ: <input type="text"  th:field="*{departureDateTime}"  /></p>
+    <p>ГОРОД ПРИБЫТИЯ: <input type="text"  th:field="*{arriveCity}"  /></p>
+    <p>ДАТА И ВРЕМЯ ПРИБЫТИЯ: <input type="text"  th:field="*{arriveDateTime}"  /></p>
+    <p>ID самолета: <input type="text"  th:field="*{plane.id}"  required/></p>
+    <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
+</form>
+<br>
+</body>
+</html>

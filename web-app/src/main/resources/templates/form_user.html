@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>FORM NEW USER</title>
+</head>
+<body>
+<form id="home" method="get" ></form>
+<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<br>
+<h1>NEW USER</h1>
+<form action="#" th:action="@{/users/save}" method="post">
+    <p>LOGIN: <input type="text" required th:field="*{users.login}" /></p>
+    <p>PASSWORD: <input type="text" required  th:field="*{users.password}" /></p>
+    <p>E-MAIL: <input type="text"  th:field="*{users.email}"/></p>
+    <p>FIRST NAME: <input type="text"  th:field="*{users.client.firstName}"/></p>
+    <p>SECOND NAME: <input type="text"  th:field="*{users.client.secondName}"/></p>
+    <p>PHONE NUMBER: <input type="text"  th:field="*{users.client.phoneNumber}"/></p>
+    <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
+</form>
+
+</body>
+</html>

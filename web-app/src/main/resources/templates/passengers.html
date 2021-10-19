@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>PASSENGERS</title>
+</head>
+<body>
+<form id="home" method="get" ></form>
+<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<h1>Список пассажирова для подстановки:</h1>
+<hr>
+<div th:if= "${passengers != null}">
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>имя</th>
+            <th>фамилия</th>
+            <th>номер телефона</th>
+            <th>номер пасспорта</th>
+        </tr>
+        <tr th:each="pass : ${passengers}">
+            <td th:text="${pass.id}">Nothing</td>
+            <td th:text="${pass.firstName}">Nothing</td>
+            <td th:text="${pass.secondName}">Nothing</td>
+            <td th:text="${pass.phoneNumber}">Nothing</td>
+            <td th:text="${pass.passportNumber}">Nothing</td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>SEAT</title>
+</head>
+<body>
+<h3>СВОБОДНЫЕ МЕСТА:</h3>
+<div th:if= "${seats != null}">
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>НОМЕР МЕСТА:</th>
+            <th>СТАТУС: </th>
+            <th></th>
+        </tr>
+        <tr th:each="set : ${seats}">
+            <td th:text="${set.numberSeat}">Nothing</td>
+            <td>СВОБОДНО</td>
+            <td>
+                <a th:href="@{/ticket/{id} (id=${set.id})}">
+                ЗАБРОНИРВОАТЬ
+            </a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

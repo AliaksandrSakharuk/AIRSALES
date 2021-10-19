@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RENEWAL</title>
+</head>
+<body>
+<body>
+<div th:if= "${result == false}">
+    НЕПРАВИЛЬНО ВВЕДЕНЫ ДАННЫЕ
+    <form method="get" th:action="@{/users/password}">
+        <button type="submit">Попробуйте еще 1 раз</button>
+    </form>
+</div>
+<div th:if= "${result == true}">
+    НОВЫЙ ПАРОЛЬ БЫЛ ОТПРАВЛЕН ВАМ НА ПОЧТУ.
+    ЗАРЕГЕСТРИРУЙТЕСЬ И ПОМЕНЯТЕ ПАРОЛЬ.
+    <form method="get" th:action="@{/login}">
+        <button type="submit">ВОЙТИ</button>
+    </form>
+</div>
+</body>
+</html>

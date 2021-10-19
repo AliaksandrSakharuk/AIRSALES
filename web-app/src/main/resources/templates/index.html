@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>AVIASALES</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="EXIT" />
+</form>
+<br>
+<form method="get" action="/web-app/flight/list">
+    <button type="submit">Список авиарейсов</button>
+</form>
+<br>
+<form method="get" action="/web-app/ticket/list">
+    <button type="submit">Мои билеты</button>
+</form>
+<br>
+<form method="get" action="/web-app/profile">
+    <button type="submit">Личный каинет</button>
+</form>
+<br>
+<form method="get" action="/web-app/admin">
+    <button type="submit">ADMIN</button>
+</form>
+
+<h3>РЕЙСЫ:</h3>
+<div th:if= "${flights != null}">
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>НОМЕР РЕЙСА:</th>
+            <th>ГОРОД ОТПРАВЛЕНИЯ: </th>
+            <th>ДАТА И ВРЕМЯ ОТПРАВЛЕНИЯ: </th>
+            <th>ДЛИТЕЛЬНОСТЬ: </th>
+            <th>ГОРОД ПРИБЫТИЯ: </th>
+            <th>ДАТА И ВРЕМЯ ПРИБЫТИЯ:</th>
+            <th>САМОЛЕТ ID</th>
+            <th>НАЗВАНИЕ САМОЛЕТА</th>
+            <th></th>
+        </tr>
+        <tr th:each="flight : ${flights}">
+            <td th:text="${flight.numberFlight}">Nothing</td>
+            <td th:text="${flight.departureCity}">Nothing</td>
+            <td th:text="${flight.departureDateTime}">Nothing</td>
+            <td th:text="${flight.durationFlight}">Nothing</td>
+            <td th:text="${flight.arriveCity}">Nothing</td>
+            <td th:text="${flight.arriveDateTime}">Nothing</td>
+            <td th:text="${flight.plane.id}">Nothing</td>
+            <td th:text="${flight.plane.namePlane}">Nothing</td>
+            <td> <a th:href="@{/flight/{id}(id=${flight.id})}">
+            СВОБОДНЫЕ МЕСТА
+        </a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

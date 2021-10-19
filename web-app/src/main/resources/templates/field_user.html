@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIELD USER</title>
+</head>
+<body>
+<form action="#" th:action="@{/users/password/renewal}" method="post">
+    <p>LOGIN: <input type="text" required th:field="*{fielduser.login}" /></p>
+    <p>EMAIL: <input type="text" required  th:field="*{fielduser.email}" /></p>
+    <p><input type="submit" value="ПОЛУЧИТЬ НОВЫЙ ПАРОЛЬ" /> <input type="reset" value="Сбросить" /></p>
+<br>
+    <form method="get" th:action="@{/login}">
+        <button type="submit">ВОЙТИ</button>
+    </form>
+</form>
+</body>
+</html>

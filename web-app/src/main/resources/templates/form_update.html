@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>UPDATE</title>
+</head>
+<body>
+<h1>ДАННЫЕ ЗАПРОСА ПОИСКА ДЛЯ ИЗМЕНЕНИЯ ДАННЫХ:</h1>
+
+<form action="#" th:action="@{/profile/update}" th:object="${user}"  method="post">
+    <p> ID: <input size="2" type="text"  th:field= ${user.id} readonly /></p>
+    <p>   ЛОГИН: <input type="text" th:field=${user.login}  required/></p>
+    <p>   ПАРОЛЬ: <input type="text" th:field=${user.password} /></p>
+    <p>  EMAIL: <input type="text" th:field=${user.email} required/></p>
+    <p>   ID: <input type="text" th:field=${user.client.id} readonly/></p>
+    <p>  ИМЯ: <input type="text" th:field=${user.client.firstName} required/></p>
+    <p>   ФАМИЛИЯ: <input type="text" th:field=${user.client.secondName} required/></p>
+    <p>   ТЕЛЕФОН: <input type="text" th:field=${user.client.phoneNumber} required/></p>
+    <p><input type="submit" value="Изменить" />
+</form>
+</body>
+</html>

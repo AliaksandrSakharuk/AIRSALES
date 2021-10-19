@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USERS`S CABINET</title>
+</head>
+<body>
+<form id="home" method="get" ></form>
+<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+
+<h3>Учетная запись профиля:</h3>
+<table border="1" width="65%" cellpadding="5">
+    <tr>
+        <th>ЛОГИН:</th>
+        <th>E-MAIL:</th>
+        <th>ИМЯ:</th>
+        <th>ФАМИЛИЯ:</th>
+        <th>НОМЕР ТЕЛЕФОНА:</th>
+    </tr>
+    <tr>
+        <td th:text="${user.login}">Nothing</td>
+        <td th:text="${user.email}">Nothing</td>
+        <td th:text="${user.client.firstName}">Nothing</td>
+        <td th:text="${user.client.secondName}">Nothing</td>
+        <td th:text="${user.client.phoneNumber}">Nothing</td>
+
+    </tr>
+</table>
+<br>
+<form id="passengers" method="get" ></form>
+<button type="submit" form="passengers"  formaction="/web-app/profile/passengers" >СПИСОК ПАССАЖИРОВ ДЛЯ ПДСТАНОВКИ</button>
+<br>
+<br>
+<form id="update" method="get" ></form>
+<button type="submit" form="update"  formaction="/web-app/profile/form" >Изменить профиль</button>
+</body>
+</html>

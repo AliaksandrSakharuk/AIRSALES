@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+</head>
+<body>
+<div>
+    <form name="f" th:action="@{/perform-login}" method="post">
+        <fieldset>
+            <legend>Sign in</legend>
+            <div style ="color: red;" th:if="${param.error}" class="alert alert-error" >
+                Invalid username and password.
+            </div>
+
+            <div style ="color: green;" th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
+            <label for="user" style="font-weight: 600;">LOGIN</label>
+            <input type="text" id="user" name="user"/>
+            <label for="pass" style="font-weight: 600;">PASSWORD</label>
+            <input type="password" id="pass" name="pass"/>
+            <div class="form-actions">
+                <button type="submit" class="btn">Log in</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<br>
+<form method="get" th:action="@{/users/new}">
+    <button type="submit">Зарегестрироваться</button>
+</form>
+<br>
+<form method="get" th:action="@{/users/password}">
+    <button type="submit">ВОССТАНОВИТЬ ПАРОЛЬ</button>
+</form>
+
+</body>
+</html>

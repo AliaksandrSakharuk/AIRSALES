@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>MY TICKET</title>
+</head>
+<body>
+<form id="home" method="get" ></form>
+<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+
+<h3>РЕЙСЫ:</h3>
+<div th:if= "${tickets != null}">
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>ДАТА И ВРЕМЯ:</th>
+            <th>ИМЯ: </th>
+            <th>ФАМИЛИЯ: </th>
+            <th>ТЕЛЕФОН: </th>
+            <th>ПАССПОРТ: </th>
+            <th>МЕСТО:</th>
+            <th>РЕЙС</th>
+            <th>ОТКУДА</th>
+            <th>КУДА</th>
+            <th>ДАТА ВРЕМЯ ОТЬЕЗДА</th>
+            <th>ДАТА ВРЕМЯ ПРИЕЗДА</th>
+            <th></th>
+        </tr>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.bookedDateTime}">Nothing</td>
+            <td th:text="${ticket.firstNamePassenger}">Nothing</td>
+            <td th:text="${ticket.secondNamePassenger}">Nothing</td>
+            <td th:text="${ticket.phoneNumberPassenger}">Nothing</td>
+            <td th:text="${ticket.passportNumberPassenger}">Nothing</td>
+            <td th:text="${ticket.seat.numberSeat}">Nothing</td>
+            <td th:text="${ticket.seat.flight.numberFlight}">Nothing</td>
+            <td th:text="${ticket.seat.flight.departureCity}">Nothing</td>
+            <td th:text="${ticket.seat.flight.arriveCity}">Nothing</td>
+            <td th:text="${ticket.seat.flight.departureDateTime}">Nothing</td>
+            <td th:text="${ticket.seat.flight.arriveDateTime}">Nothing</td>
+            <td> <a th:href="@{/ticket/cancel/{id}(id=${ticket.id})}">
+                ОТМЕНА БРОНИ
+            </a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
