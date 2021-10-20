@@ -10,19 +10,17 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
 public class BusinessController {
+
     private final ObjectMapper objectMapper;
     private final BusinessService businessService;
     private final SearcherService searcherService;
-    private final TicketService ticketService;
     private final ClientService clientService;
-    SeatSericve seatSericve;
 
     @PostMapping("/client")
     public ClientDto createNewClient(@RequestBody ClientDto clientDto){
@@ -46,6 +44,7 @@ public class BusinessController {
 
     @PostMapping("/sales/flight")
     public FlightDto createNewFlight(@RequestBody FlightDto flightDto){
+        System.out.println(flightDto.getArriveDateTime());
         final Flight flightNew = objectMapper.convertValue(flightDto, Flight.class);
         final Flight flight=businessService.createNewFlight(flightNew);
         return objectMapper.convertValue(flight, FlightDto.class);
@@ -61,8 +60,18 @@ public class BusinessController {
     }
 
     @GetMapping("/sales/flight/list")
-    public  List<FlightDto> findAll(){
+    public  List<FlightDto> findAllFlight(){
         List <Flight> list=searcherService.findFlightAfterCurrentTime();
+        List<FlightDto> flights=list.stream()
+                .map(flight -> objectMapper.convertValue(flight, FlightDto.class))
+                .collect(Collectors.toList());
+        return flights;
+    }
+
+    @PostMapping("/sales/flight/list/conditions")
+    public List<FlightDto> findFlightByCondition(@RequestBody FieldSearcherDto fieldSearcherDto){
+
+        List <Flight> list=searcherService.findFlightByConditions(fieldSearcherDto);
         List<FlightDto> flights=list.stream()
                 .map(flight -> objectMapper.convertValue(flight, FlightDto.class))
                 .collect(Collectors.toList());
@@ -74,6 +83,15 @@ public class BusinessController {
         final AirCompany companyNew = objectMapper.convertValue(companyDto, AirCompany.class);
         final AirCompany company=businessService.createNewAirCompany(companyNew);
         return objectMapper.convertValue(company, AirCompanyDto.class);
+    }
+
+    @GetMapping("/company/list")
+    public  List<AirCompanyDto> findAll(){
+        List <AirCompany> list=businessService.getAllAirCompany();
+        List<AirCompanyDto> listCompany=list.stream()
+                .map(company -> objectMapper.convertValue(company, AirCompanyDto.class))
+                .collect(Collectors.toList());
+        return listCompany;
     }
 
     @PostMapping("/sales/ticket/book")
@@ -88,15 +106,8 @@ public class BusinessController {
         businessService.cancelBookedTicket(Long.valueOf(id));
     }
 
-
-    @GetMapping("/sales/ticket/{id}")
-    public TicketDto findTicket(@PathVariable("id") String id){
-        final Ticket ticket=ticketService.readById(Long.valueOf(id));
-        return objectMapper.convertValue(ticket, TicketDto.class);
-    }
-
     @GetMapping("/sales/ticket/list/{client_id}")
-    public  List<TicketDto> findAllTicketForClient(@PathVariable("client_id") long id){
+    public  List<TicketDto> findAllTicketsForClient(@PathVariable("client_id") long id){
         List <Ticket> list=searcherService.findTicketForClient(id);
         List<TicketDto> tickets=list.stream()
                 .map(ticket -> objectMapper.convertValue(ticket, TicketDto.class))
@@ -104,10 +115,4 @@ public class BusinessController {
         return tickets;
     }
 
-
-
-//    @GetMapping("/client/ticket/all")
-//    public List<Ticket> getTicketClint(){
-//        return businessService.getAllTicketClient();
-//    }
 }

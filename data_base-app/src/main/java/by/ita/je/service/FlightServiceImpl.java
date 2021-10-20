@@ -1,7 +1,6 @@
 package by.ita.je.service;
 
 import by.ita.je.dao.FlightDao;
-import by.ita.je.dao.SearcherFlightAfterCurrentTimeDao;
 import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Flight;
@@ -68,6 +67,5 @@ public class FlightServiceImpl implements FlightService {
             throw new NotFoundData("Flight");
         }
     }
-
 
 }

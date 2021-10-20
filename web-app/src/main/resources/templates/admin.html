@@ -6,10 +6,8 @@
     <title>ADMIN</title>
 </head>
 <body>
-<form id="home" method="get" ></form>
-<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<a th:href="@{/}"> На главную страницу</a>
 <br>
-
 
 <br>
 <table border="1" width="60%" cellpadding="5">
@@ -30,5 +28,41 @@
         </td>
     </tr>
 </table>
+<br>
+<a th:href="@{/admin/aircompany/form}"> Добавить новую АВИАКОМПАНИЮ</a>
+<br>
+<br>
+<a th:href="@{/admin/user/list}"> ПОЛЬЗОВАТЕЛИ</a>
+<br>
+<h3>АВИАКОМПАНИИ:</h3>
+<div th:if= "${companies != null}">
+    <div th:each="comp  : ${companies}">
+        <p th:text="'ID: ' + ${comp.id}" />
+        <p th:text="'АВИКОМПАНИЯ: ' + ${comp.nameCompany}" />
+        <p th:text="'ТЕЛЕФОН: ' + ${comp.phoneNumber}" />
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>ID:</th>
+            <th>ИНВЕРТ. НОМЕР:</th>
+            <th>МОДЕЛЬ: </th>
+            <th>ИМЯ ПИЛОТА: </th>
+            <th>КОЛЛИЧЕСТВО РЯДОВ СИДЕНИЙ: </th>
+            <th>КОЛЛИЧЕСТВО MЕСТ В РЯДУ: </th>
+            <th>ОБЩЕЕ КОЛ-ВО МЕСТ:</th>
+        </tr>
+        <tr th:each="plan : ${comp.planes}">
+            <td th:text="${plan.id}">Nothing</td>
+            <td th:text="${plan.invertorNumber}">Nothing</td>
+            <td th:text="${plan.namePlane}">Nothing</td>
+            <td th:text="${plan.namePilot}">Nothing</td>
+            <td th:text="${plan.quantityLines}">Nothing</td>
+            <td th:text="${plan.seatsInLine}">Nothing</td>
+            <td th:text="${plan.quantitySeats}">Nothing</td>
+            </td>
+        </tr>
+    </table>
+        <hr>
+</div>
+</div>
 </body>
 </html>

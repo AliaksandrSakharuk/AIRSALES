@@ -1,9 +1,6 @@
 package by.ita.je.service.api;
 
-import by.ita.je.dto.ClientDto;
-import by.ita.je.dto.FlightDto;
-import by.ita.je.dto.SeatDto;
-import by.ita.je.dto.TicketDto;
+import by.ita.je.dto.*;
 
 import java.util.List;
 
@@ -26,4 +23,8 @@ public interface ApiService {
     public void cancelBookTicket(String ticket_id);
 
     public List<TicketDto> listTicketForClient(long client_id);
+
+    public void saveNewAirCompany(AirCompanyDto companyDto);
+
+    public List<AirCompanyDto> getAllAirCompany();
 }

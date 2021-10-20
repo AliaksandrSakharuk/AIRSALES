@@ -6,8 +6,7 @@
     <title>FORM NEW USER</title>
 </head>
 <body>
-<form id="home" method="get" ></form>
-<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<a th:href="@{/}"> На главную страницу</a>
 <br>
 <h1>NEW USER</h1>
 <form action="#" th:action="@{/users/save}" method="post">

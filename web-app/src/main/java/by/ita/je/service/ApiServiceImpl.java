@@ -1,9 +1,6 @@
 package by.ita.je.service;
 
-import by.ita.je.dto.ClientDto;
-import by.ita.je.dto.FlightDto;
-import by.ita.je.dto.SeatDto;
-import by.ita.je.dto.TicketDto;
+import by.ita.je.dto.*;
 import by.ita.je.service.api.ApiService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +77,17 @@ public class ApiServiceImpl implements ApiService {
     public List<TicketDto> listTicketForClient(long client_id){
         String urlBusiness=url + "/sales/ticket/list/" + client_id;
         ResponseEntity<TicketDto[]> responseEntity = restTemplate.getForEntity(urlBusiness, TicketDto[].class);
+        return Arrays.asList(responseEntity.getBody());
+    }
+
+    public void saveNewAirCompany(AirCompanyDto companyDto){
+        String urlBusiness=url + "/company";
+        restTemplate.postForObject(urlBusiness, companyDto, AirCompanyDto.class);
+    }
+
+    public List<AirCompanyDto> getAllAirCompany(){
+        String urlBusiness=url + "/company/list";
+        ResponseEntity<AirCompanyDto[]> responseEntity = restTemplate.getForEntity(urlBusiness, AirCompanyDto[].class);
         return Arrays.asList(responseEntity.getBody());
     }
 

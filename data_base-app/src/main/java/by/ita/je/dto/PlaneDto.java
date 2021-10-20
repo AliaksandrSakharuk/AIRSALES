@@ -18,5 +18,5 @@ public class PlaneDto {
     private  int quantitySeats;
     private int seatsInLine;
     private int quantityLines;
-    private List<FlightDto> flights;
+//    private List<FlightDto> flights;
 }

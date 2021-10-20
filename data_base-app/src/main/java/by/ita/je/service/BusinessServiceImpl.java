@@ -2,15 +2,12 @@ package by.ita.je.service;
 
 import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
-import by.ita.je.exception.NotFoundFreePlane;
 import by.ita.je.model.*;
 import by.ita.je.service.api.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +21,9 @@ public class BusinessServiceImpl implements BusinessService {
     private final AirCompanyService companyService;
     private final SeatSericve seatSericve;
     private final TicketService ticketService;
-//    private final UserService userService;
     private final ClientService clientService;
     private final PlaneService planeService;
+
 
     @Override
     public Flight createNewFlight(Flight flight) {
@@ -40,16 +37,17 @@ public class BusinessServiceImpl implements BusinessService {
     public Flight findById(long id) {
         return flightService.readById(id);
     }
-//
-//    @Override
-//    public List<Flight> findAll() {
-//        return flightService.readAll();
-//    }
+
 
     @Override
     public AirCompany createNewAirCompany(AirCompany company){
         createIfNotRelationshipAirCompanyToPlanes(company);
         return companyService.save(company);
+    }
+
+    @Override
+    public List<AirCompany> getAllAirCompany(){
+        return companyService.readAll();
     }
 
     @Override
@@ -70,18 +68,8 @@ public class BusinessServiceImpl implements BusinessService {
         seatSericve.update(seat.getId(),seat);
         ticketService.deleteById(idTicket);
     }
-//
-//    @Override
-//    public List<Ticket> getAllTicketClient() {
-//        Client client=userService.getCurrentUser().getClient();
-//        return client.getTickets();
-//    }
-//
-//    @Override
-//    public List<Passenger> getPassengersOfClient() {
-//        Client client=userService.getCurrentUser().getClient();
-//        return client.getPassengers();
-//    }
+
+
 
 
     private void createSeat(Flight flight){

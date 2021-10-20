@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>LIST USERS</title>
+</head>
+<body>
+<a th:href="@{/}"> На главную страницу</a>
+<br>
+<h3>ПОЛЬЗОВАТЕЛИ:</h3>
+<div th:if= "${users != null}">
+    <table border="1" width="65%" cellpadding="5">
+        <tr>
+            <th>USER ID:</th>
+            <th>ЛОГИН: </th>
+            <th>EMAIL: </th>
+            <th>ДОСТУП: </th>
+            <th>CLIENT ID: </th>
+            <th>ИМЯ:</th>
+            <th>ФАМИЛИЯ</th>
+            <th>ТЕЛЕФОН</th>
+            <th></th>
+        </tr>
+        <tr th:each="us : ${users}">
+            <td th:text="${us.id}">Nothing</td>
+            <td th:text="${us.login}">Nothing</td>
+            <td th:text="${us.email}">Nothing</td>
+            <td th:text="${us.enabled}">Nothing</td>
+            <td th:text="${us.client.id}">Nothing</td>
+            <td th:text="${us.client.firstName}">Nothing</td>
+            <td th:text="${us.client.secondName}">Nothing</td>
+            <td th:text="${us.client.phoneNumber}">Nothing</td>
+            <td> <a th:href="@{/admin/user/enabled/{id}(id=${us.id})}">
+                ЗАБЛОКИРОВАТЬ / РАЗБЛОКИРВОАТЬ
+            </a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

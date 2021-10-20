@@ -29,8 +29,8 @@ public class Plane {
     @JsonIgnore
     private AirCompany company;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "plane_id")
-    @JsonIgnore
-    private List<Flight> flights;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "plane_id")
+//    @JsonIgnore
+//    private List<Flight> flights;
 }

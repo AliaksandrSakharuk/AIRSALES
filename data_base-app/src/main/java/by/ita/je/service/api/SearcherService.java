@@ -21,6 +21,8 @@ public interface SearcherService {
     public List<Ticket> findTicketForClient(long id);
 
     List<Seat> findFreeSeat(long id);
+
+    public List<Flight> findFlightByConditions(FieldSearcherDto searcherDto);
 //
 //    List<Flight> findFlightByAirCompany(String nameCompany);
 //

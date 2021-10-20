@@ -6,8 +6,7 @@
     <title>PASSENGERS</title>
 </head>
 <body>
-<form id="home" method="get" ></form>
-<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<a th:href="@{/}"> На главную страницу</a>
 <h1>Список пассажирова для подстановки:</h1>
 <hr>
 <div th:if= "${passengers != null}">

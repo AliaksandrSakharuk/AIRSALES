@@ -10,21 +10,15 @@
     <input type="submit" value="EXIT" />
 </form>
 <br>
-<form method="get" action="/web-app/flight/list">
-    <button type="submit">Список авиарейсов</button>
-</form>
 <br>
-<form method="get" action="/web-app/ticket/list">
-    <button type="submit">Мои билеты</button>
-</form>
+<a th:href="@{/ticket/list}"> Мои билеты</a>
 <br>
-<form method="get" action="/web-app/profile">
-    <button type="submit">Личный каинет</button>
-</form>
+
 <br>
-<form method="get" action="/web-app/admin">
-    <button type="submit">ADMIN</button>
-</form>
+<a th:href="@{/profile}"> Личный каинет</a>
+
+<br>
+<a th:href="@{/admin}"> КАБИНЕТ АДМИНИСТРАТОРА</a>
 
 <h3>РЕЙСЫ:</h3>
 <div th:if= "${flights != null}">

@@ -28,11 +28,12 @@ public class Flight {
     private String arriveCity;
     private LocalDateTime arriveDateTime;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "flight_id")
     @JsonIgnore
     private List<Seat> seats;
 
     @ManyToOne
+    @JoinColumn(name = "plane_id")
     private Plane plane;
 }

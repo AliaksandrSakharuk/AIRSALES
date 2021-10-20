@@ -1,33 +1,6 @@
-drop table if exists users cascade;
-drop table if exists roles cascade;
-drop table if exists users_roles cascade;
-
-CREATE TABLE  IF NOT EXISTS users (
-    id bigserial PRIMARY KEY,
-    login character varying(255) NOT NULL,
-    password character varying(255) NOT NULL,
-    email character varying(255) NOT NULL,
-    client_id bigint,
-    enabled boolean DEFAULT true
-    );
-
-CREATE TABLE  IF NOT EXISTS roles (
-    id bigserial PRIMARY KEY,
-    role_name character varying(40) NOT NULL
-    );
-
-CREATE TABLE  IF NOT EXISTS users_roles (
-    user_id bigint NOT NULL,
-    role_id bigint NOT NULL,
-    PRIMARY KEY (user_id, role_id),
-    FOREIGN KEY (user_id) REFERENCES roles (id),
-    FOREIGN KEY (role_id) REFERENCES users (id)
-    );
-
 drop table if exists users_roles cascade;
 drop table if exists users cascade;
 drop table if exists roles cascade;
-
 
 CREATE TABLE  IF NOT EXISTS users (
     id bigserial PRIMARY KEY,
@@ -53,7 +26,7 @@ CREATE TABLE  IF NOT EXISTS users_roles (
 
 INSERT INTO roles (role_name) VALUES ('READER');
 INSERT INTO roles (role_name) VALUES ('EDITOR');
-INSERT INTO roles (role_name) VALUES ('AUTHOR');
+INSERT INTO roles (role_name) VALUES ('ADMIN');
 
 INSERT INTO users (login, password, client_id, email, enabled)
 VALUES ('admin', '$2a$10$73dQALAYAHPjOZdIqObi4u5jUZ2Tqg2Mzr4pPk5AHRaKFm/jBEhwK', 1, 'sakharukaliaksandr@gmail.com', true);

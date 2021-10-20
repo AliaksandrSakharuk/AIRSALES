@@ -6,6 +6,7 @@
     <title>FLIGHT</title>
 </head>
 <body>
+<a th:href="@{/}"> На главную страницу</a>
 <h1>Form</h1>
 <form action="#" th:action="@{/admin/flight/new}" th:object="${flights}" method="post">
     <p>НОМЕР РЕЙСА: <input type="text" required th:field="*{numberFlight}" /></p>

@@ -1,5 +1,6 @@
 package by.ita.je.service.api;
 
+import by.ita.je.dto.FieldSearcherDto;
 import by.ita.je.model.AirCompany;
 import by.ita.je.model.Flight;
 import by.ita.je.model.Passenger;
@@ -20,6 +21,8 @@ public interface BusinessService {
     public Ticket bookTicket(Ticket Ticket);
 
     public void cancelBookedTicket(long id);
+
+    public List<AirCompany> getAllAirCompany();
 //
 //    public List<Ticket> getAllTicketClient();
 //

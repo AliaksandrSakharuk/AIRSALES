@@ -1,10 +1,13 @@
 package by.ita.je.service.api;
 
 import by.ita.je.dto.FieldUserDto;
+import by.ita.je.dto.UserDto;
 import by.ita.je.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends UserDetailsService {
+import java.util.List;
+
+public interface UserService extends UserDetailsService{
 
     public boolean saveUser(User user);
 
@@ -15,5 +18,7 @@ public interface UserService extends UserDetailsService {
     public User getCurrentUser();
 
     public User updateUser(Long id, User userNew);
+
+//    public List<UserDto> findAllUsers();
 
 }

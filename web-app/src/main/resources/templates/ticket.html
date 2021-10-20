@@ -6,8 +6,7 @@
     <title>TICKET</title>
 </head>
 <body>
-<form id="home" method="get" ></form>
-<button type="submit" form="home"  formaction="/web-app" >На главную страницу</button>
+<a th:href="@{/}"> На главную страницу</a>
 <h1>Form</h1>
 <form action="#" th:action="@{/ticket/book}" th:object="${ticket}" method="post">
     <p>ИМЯ: <input type="text"  required th:field="*{firstNamePassenger}" /></p>
