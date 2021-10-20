@@ -17,13 +17,13 @@ public class FlightDto {
     private Long id;
     private String numberFlight;
     private String departureCity;
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
-//    @DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX", iso = DateTimeFormat.ISO.DATE_TIME )
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm", iso = DateTimeFormat.ISO.DATE_TIME )
     private LocalDateTime departureDateTime;
     private String arriveCity;
     private int durationFlight;
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
-//    @DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX", iso = DateTimeFormat.ISO.DATE_TIME )
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm", iso = DateTimeFormat.ISO.DATE_TIME )
     private LocalDateTime arriveDateTime;
     private PlaneDto plane;
     private List<SeatDto> seats;

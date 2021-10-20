@@ -16,12 +16,10 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class BusinessServiceImpl implements BusinessService {
 
-    private final SearcherService searcherService;
     private final FlightService flightService;
     private final AirCompanyService companyService;
     private final SeatSericve seatSericve;
     private final TicketService ticketService;
-    private final ClientService clientService;
     private final PlaneService planeService;
 
 
@@ -33,10 +31,10 @@ public class BusinessServiceImpl implements BusinessService {
         return flightService.save(flight);
     }
 
-    @Override
-    public Flight findById(long id) {
-        return flightService.readById(id);
-    }
+//    @Override
+//    public Flight findById(long id) {
+//        return flightService.readById(id);
+//    }
 
 
     @Override

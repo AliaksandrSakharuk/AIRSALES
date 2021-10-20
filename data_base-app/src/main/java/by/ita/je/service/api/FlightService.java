@@ -10,11 +10,11 @@ public interface FlightService {
 
     Flight save(Flight flight) throws NotCorrectData;
 
-    Flight update(Long id, Flight flightNew);
+//    Flight update(Long id, Flight flightNew);
 
     Flight readById(Long id) throws NotFoundData;
 
-    List<Flight> findAll();
-
-    void deleteById(Long id) throws NotFoundData;
+//    List<Flight> findAll();
+//
+//    void deleteById(Long id) throws NotFoundData;
 }

@@ -1,15 +1,10 @@
 package by.ita.je.controller;
-
 import by.ita.je.dto.*;
 import by.ita.je.model.*;
-
-
 import by.ita.je.service.api.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +39,7 @@ public class BusinessController {
 
     @PostMapping("/sales/flight")
     public FlightDto createNewFlight(@RequestBody FlightDto flightDto){
-        System.out.println(flightDto.getArriveDateTime());
+        System.out.println(flightDto);
         final Flight flightNew = objectMapper.convertValue(flightDto, Flight.class);
         final Flight flight=businessService.createNewFlight(flightNew);
         return objectMapper.convertValue(flight, FlightDto.class);
@@ -70,11 +65,12 @@ public class BusinessController {
 
     @PostMapping("/sales/flight/list/conditions")
     public List<FlightDto> findFlightByCondition(@RequestBody FieldSearcherDto fieldSearcherDto){
-
+        System.out.println(fieldSearcherDto);
         List <Flight> list=searcherService.findFlightByConditions(fieldSearcherDto);
         List<FlightDto> flights=list.stream()
                 .map(flight -> objectMapper.convertValue(flight, FlightDto.class))
                 .collect(Collectors.toList());
+        System.out.println(flights);
         return flights;
     }
 

@@ -3,19 +3,18 @@ package by.ita.je.service;
 import by.ita.je.dto.*;
 import by.ita.je.service.api.ApiService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @AllArgsConstructor
 public class ApiServiceImpl implements ApiService {
 
-    @Autowired
+
     private final RestTemplate restTemplate;
     private final String url="http://localhost:5001/data_base-app";
 
@@ -50,6 +49,16 @@ public class ApiServiceImpl implements ApiService {
     public List<FlightDto> getListFlight(){
         String urlBusiness=url +"/sales/flight/list";
         ResponseEntity<FlightDto[]> responseEntity = restTemplate.getForEntity(urlBusiness, FlightDto[].class);
+        return Arrays.asList(responseEntity.getBody());
+    }
+
+    @Override
+    public List<FlightDto> getListFlightByDuration(FieldSearcherDto fieldDto){
+        String urlBusiness=url +"/sales/flight/list/conditions";
+        fieldDto.setNameCompany(fieldDto.getNameCompany().toUpperCase(Locale.ROOT));
+        fieldDto.setDepartureCity(fieldDto.getDepartureCity().toUpperCase(Locale.ROOT));
+        fieldDto.setArriveCity(fieldDto.getDepartureCity().toUpperCase(Locale.ROOT));
+        ResponseEntity<FlightDto[]> responseEntity = restTemplate.postForEntity(urlBusiness, fieldDto, FlightDto[].class);
         return Arrays.asList(responseEntity.getBody());
     }
 

@@ -44,20 +44,20 @@ public class ClientServiceImpl implements ClientService {
         return client;
     }
 
-    @Override
-    public List<Client> readAll() {
-        final Spliterator<Client> result = clientDao.findAll().spliterator();
-        return StreamSupport
-                .stream(result, false)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void deleteById(Long id) throws NotFoundData {
-        try {
-            clientDao.deleteById(id);
-        }catch (Exception e){
-            throw new NotFoundData("Client");
-        }
-    }
+//    @Override
+//    public List<Client> readAll() {
+//        final Spliterator<Client> result = clientDao.findAll().spliterator();
+//        return StreamSupport
+//                .stream(result, false)
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public void deleteById(Long id) throws NotFoundData {
+//        try {
+//            clientDao.deleteById(id);
+//        }catch (Exception e){
+//            throw new NotFoundData("Client");
+//        }
+//    }
 }

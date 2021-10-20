@@ -27,14 +27,14 @@ public class AirCompanyServiceImpl implements AirCompanyService {
         return companyServiceDao.save(company);
     }
 
-    @Override
-    public AirCompany update(Long id, AirCompany companyNew) throws NotFoundData {
-        AirCompany airCompany = companyServiceDao.findById(id)
-                .orElseThrow(() -> new NotFoundData( "AirCompany"));
-        if(companyNew.getNameCompany()!="") airCompany.setNameCompany(companyNew.getNameCompany());
-        if(companyNew.getPhoneNumber()!=0) airCompany.setPhoneNumber(companyNew.getPhoneNumber());
-        return companyServiceDao.save(airCompany);
-    }
+//    @Override
+//    public AirCompany update(Long id, AirCompany companyNew) throws NotFoundData {
+//        AirCompany airCompany = companyServiceDao.findById(id)
+//                .orElseThrow(() -> new NotFoundData( "AirCompany"));
+//        if(companyNew.getNameCompany()!="") airCompany.setNameCompany(companyNew.getNameCompany());
+//        if(companyNew.getPhoneNumber()!=0) airCompany.setPhoneNumber(companyNew.getPhoneNumber());
+//        return companyServiceDao.save(airCompany);
+//    }
 
     @Override
     public AirCompany readById(Long id) throws NotFoundData{
@@ -51,12 +51,12 @@ public class AirCompanyServiceImpl implements AirCompanyService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void deleteById(Long id) throws NotFoundData{
-        try {
-            companyServiceDao.deleteById(id);
-        }catch (Exception e){
-            throw new NotFoundData("AirCompany");
-        }
-    }
+//    @Override
+//    public void deleteById(Long id) throws NotFoundData{
+//        try {
+//            companyServiceDao.deleteById(id);
+//        }catch (Exception e){
+//            throw new NotFoundData("AirCompany");
+//        }
+//    }
 }

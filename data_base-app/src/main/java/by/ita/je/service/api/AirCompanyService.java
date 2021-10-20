@@ -8,13 +8,13 @@ public interface AirCompanyService {
 
     AirCompany save(AirCompany company) throws NotCorrectData;
 
-    AirCompany update(Long id, AirCompany company) throws NotFoundData;
+//    AirCompany update(Long id, AirCompany company) throws NotFoundData;
 
     AirCompany readById(Long id) throws NotFoundData;
 
     List<AirCompany> readAll();
-
-    void deleteById(Long id) throws NotFoundData;
+//
+//    void deleteById(Long id) throws NotFoundData;
 
 
 }

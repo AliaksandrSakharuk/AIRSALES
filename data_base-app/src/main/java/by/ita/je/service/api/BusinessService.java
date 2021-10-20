@@ -11,9 +11,9 @@ import java.util.List;
 public interface BusinessService {
 
     public Flight createNewFlight(Flight flight);
-
-    public Flight findById(long id);
 //
+//    public Flight findById(long id);
+
 //    public List<Flight> findAll();
 
     public AirCompany createNewAirCompany(AirCompany company);

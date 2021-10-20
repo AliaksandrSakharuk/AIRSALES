@@ -3,39 +3,11 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>AVIASALES</title>
+    <title>FLIGHT LIST</title>
 </head>
 <body>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="EXIT" />
-</form>
+<a th:href="@{/}"> На главную страницу</a>
 <br>
-<br>
-<a th:href="@{/ticket/list}"> Мои билеты</a>
-<br>
-<br>
-<a th:href="@{/profile}"> Личный каинет</a>
-<br>
-<br>
-<a th:href="@{/admin}"> КАБИНЕТ АДМИНИСТРАТОРА</a>
-<br>
-
-
-<br>
-<table border="1" width="60%" cellpadding="5">
-    <tr>
-        <td>
-            <h2>ПОИСК РЕЙСА:</h2>
-            <form action="#" th:action="@{/flight/list}" method="post">
-                <p>ДАТА ВЫЛЕТА: <input type="date" th:field="*{field.startData}"  required /></p>
-                <p>ГОРОД ВЫЛЕТА: <input type="text" required  th:field="*{field.departureCity}" /></p>
-                <p>ГОРОД ПРИБЫТИЯ: <input type="text" required  th:field="*{field.arriveCity}" /></p>
-                <p>АВИАКОМПАНИЯ: <input type="text"  th:field="*{field.nameCompany}" /></p>
-                <p><input type="submit" value="НАЙТИ" /> <input type="reset" value="Сбросить" /></p>
-            </form>
-        </td>
-    </tr>
-</table>
 <br>
 <br>
 <h3>РЕЙСЫ:</h3>
@@ -62,11 +34,12 @@
             <td th:text="${flight.plane.id}">Nothing</td>
             <td th:text="${flight.plane.namePlane}">Nothing</td>
             <td> <a th:href="@{/flight/{id}(id=${flight.id})}">
-            СВОБОДНЫЕ МЕСТА
-        </a>
+                СВОБОДНЫЕ МЕСТА
+            </a>
             </td>
         </tr>
     </table>
 </div>
+
 </body>
 </html>

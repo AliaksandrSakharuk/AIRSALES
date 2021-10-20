@@ -32,17 +32,17 @@ public class FlightServiceImpl implements FlightService {
         return flightDao.save(flight);
     }
 
-    @Override
-    public Flight update(Long id, Flight flightNew) {
-        Flight flight = flightDao.findById(id)
-                .orElseThrow(() -> new NotFoundData( "AirCompany"));
-        if(flightNew.getNumberFlight()!="") flight.setNumberFlight(flightNew.getNumberFlight());
-        if(flightNew.getDepartureCity()!="") flight.setDepartureCity(flightNew.getDepartureCity());
-        if(flightNew.getArriveCity()!="") flight.setArriveCity(flightNew.getArriveCity());
-        if(flightNew.getDepartureDateTime()!=null) flight.setDepartureDateTime(flightNew.getDepartureDateTime());
-        if(flightNew.getArriveDateTime()!=null) flight.setArriveDateTime(flightNew.getArriveDateTime());
-        return flightDao.save(flight);
-    }
+//    @Override
+//    public Flight update(Long id, Flight flightNew) {
+//        Flight flight = flightDao.findById(id)
+//                .orElseThrow(() -> new NotFoundData( "AirCompany"));
+//        if(flightNew.getNumberFlight()!="") flight.setNumberFlight(flightNew.getNumberFlight());
+//        if(flightNew.getDepartureCity()!="") flight.setDepartureCity(flightNew.getDepartureCity());
+//        if(flightNew.getArriveCity()!="") flight.setArriveCity(flightNew.getArriveCity());
+//        if(flightNew.getDepartureDateTime()!=null) flight.setDepartureDateTime(flightNew.getDepartureDateTime());
+//        if(flightNew.getArriveDateTime()!=null) flight.setArriveDateTime(flightNew.getArriveDateTime());
+//        return flightDao.save(flight);
+//    }
 
     @Override
     public Flight readById(Long id) throws NotFoundData{
@@ -51,21 +51,21 @@ public class FlightServiceImpl implements FlightService {
         return flight;
     }
 
-    @Override
-    public List<Flight> findAll() {
-        final Spliterator<Flight> result = flightDao.findAll().spliterator();
-        return StreamSupport
-                .stream(result, false)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void deleteById(Long id) throws NotFoundData{
-        try {
-            flightDao.deleteById(id);
-        }catch (Exception e){
-            throw new NotFoundData("Flight");
-        }
-    }
+//    @Override
+//    public List<Flight> findAll() {
+//        final Spliterator<Flight> result = flightDao.findAll().spliterator();
+//        return StreamSupport
+//                .stream(result, false)
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public void deleteById(Long id) throws NotFoundData{
+//        try {
+//            flightDao.deleteById(id);
+//        }catch (Exception e){
+//            throw new NotFoundData("Flight");
+//        }
+//    }
 
 }

@@ -27,4 +27,6 @@ public interface ApiService {
     public void saveNewAirCompany(AirCompanyDto companyDto);
 
     public List<AirCompanyDto> getAllAirCompany();
+
+    public List<FlightDto> getListFlightByDuration(FieldSearcherDto fieldDto);
 }

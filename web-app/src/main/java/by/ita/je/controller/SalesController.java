@@ -12,16 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
 public class SalesController {
-
-    private final RestTemplate restTemplate;
     @Autowired
     private final UserDetailsServiceImpl userDetailsService;
+    private final RestTemplate restTemplate;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -30,6 +28,7 @@ public class SalesController {
     public String home(Model model) {
         List<FlightDto> flights=apiService.getListFlight();
         model.addAttribute("flights", flights);
+        model.addAttribute("field", new FieldSearcherDto());
         return "index";
     }
 
@@ -79,6 +78,12 @@ public class SalesController {
         return "seat";
     }
 
+    @PostMapping(value ="/flight/list")
+    public String loadFlight(@ModelAttribute FieldSearcherDto fieldDto, Model model){
+        model.addAttribute("flights", apiService.getListFlightByDuration(fieldDto));
+        return "flight_list";
+    }
+
     @GetMapping(value ="/ticket/{id}")
     public String formTicket(@PathVariable("id") long id, Model model){
         TicketDto ticketDto=getTicket(id);
@@ -104,12 +109,6 @@ public class SalesController {
     public String cancelBookedTicket(@PathVariable("id") String id){
         apiService.cancelBookTicket(id);
         return "redirect:/ticket/list";
-    }
-
-
-    @GetMapping(value = "/flight/list")
-    public String getListFlights() {
-        return "flights";
     }
 
 

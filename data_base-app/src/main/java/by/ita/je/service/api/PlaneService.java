@@ -6,13 +6,13 @@ import by.ita.je.model.Plane;
 
 public interface PlaneService {
 
-    Plane save(Plane plane) throws NotCorrectData;
-
-    Plane update(Long id, Plane plane) throws NotFoundData;
+//    Plane save(Plane plane) throws NotCorrectData;
+//
+//    Plane update(Long id, Plane plane) throws NotFoundData;
 
     Plane readById(Long id) throws NotFoundData;
 
-    void deleteById(Long id) throws NotFoundData;
-
-    Plane findPlaneByPlaneName(String namePlane);
+//    void deleteById(Long id) throws NotFoundData;
+//
+//    Plane findPlaneByPlaneName(String namePlane);
 }

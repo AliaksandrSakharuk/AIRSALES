@@ -14,7 +14,7 @@ public interface ClientService {
 
     Client readById(Long id) throws NotFoundData;
 
-    List <Client> readAll();
-
-    void deleteById(Long id) throws NotFoundData;
+//    List <Client> readAll();
+//
+//    void deleteById(Long id) throws NotFoundData;
 }
