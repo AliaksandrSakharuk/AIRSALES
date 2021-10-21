@@ -19,7 +19,6 @@ import java.util.List;
 public class SalesController {
     @Autowired
     private final UserDetailsServiceImpl userDetailsService;
-    private final RestTemplate restTemplate;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -79,8 +78,8 @@ public class SalesController {
     }
 
     @PostMapping(value ="/flight/list")
-    public String loadFlight(@ModelAttribute FieldSearcherDto fieldDto, Model model){
-        model.addAttribute("flights", apiService.getListFlightByDuration(fieldDto));
+    public String loadFlightsByConditions(@ModelAttribute FieldSearcherDto fieldDto, Model model){
+        model.addAttribute("flights", apiService.getListFlightByConditions(fieldDto));
         return "flight_list";
     }
 

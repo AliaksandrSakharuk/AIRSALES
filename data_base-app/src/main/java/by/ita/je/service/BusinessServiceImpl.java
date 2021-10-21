@@ -23,6 +23,9 @@ public class BusinessServiceImpl implements BusinessService {
     private final PlaneService planeService;
 
 
+
+
+
     @Override
     public Flight createNewFlight(Flight flight) {
         Plane plane=planeService.readById(flight.getPlane().getId());
@@ -52,8 +55,8 @@ public class BusinessServiceImpl implements BusinessService {
     public Ticket bookTicket(Ticket ticket) throws NotCorrectData {
         Seat seat=seatSericve.readById(ticket.getSeat().getId());
         seat.setBooked(true);
-       ticket.setSeat(seat);
-       ticket.setBookedDateTime(LocalDateTime.now());
+        ticket.setSeat(seat);
+        ticket.setBookedDateTime(LocalDateTime.now());
         seatSericve.update(ticket.getSeat().getId(),ticket.getSeat());
         return ticketService.save(ticket);
     }

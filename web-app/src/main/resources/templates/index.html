@@ -17,7 +17,9 @@
 <a th:href="@{/profile}"> Личный каинет</a>
 <br>
 <br>
+<div sec:authorize="hasAuthority('ADMIN')">
 <a th:href="@{/admin}"> КАБИНЕТ АДМИНИСТРАТОРА</a>
+</div>
 <br>
 
 

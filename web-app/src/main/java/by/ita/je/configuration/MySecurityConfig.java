@@ -41,7 +41,8 @@ public class MySecurityConfig  extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/users/**").not().fullyAuthenticated()
-                .antMatchers("/").hasAnyAuthority("READER", "EDITOR", "AUTHOR")
+                .antMatchers("/").hasAnyAuthority("READER", "EDITOR", "ADMIN")
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

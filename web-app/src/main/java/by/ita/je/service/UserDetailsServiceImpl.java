@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -44,7 +46,7 @@ public class UserDetailsServiceImpl implements UserService {
         }
         return new UserDetail(user);
     }
-
+    @Transactional
     @Override
     public boolean saveUser(User user) {
         User userFromDB = userDao.findByLogin(user.getLogin());
@@ -103,6 +105,7 @@ public class UserDetailsServiceImpl implements UserService {
         return userDao.findByLogin(auth.getName());
     }
 
+    @Transactional
     @Override
     public User updateUser(Long id, User userNew) {
         User userFromDB = userDao.findById(id)
@@ -113,7 +116,6 @@ public class UserDetailsServiceImpl implements UserService {
        if (userNew.getPassword()!="") userFromDB.setPassword(bCryptPasswordEncoder.encode(userNew.getPassword()));
 
             return userDao.save(userFromDB);
-
     }
 
     private String getTemporaryPassword(){

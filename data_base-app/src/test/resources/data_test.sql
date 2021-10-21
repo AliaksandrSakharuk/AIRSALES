@@ -6,73 +6,80 @@ drop table if exists flight CASCADE;
 drop table if exists plane CASCADE;
 drop table if exists air_company CASCADE;
 
-CREATE TABLE  IF NOT EXISTS  client (
-    id bigserial PRIMARY KEY,
-    first_name character varying(255) not null,
-    second_name character varying(255) not null,
-    phone_number int DEFAULT 0
-    );
+CREATE TABLE  client (
+                         id bigint NOT NULL AUTO_INCREMENT,
+                         first_name varchar(30) not null,
+                         second_name varchar(30) not null,
+                         phone_number int DEFAULT 0,
+                         primary key(id)
+);
 
-CREATE TABLE  IF NOT EXISTS air_company(
-    id bigserial PRIMARY KEY,
-    name_company character varying(255) NOT NULL,
-    phone_number int DEFAULT 0
-    );
+CREATE TABLE air_company(
+                            id bigint NOT NULL AUTO_INCREMENT,
+                            name_company varchar(255) NOT NULL,
+                            phone_number int DEFAULT 0,
+                            primary key(id)
+);
 
-CREATE TABLE  IF NOT EXISTS plane(
-    id bigserial PRIMARY KEY,
-    invertor_number integer default 0,
-    name_plane character varying(255) default null,
-    name_pilot character varying(255) default null,
-    quantity_seats integer default 0,
-    seats_in_line integer default 0,
-    quantity_lines integer default 0,
-    company_id bigint,
-    FOREIGN KEY (company_id) REFERENCES air_company(id)
-    );
+CREATE TABLE plane(
+                      id bigint NOT NULL AUTO_INCREMENT,
+                      invertor_number int default 0,
+                      name_plane varchar(255) default null,
+                      name_pilot varchar(255) default null,
+                      quantity_seats int default 0,
+                      seats_in_line int default 0,
+                      quantity_lines int default 0,
+                      company_id bigint,
+                      FOREIGN KEY (company_id) REFERENCES air_company(id),
+                      primary key(id)
+);
 
-CREATE TABLE  IF NOT EXISTS flight(
-    id bigserial PRIMARY KEY,
-    number_flight character varying(255) default null,
-    arrive_city character varying(255) default null,
-    arrive_date_time timestamp,
-    duration_flight integer default 0,
-    departure_city character varying(255) default null,
-    departure_date_time timestamp,
-    plane_id bigint,
-    FOREIGN KEY (plane_id) REFERENCES plane(id)
-    );
+CREATE TABLE flight(
+                       id bigint NOT NULL AUTO_INCREMENT,
+                       number_flight varchar(255) default null,
+                       arrive_city varchar(50) default null,
+                       arrive_date_time timestamp,
+                       duration_flight int default 0,
+                       departure_city varchar(50) default null,
+                       departure_date_time timestamp,
+                       plane_id bigint,
+                       FOREIGN KEY (plane_id) REFERENCES plane(id),
+                       primary key(id)
+);
 
-CREATE TABLE  IF NOT EXISTS seat(
-    id bigserial PRIMARY KEY,
-    booked boolean default false,
-     number_seat character varying(255),
-    flight_id bigint,
-    FOREIGN KEY (flight_id) REFERENCES flight(id)
-    );
+CREATE TABLE seat(
+                     id bigint NOT NULL AUTO_INCREMENT,
+                     booked bool default false,
+                     number_seat varchar(15),
+                     flight_id bigint,
+                     FOREIGN KEY (flight_id) REFERENCES flight(id),
+                     primary key(id)
+);
 
-CREATE TABLE  IF NOT EXISTS ticket(
-    id bigserial PRIMARY KEY,
-    booked_date_time timestamp,
-    first_name_passenger character varying(255),
-    second_name_passenger character varying(255),
-    phone_number_passenger integer default 0,
-    passport_number_passenger character varying(255),
-    seat_id bigint,
-    client_id bigint,
-    FOREIGN KEY (client_id) REFERENCES client(id),
-    FOREIGN KEY (seat_id) REFERENCES seat(id)
-    );
+CREATE TABLE ticket(
+                       id bigint NOT NULL AUTO_INCREMENT,
+                       booked_date_time timestamp,
+                       first_name_passenger varchar(255),
+                       second_name_passenger varchar(255),
+                       phone_number_passenger int default 0,
+                       passport_number_passenger varchar(255),
+                       seat_id bigint,
+                       client_id bigint,
+                       FOREIGN KEY (client_id) REFERENCES client(id),
+                       FOREIGN KEY (seat_id) REFERENCES seat(id),
+                       primary key(id)
+);
 
-CREATE TABLE  IF NOT EXISTS PASSENGER(
-    id bigserial PRIMARY KEY,
-    first_name character varying(255) not null,
-    second_name character varying(255) not null,
-    passport_number character varying(255) not null,
-    phone_number integer DEFAULT 0,
-    client_id bigint,
-    FOREIGN KEY (client_id) REFERENCES client(id)
-    );
+CREATE TABLE PASSENGER(
+                          id bigint NOT NULL AUTO_INCREMENT,
+                          first_name varchar(30) not null,
+                          second_name varchar(30) not null,
+                          passport_number varchar(30) not null,
+                          phone_number int DEFAULT 0,
+                          client_id bigint,
+                          FOREIGN KEY (client_id) REFERENCES client(id),
+                          primary key(id)
+);
 
 INSERT INTO air_company(name_company, phone_number) values('BELAVIA',  2232323);
 INSERT INTO air_company(name_company, phone_number) values('AEROFLOT',  3234455);
@@ -662,17 +669,17 @@ INSERT INTO seat(booked, number_seat, flight_id)
 values(false, '12D', 6);
 
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Vadim', 'Kazak', 'AB3234455', 297903271, 3);
+values('Vadim', 'Kazak', 'AB 3234455', 297903271, 3);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Maksim', 'Fedeev', 'AB3457901', 296330195, 3);
+values('Maksim', 'Fedeev', 'AB 3457901', 296330195, 3);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Semen', 'Dron', 'AB6540394', 292250081, 3);
+values('Semen', 'Dron', 'AB 6540394', 292250081, 3);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Ruslan', 'Zavizenec', 'AB3840101', 295643201, 4);
+values('Ruslan', 'Zavizenec', 'AB 3840101', 295643201, 4);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Zaur', 'Martirosian', 'AB3110401', 291230673, 4);
+values('Zaur', 'Martirosian', 'AB 3110401', 291230673, 4);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Igor', 'Olechovich', 'AB5349591', 296446666, 4);
+values('Igor', 'Olechovich', 'AB 5349591', 296446666, 4);
 
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time,   seat_id, client_id)
 values('Vadim', 'Kazak', 'AB 3234455', 297903271, '2021-10-01 14:50:00', 1, 3);

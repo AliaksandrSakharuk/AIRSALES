@@ -28,5 +28,5 @@ public interface ApiService {
 
     public List<AirCompanyDto> getAllAirCompany();
 
-    public List<FlightDto> getListFlightByDuration(FieldSearcherDto fieldDto);
+    public List<FlightDto> getListFlightByConditions(FieldSearcherDto fieldDto);
 }

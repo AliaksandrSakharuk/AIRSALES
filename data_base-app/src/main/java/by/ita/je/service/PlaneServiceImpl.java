@@ -1,25 +1,29 @@
 package by.ita.je.service;
 
 import by.ita.je.dao.PlaneDao;
-import by.ita.je.exception.NotCorrectData;
+
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Plane;
-import by.ita.je.service.api.FlightService;
 import by.ita.je.service.api.PlaneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
 public class PlaneServiceImpl implements PlaneService {
 
     @Autowired
-    PlaneDao planeDao;
-    @Autowired
-    FlightService flightService;
+    private final PlaneDao planeDao;
+
+    @Override
+    public Plane readById(Long id) throws NotFoundData{
+        final Plane plane=planeDao.findById(id)
+                .orElseThrow(() -> new NotFoundData("Plane"));
+        return plane;
+    }
+//    @Autowired
+//    FlightService flightService;
 
 //    @Override
 //    public Plane save(Plane plane) throws NotCorrectData{
@@ -43,13 +47,7 @@ public class PlaneServiceImpl implements PlaneService {
 //
 //    }
 
-    @Override
-    public Plane readById(Long id) throws NotFoundData{
-        final Plane plane=planeDao.findById(id)
-                .orElseThrow(() -> new NotFoundData("Plane"));
 
-        return plane;
-    }
 
 //    @Override
 //    public void deleteById(Long id) throws NotFoundData{

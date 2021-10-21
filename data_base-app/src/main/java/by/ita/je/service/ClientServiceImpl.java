@@ -18,11 +18,10 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientDao clientDao;
 
-
     @Override
     public Client save(Client client) throws NotCorrectData {
-        if(client.getFirstName()=="") throw new NotCorrectData("Client");
-        if(client.getSecondName()=="") throw new NotCorrectData("Client");
+        if(client.getFirstName()=="" || client.getFirstName()==null) throw new NotCorrectData("Client");
+        if(client.getSecondName()=="" || client.getSecondName()==null) throw new NotCorrectData("Client");
         return clientDao.save(client);
     }
 
@@ -40,7 +39,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client readById(Long id) throws NotFoundData {
         final Client client=clientDao.findById(id)
-                .orElseThrow(() -> new NotFoundData("Flight"));
+                .orElseThrow(() -> new NotFoundData("Client"));
         return client;
     }
 

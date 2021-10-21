@@ -23,7 +23,7 @@ public class AirCompanyServiceImpl implements AirCompanyService {
 
     @Override
     public AirCompany save(AirCompany company) throws NotCorrectData {
-    if(company.getNameCompany()=="") throw new NotCorrectData("AirCompany");
+    if(company.getNameCompany()=="" || company.getNameCompany()==null) throw new NotCorrectData("AirCompany");
         return companyServiceDao.save(company);
     }
 

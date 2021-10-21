@@ -26,7 +26,6 @@ public class SeatServiceImpl implements SeatSericve {
     public Seat update(Long id, Seat seatNew) throws NotFoundData {
         Seat seat = seatDao.findById(id)
                 .orElseThrow(() -> new NotFoundData( "Seat"));
-        if(seatNew.getNumberSeat()!="") seat.setNumberSeat(seatNew.getNumberSeat());
         if(seat.isBooked()!=seatNew.isBooked()) seat.setBooked(seatNew.isBooked());
         return seatDao.save(seat);
     }
