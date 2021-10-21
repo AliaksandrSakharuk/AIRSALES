@@ -15,14 +15,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SearcherServiceImpl implements SearcherService {
 
-    private final SearcherFlightAfterCurrentTimeDao flightAfterCurrentTimeDao;
+    private final FlightSearcherAfterCurrentTimeDao flightAfterCurrentTimeDao;
     private final SearcherFreeSeatOnFlightDao seatOnFlightDao;
-    private final SearcherTicketsForClient ticketForClient;
+    private final SearcherTicketsForClientDao ticketForClient;
     private final SearcherFlightByConditionDaoImpl searcherFlightByConditionDao;
 
     @Override
-    public List<Ticket> findTicketForClient(long id){
-        return ticketForClient.findTicketForClient(id);
+    public List<Ticket> findTicketForClient(long client_id){
+        return ticketForClient.findTicketForClient(client_id);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class SearcherServiceImpl implements SearcherService {
 
 
     @Override
-    public List<Seat> findFreeSeat(long id) {
-        return seatOnFlightDao.findFreeSeatOnFlight(id);
+    public List<Seat> findFreeSeat(long flight_id) {
+        return seatOnFlightDao.findFreeSeatOnFlight(flight_id);
     }
 
     @Override

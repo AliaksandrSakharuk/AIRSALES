@@ -7,78 +7,78 @@ drop table if exists plane CASCADE;
 drop table if exists air_company CASCADE;
 
 CREATE TABLE  client (
-                         id bigint NOT NULL AUTO_INCREMENT,
-                         first_name varchar(30) not null,
-                         second_name varchar(30) not null,
-                         phone_number int DEFAULT 0,
-                         primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    first_name varchar(30) not null,
+    second_name varchar(30) not null,
+    phone_number int DEFAULT 0,
+    primary key(id)
 );
 
 CREATE TABLE air_company(
-                            id bigint NOT NULL AUTO_INCREMENT,
-                            name_company varchar(255) NOT NULL,
-                            phone_number int DEFAULT 0,
-                            primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    name_company varchar(255) NOT NULL,
+    phone_number int DEFAULT 0,
+    primary key(id)
 );
 
 CREATE TABLE plane(
-                      id bigint NOT NULL AUTO_INCREMENT,
-                      invertor_number int default 0,
-                      name_plane varchar(255) default null,
-                      name_pilot varchar(255) default null,
-                      quantity_seats int default 0,
-                      seats_in_line int default 0,
-                      quantity_lines int default 0,
-                      company_id bigint,
-                      FOREIGN KEY (company_id) REFERENCES air_company(id),
-                      primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    invertor_number int default 0,
+    name_plane varchar(255) default null,
+    name_pilot varchar(255) default null,
+    quantity_seats int default 0,
+    seats_in_line int default 0,
+    quantity_lines int default 0,
+    company_id bigint,
+    FOREIGN KEY (company_id) REFERENCES air_company(id),
+    primary key(id)
 );
 
 CREATE TABLE flight(
-                       id bigint NOT NULL AUTO_INCREMENT,
-                       number_flight varchar(255) default null,
-                       arrive_city varchar(50) default null,
-                       arrive_date_time timestamp,
-                       duration_flight int default 0,
-                       departure_city varchar(50) default null,
-                       departure_date_time timestamp,
-                       plane_id bigint,
-                       FOREIGN KEY (plane_id) REFERENCES plane(id),
-                       primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    number_flight varchar(255) default null,
+    arrive_city varchar(50) default null,
+    arrive_date_time timestamp,
+    duration_flight int default 0,
+    departure_city varchar(50) default null,
+    departure_date_time timestamp,
+    plane_id bigint,
+    FOREIGN KEY (plane_id) REFERENCES plane(id),
+    primary key(id)
 );
 
 CREATE TABLE seat(
-                     id bigint NOT NULL AUTO_INCREMENT,
-                     booked bool default false,
-                     number_seat varchar(15),
-                     flight_id bigint,
-                     FOREIGN KEY (flight_id) REFERENCES flight(id),
-                     primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    booked bool default false,
+    number_seat varchar(15),
+    flight_id bigint,
+    FOREIGN KEY (flight_id) REFERENCES flight(id),
+    primary key(id)
 );
 
 CREATE TABLE ticket(
-                       id bigint NOT NULL AUTO_INCREMENT,
-                       booked_date_time timestamp,
-                       first_name_passenger varchar(255),
-                       second_name_passenger varchar(255),
-                       phone_number_passenger int default 0,
-                       passport_number_passenger varchar(255),
-                       seat_id bigint,
-                       client_id bigint,
-                       FOREIGN KEY (client_id) REFERENCES client(id),
-                       FOREIGN KEY (seat_id) REFERENCES seat(id),
-                       primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    booked_date_time timestamp,
+    first_name_passenger varchar(255),
+    second_name_passenger varchar(255),
+    phone_number_passenger int default 0,
+    passport_number_passenger varchar(255),
+    seat_id bigint,
+    client_id bigint,
+    FOREIGN KEY (client_id) REFERENCES client(id),
+    FOREIGN KEY (seat_id) REFERENCES seat(id),
+    primary key(id)
 );
 
 CREATE TABLE PASSENGER(
-                          id bigint NOT NULL AUTO_INCREMENT,
-                          first_name varchar(30) not null,
-                          second_name varchar(30) not null,
-                          passport_number varchar(30) not null,
-                          phone_number int DEFAULT 0,
-                          client_id bigint,
-                          FOREIGN KEY (client_id) REFERENCES client(id),
-                          primary key(id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    first_name varchar(30) not null,
+    second_name varchar(30) not null,
+    passport_number varchar(30) not null,
+    phone_number int DEFAULT 0,
+    client_id bigint,
+    FOREIGN KEY (client_id) REFERENCES client(id),
+    primary key(id)
 );
 
 INSERT INTO air_company(name_company, phone_number) values('BELAVIA',  2232323);
@@ -120,17 +120,17 @@ VALUES ('sasha', 'kazak', 297330135);
 INSERT INTO client (first_name, second_name,  phone_number)
 VALUES ('roma', 'salapura', 297229238);
 
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '1A', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '1A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '1B', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '1C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '1C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '1D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '2A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '2B', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '2C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '2C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '2D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '3A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '3B', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '3C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '3C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '3D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '4A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '4B', 1);
@@ -138,11 +138,11 @@ INSERT INTO seat(booked, number_seat, flight_id) values(false, '4C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '4D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '5A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '5B', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '5C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '5C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '5D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '6A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '6B', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '6C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '6C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '6D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '7A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '7B', 1);
@@ -150,135 +150,73 @@ INSERT INTO seat(booked, number_seat, flight_id) values(false, '7C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '7D', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '8A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '8B', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '8C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '8C', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '8D', 1);
-INSERT INTO seat(booked, number_seat, flight_id) values(true, '9A', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '9A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '9B', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '9C', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '9D', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '10A', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '10B', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '10C', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '10D', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11A', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11B', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11C', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11D', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '12A', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '12B', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '12C', 1);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '12D', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '9C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '9D', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '10A', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '10B', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '10C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '10D', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '11A', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '11B', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '11C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '11D', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '12A', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '12B', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '12C', 1);
+INSERT INTO seat(booked, number_seat, flight_id) values(false, '12D', 1);
 
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '1A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '1B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '1C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '1D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '2A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '2B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '2C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '2D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '3A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '3B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '3C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '3D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '4A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '4B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '4C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '4D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '5A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '5B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '5C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '5D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '6A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '6B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '6C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '6D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '7A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '7B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '7C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '7D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '8A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '8B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '8C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '8D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '9A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '9B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '9C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '9D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '10A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '10B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '10C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '10D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '11D', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '12A', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '12B', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '12C', 2);
-INSERT INTO seat(booked, number_seat, flight_id)
-values(false, '12D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '1A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '1B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '1C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '1D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '2A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '2B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '2C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '2D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '3A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '3B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '3C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '3D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '4A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '4B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '4C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '4D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '5A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '5B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '5C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '5D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '6A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '6B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '6C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '6D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '7A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '7B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '7C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '7D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '8A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '8B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '8C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '8D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '9A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '9B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '9C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '9D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '10A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '10B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '10C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '10D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '11A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '11B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '11C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '11D', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '12A', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '12B', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '12C', 2);
+INSERT INTO seat(booked, number_seat, flight_id) values(true, '12D', 2);
 
 INSERT INTO seat(booked, number_seat, flight_id)
 values(true, '1A', 3);

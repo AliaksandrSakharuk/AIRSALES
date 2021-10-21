@@ -1,4 +1,4 @@
-package service;
+package by.ita.je.service;
 
 import by.ita.je.dao.TicketDao;
 import by.ita.je.exception.NotCorrectData;

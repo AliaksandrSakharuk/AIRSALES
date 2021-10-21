@@ -27,9 +27,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket save(Ticket ticket) {
-        if(ticket.getFirstNamePassenger()=="" || ticket.getFirstNamePassenger()==null) throw new NotCorrectData("Ticket");
-        if(ticket.getSecondNamePassenger()=="" || ticket.getSecondNamePassenger()==null) throw new NotCorrectData("Ticket");
-        if(ticket.getPassportNumberPassenger()=="" || ticket.getPassportNumberPassenger()==null) throw new NotCorrectData("Ticket");
+        if(ticket.getFirstNamePassenger()==null || ticket.getFirstNamePassenger()=="") throw new NotCorrectData("Ticket");
+        if(ticket.getSecondNamePassenger()==null || ticket.getSecondNamePassenger()=="") throw new NotCorrectData("Ticket");
+        if(ticket.getPassportNumberPassenger()==null || ticket.getPassportNumberPassenger()=="") throw new NotCorrectData("Ticket");
         ticket.setBookedDateTime(LocalDateTime.now());
         return ticketDao.save(ticket);
     }

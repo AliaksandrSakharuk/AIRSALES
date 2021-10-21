@@ -13,3 +13,4 @@ spring:
     driver-class-name: org.h2.Driver
     username: pass
     password: pass
+    data: classpath:/data-test.sql

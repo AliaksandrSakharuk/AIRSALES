@@ -23,9 +23,9 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public Flight save(Flight flight) throws NotCorrectData {
-        if(flight.getNumberFlight()=="" || flight.getNumberFlight()==null) throw new NotCorrectData("Flight");
-        if(flight.getDepartureCity()==""|| flight.getDepartureCity()==null) throw new NotCorrectData("Flight");
-        if(flight.getArriveCity()==""|| flight.getArriveCity()==null) throw new NotCorrectData("Flight");
+        if(flight.getNumberFlight()==null || flight.getNumberFlight()=="") throw new NotCorrectData("Flight");
+        if(flight.getDepartureCity()==null || flight.getDepartureCity()=="") throw new NotCorrectData("Flight");
+        if(flight.getArriveCity()==null || flight.getArriveCity()=="") throw new NotCorrectData("Flight");
         if(flight.getDepartureDateTime()==null) throw new NotCorrectData("Flight");
         if(flight.getArriveDateTime()==null) throw new NotCorrectData("Flight");
         flight.setDurationFlight((int) ChronoUnit.MINUTES.between(flight.getDepartureDateTime(), flight.getArriveDateTime()));

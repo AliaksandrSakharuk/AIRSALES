@@ -5,6 +5,6 @@ import by.ita.je.model.Flight;
 
 import java.util.List;
 
-public interface SearacherFlightByConditionDao {
+public interface SearcherFlightByConditionDao {
     public List<Flight> findFlight(FieldSearcherDto searcherDto);
 }

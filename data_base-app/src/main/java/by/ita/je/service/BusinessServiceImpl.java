@@ -1,6 +1,7 @@
 package by.ita.je.service;
 
 import by.ita.je.exception.NotCorrectData;
+import by.ita.je.exception.NotCorrectSeat;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.*;
 import by.ita.je.service.api.*;
@@ -22,10 +23,6 @@ public class BusinessServiceImpl implements BusinessService {
     private final TicketService ticketService;
     private final PlaneService planeService;
 
-
-
-
-
     @Override
     public Flight createNewFlight(Flight flight) {
         Plane plane=planeService.readById(flight.getPlane().getId());
@@ -33,12 +30,6 @@ public class BusinessServiceImpl implements BusinessService {
         createSeat(flight);
         return flightService.save(flight);
     }
-
-//    @Override
-//    public Flight findById(long id) {
-//        return flightService.readById(id);
-//    }
-
 
     @Override
     public AirCompany createNewAirCompany(AirCompany company){
@@ -52,8 +43,9 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public Ticket bookTicket(Ticket ticket) throws NotCorrectData {
+    public Ticket bookTicket(Ticket ticket) throws NotCorrectSeat {
         Seat seat=seatSericve.readById(ticket.getSeat().getId());
+        if(seat.isBooked()==true) throw new NotCorrectSeat(seat.getNumberSeat());
         seat.setBooked(true);
         ticket.setSeat(seat);
         ticket.setBookedDateTime(LocalDateTime.now());
@@ -62,16 +54,13 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public void cancelBookedTicket(long idTicket) throws NotFoundData{
+    public void cancelBookedTicket(long idTicket){
         Ticket ticket= ticketService.readById(idTicket);
         Seat seat=ticket.getSeat();
         seat.setBooked(false);
         seatSericve.update(seat.getId(),seat);
         ticketService.deleteById(idTicket);
     }
-
-
-
 
     private void createSeat(Flight flight){
         List<Seat> list=new ArrayList<Seat>();
@@ -88,13 +77,13 @@ public class BusinessServiceImpl implements BusinessService {
 
     private void createIfNotRelationshipAirCompanyToPlanes(AirCompany company){
         if (Objects.isNull(company.getPlanes()) || company.getPlanes().isEmpty()){
-            Plane boeing=cteateBoeing737_500();
+            Plane boeing=createBoeing737_500();
             Plane embrare=createEmbraer195();
             company.setPlanes(List.of(boeing, embrare));
         }
     }
 
-    private Plane cteateBoeing737_500(){
+    private Plane createBoeing737_500(){
         return Plane.builder()
                 .namePlane("Boeing 737-500")
                 .namePilot("James Bond")

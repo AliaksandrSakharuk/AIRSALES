@@ -1,6 +1,6 @@
 package by.ita.je.dao.impl;
 
-import by.ita.je.dao.SearacherFlightByConditionDao;
+import by.ita.je.dao.SearcherFlightByConditionDao;
 import by.ita.je.dto.FieldSearcherDto;
 import by.ita.je.model.*;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public class SearcherFlightByConditionDaoImpl implements SearacherFlightByConditionDao {
+public class SearcherFlightByConditionDaoImpl implements SearcherFlightByConditionDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -34,7 +34,7 @@ public class SearcherFlightByConditionDaoImpl implements SearacherFlightByCondit
         ,criteriaBuilder.equal(root.get("departureCity"), searcherDto.getDepartureCity())
         ,criteriaBuilder.equal(root.get("arriveCity"), searcherDto.getArriveCity()));
 
-        if(searcherDto.getNameCompany()!=""){
+        if(searcherDto.getNameCompany()!=null && searcherDto.getNameCompany()!=""){
         Join<Flight, Plane> planeJoin=root.join(Flight_.PLANE);
         Join<Plane, AirCompany> companyJoin=planeJoin.join(Plane_.COMPANY);
         query.select(root);

@@ -12,5 +12,5 @@ public interface SearcherFreeSeatOnFlightDao extends JpaRepository<Seat, Long> {
     @Query(value = "SELECT * FROM SEAT seat INNER JOIN FLIGHT flight ON seat.flight_id=flight.id " +
             "WHERE seat.booked='false' AND flight.id=:id"
             , nativeQuery = true)
-    List<Seat> findFreeSeatOnFlight(@Param("id") long id);
+    List<Seat> findFreeSeatOnFlight(@Param("id") long flight_id);
 }

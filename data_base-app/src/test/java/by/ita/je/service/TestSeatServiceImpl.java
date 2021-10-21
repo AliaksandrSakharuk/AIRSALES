@@ -1,4 +1,4 @@
-package service;
+package by.ita.je.service;
 
 import by.ita.je.dao.SeatDao;
 import by.ita.je.exception.NotFoundData;

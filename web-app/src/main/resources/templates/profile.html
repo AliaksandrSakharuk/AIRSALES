@@ -22,15 +22,12 @@
         <td th:text="${user.client.firstName}">Nothing</td>
         <td th:text="${user.client.secondName}">Nothing</td>
         <td th:text="${user.client.phoneNumber}">Nothing</td>
-
     </tr>
 </table>
 <br>
-<form id="passengers" method="get" ></form>
-<button type="submit" form="passengers"  formaction="/web-app/profile/passengers" >СПИСОК ПАССАЖИРОВ ДЛЯ ПДСТАНОВКИ</button>
+<a th:href="@{/profile/passengers}"> СПИСОК ПАССАЖИРОВ ДЛЯ ПДСТАНОВКИ</a>
 <br>
 <br>
-<form id="update" method="get" ></form>
-<button type="submit" form="update"  formaction="/web-app/profile/form" >Изменить профиль</button>
+<a th:href="@{/profile/form}"> Изменить профиль</a>
 </body>
 </html>

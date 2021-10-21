@@ -11,5 +11,4 @@ public class SeatDto {
     private Long id;
     private String numberSeat;
     private boolean booked;
-    private FlightDto flight;
 }

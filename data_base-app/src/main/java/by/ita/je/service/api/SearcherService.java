@@ -18,9 +18,9 @@ public interface SearcherService {
 
     public List<Flight> findFlightAfterCurrentTime();
 
-    public List<Ticket> findTicketForClient(long id);
+    public List<Ticket> findTicketForClient(long client_id);
 
-    List<Seat> findFreeSeat(long id);
+    List<Seat> findFreeSeat(long flight_id);
 
     public List<Flight> findFlightByConditions(FieldSearcherDto searcherDto);
 //
