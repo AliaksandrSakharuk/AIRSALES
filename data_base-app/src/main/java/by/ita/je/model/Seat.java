@@ -1,7 +1,6 @@
 package by.ita.je.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @NoArgsConstructor

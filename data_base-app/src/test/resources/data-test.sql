@@ -119,6 +119,8 @@ INSERT INTO client (first_name, second_name,  phone_number)
 VALUES ('sasha', 'kazak', 297330135);
 INSERT INTO client (first_name, second_name,  phone_number)
 VALUES ('roma', 'salapura', 297229238);
+INSERT INTO client (first_name, second_name,  phone_number)
+VALUES ('petia', 'kazak', 297229238);
 
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '1A', 1);
 INSERT INTO seat(booked, number_seat, flight_id) values(false, '1B', 1);
@@ -221,7 +223,7 @@ INSERT INTO seat(booked, number_seat, flight_id) values(true, '12D', 2);
 INSERT INTO seat(booked, number_seat, flight_id)
 values(true, '1A', 3);
 INSERT INTO seat(booked, number_seat, flight_id)
-values(true, '1B', 3);
+values(false, '1B', 3);
 INSERT INTO seat(booked, number_seat, flight_id)
 values(true, '1C', 3);
 INSERT INTO seat(booked, number_seat, flight_id)

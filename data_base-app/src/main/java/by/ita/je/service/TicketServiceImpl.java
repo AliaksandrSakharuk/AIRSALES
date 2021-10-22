@@ -22,7 +22,6 @@ public class TicketServiceImpl implements TicketService {
         final Ticket ticket= ticketDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("Ticket"));
         return ticket;
-
     }
 
     @Override

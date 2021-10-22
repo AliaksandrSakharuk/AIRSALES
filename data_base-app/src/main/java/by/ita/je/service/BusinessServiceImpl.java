@@ -1,13 +1,10 @@
 package by.ita.je.service;
 
-import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotCorrectSeat;
-import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.*;
 import by.ita.je.service.api.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,5 +101,4 @@ public class BusinessServiceImpl implements BusinessService {
                 .invertorNumber(7777777L)
                 .build();
     }
-
 }

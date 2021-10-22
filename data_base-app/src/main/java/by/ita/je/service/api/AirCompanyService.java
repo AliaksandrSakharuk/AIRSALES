@@ -6,15 +6,10 @@ import by.ita.je.model.AirCompany;
 import java.util.List;
 public interface AirCompanyService {
 
-    AirCompany save(AirCompany company) throws NotCorrectData;
+   public AirCompany save(AirCompany company) throws NotCorrectData;
 
-//    AirCompany update(Long id, AirCompany company) throws NotFoundData;
+    public AirCompany readById(Long id) throws NotFoundData;
 
-    AirCompany readById(Long id) throws NotFoundData;
-
-    List<AirCompany> readAll();
-//
-//    void deleteById(Long id) throws NotFoundData;
-
+    public List<AirCompany> readAll();
 
 }

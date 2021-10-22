@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,9 +27,4 @@ public class Plane {
     @JoinColumn(name = "company_id")
     @JsonIgnore
     private AirCompany company;
-
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "plane_id")
-//    @JsonIgnore
-//    private List<Flight> flights;
 }

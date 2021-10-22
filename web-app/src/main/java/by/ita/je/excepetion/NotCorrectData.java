@@ -1,4 +1,4 @@
-package by.ita.je.exception;
+package by.ita.je.excepetion;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

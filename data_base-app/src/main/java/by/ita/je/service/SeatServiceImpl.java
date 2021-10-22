@@ -16,12 +16,6 @@ public class SeatServiceImpl implements SeatSericve {
     @Autowired
     private final SeatDao seatDao;
 
-//    @Override
-//    public Seat save(Seat seat) throws NotCorrectData {
-//        if(seat.getNumberSeat()=="") throw new NotCorrectData("Seat");
-//        return seatDao.save(seat);
-//    }
-
     @Override
     public Seat update(Long id, Seat seatNew) throws NotFoundData {
         Seat seat = seatDao.findById(id)
@@ -36,13 +30,4 @@ public class SeatServiceImpl implements SeatSericve {
                 .orElseThrow(() -> new NotFoundData("Seat"));
         return seat;
     }
-
-//    @Override
-//    public void deleteById(Long id) throws NotFoundData {
-//        try {
-//            seatDao.deleteById(id);
-//        }catch (Exception e){
-//            throw new NotFoundData("Seat");
-//        }
-//    }
 }

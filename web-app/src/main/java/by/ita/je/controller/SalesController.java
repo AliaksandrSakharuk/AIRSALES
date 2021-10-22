@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -93,7 +92,6 @@ public class SalesController {
     @PostMapping(value ="/ticket/book")
     public String bookTicket(@ModelAttribute TicketDto ticketDto, Model model){
         apiService.bookTicket(ticketDto);
-
         return "redirect:/ticket/list";
     }
 
@@ -110,7 +108,6 @@ public class SalesController {
         return "redirect:/ticket/list";
     }
 
-
     private TicketDto getTicket(long id){
         SeatDto seatDto=new SeatDto();
         seatDto.setId(id);
@@ -120,5 +117,4 @@ public class SalesController {
         ticketDto.setClient(apiService.findByIdClient(user.getClientId()));
         return ticketDto;
     }
-
 }

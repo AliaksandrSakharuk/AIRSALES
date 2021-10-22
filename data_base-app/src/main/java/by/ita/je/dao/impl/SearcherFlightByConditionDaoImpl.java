@@ -4,7 +4,6 @@ import by.ita.je.dao.SearcherFlightByConditionDao;
 import by.ita.je.dto.FieldSearcherDto;
 import by.ita.je.model.*;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

@@ -87,6 +87,4 @@ public class AdminController {
     userDetailsService.userBlockAndUnBlockedEnabled(id);
         return "redirect:/admin/user/list";
     }
-
-
 }

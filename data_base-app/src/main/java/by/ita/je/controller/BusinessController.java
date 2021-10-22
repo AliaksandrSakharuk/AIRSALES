@@ -82,7 +82,7 @@ public class BusinessController {
     }
 
     @GetMapping("/company/list")
-    public  List<AirCompanyDto> findAll(){
+    public  List<AirCompanyDto> findAllAirCompany(){
         List <AirCompany> list=businessService.getAllAirCompany();
         List<AirCompanyDto> listCompany=list.stream()
                 .map(company -> objectMapper.convertValue(company, AirCompanyDto.class))
@@ -110,5 +110,4 @@ public class BusinessController {
                 .collect(Collectors.toList());
         return tickets;
     }
-
 }

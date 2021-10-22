@@ -3,6 +3,7 @@ package by.ita.je.service;
 import by.ita.je.dao.*;
 import by.ita.je.dao.impl.SearcherFlightByConditionDaoImpl;
 import by.ita.je.dto.FieldSearcherDto;
+import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Flight;
 import by.ita.je.model.Seat;
 import by.ita.je.model.Ticket;
@@ -32,14 +33,14 @@ public class SearcherServiceImpl implements SearcherService {
 
 
     @Override
-    public List<Seat> findFreeSeat(long flight_id) {
-        return seatOnFlightDao.findFreeSeatOnFlight(flight_id);
+    public List<Seat> findFreeSeat(long flight_id) throws NotFoundData {
+        List<Seat> seats=seatOnFlightDao.findFreeSeatOnFlight(flight_id);
+        if(seats.isEmpty()) throw new NotFoundData("Flight");
+        return seats;
     }
 
     @Override
     public List<Flight> findFlightByConditions(FieldSearcherDto searcherDto){
         return searcherFlightByConditionDao.findFlight(searcherDto);
     }
-
-
 }

@@ -1,5 +1,6 @@
 package by.ita.je.dao;
 
+import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Seat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

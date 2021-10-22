@@ -10,16 +10,13 @@ import by.ita.je.service.api.MessageService;
 import by.ita.je.service.api.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -127,5 +124,4 @@ public class UserDetailsServiceImpl implements UserService {
         }
         return password.toString();
     }
-
 }

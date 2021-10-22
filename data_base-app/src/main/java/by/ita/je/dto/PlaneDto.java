@@ -1,11 +1,8 @@
 package by.ita.je.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,5 +15,5 @@ public class PlaneDto {
     private  int quantitySeats;
     private int seatsInLine;
     private int quantityLines;
-//    private List<FlightDto> flights;
+
 }

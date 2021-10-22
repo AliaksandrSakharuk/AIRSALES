@@ -8,12 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 @AllArgsConstructor
 public class ApiServiceImpl implements ApiService {
-
 
     private final RestTemplate restTemplate;
     private final String url="http://localhost:5001/data_base-app";
@@ -99,5 +97,4 @@ public class ApiServiceImpl implements ApiService {
         ResponseEntity<AirCompanyDto[]> responseEntity = restTemplate.getForEntity(urlBusiness, AirCompanyDto[].class);
         return Arrays.asList(responseEntity.getBody());
     }
-
 }
