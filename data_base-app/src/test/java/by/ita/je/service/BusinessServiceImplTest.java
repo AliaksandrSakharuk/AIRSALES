@@ -100,6 +100,7 @@ class BusinessServiceImplTest {
         seat.setId(97L);
         seat.setNumberSeat("1A");
         expected.setSeat(seat);
+        expected.setClient(getClient());
         NotCorrectSeat notCorrectSeat=Assertions.assertThrows(NotCorrectSeat.class, () -> businessService.bookTicket(expected));
         Assertions.assertEquals( "Место 1A уже забронировано", notCorrectSeat.getMessage());
     }

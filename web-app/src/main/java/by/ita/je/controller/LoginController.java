@@ -39,14 +39,14 @@ public class LoginController {
     public String createNewLogin(Model model) {
         UserDto userDto=new UserDto();
         userDto.setClient(new ClientDto());
-        model.addAttribute("users", userDto);
+        model.addAttribute("userDto", userDto);
         return "form_user";
     }
 
     @PostMapping(value = "/users/save")
     public String resultCreateUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult , Model model) {
         if(bindingResult.hasErrors()) {
-            return "redirect:/users/new";
+            return "form_user";
         }
         else{
             ClientDto responce=apiService.saveClient(userDto.getClient());

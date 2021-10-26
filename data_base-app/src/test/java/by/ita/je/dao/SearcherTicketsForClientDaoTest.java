@@ -1,6 +1,5 @@
 package by.ita.je.dao;
 
-import by.ita.je.model.Flight;
 import by.ita.je.model.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

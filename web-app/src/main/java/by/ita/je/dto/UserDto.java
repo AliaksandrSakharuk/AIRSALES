@@ -4,19 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
     private Long id;
-    @NotNull
+    @NotBlank(message = "ENTER YOUR LOGIN")
     private String login;
-    @NotNull
     private String password;
-    @Email(message = "QQQQQQQQQQQ")
+    @Email(message = "NOT CORRECT EMAIL")
     private String email;
     private boolean enabled;
     private ClientDto client;

@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -55,19 +58,23 @@ public class SalesController {
         UserDto userDto = objectMapper.convertValue(user, UserDto.class);
         userDto.setPassword("");
         userDto.setClient(clientDto);
-        model.addAttribute("user", userDto);
+        model.addAttribute("userDto", userDto);
         return "form_update";
     }
 
     @PostMapping(value = "/profile/update")
-    public String resultUpdateUser(@ModelAttribute UserDto userDto, Model model) {
-        ClientDto clientDto=apiService.updateClient(userDto.getClient());
-        User user = objectMapper.convertValue(userDto, User.class);
-        User userNew=userDetailsService.updateUser(user.getId(), user);
-        UserDto userDtoNew = objectMapper.convertValue(user, UserDto.class);
-        userDtoNew.setClient(clientDto);
-        model.addAttribute("user", userDtoNew);
-        return "redirect:/profile";
+    public String resultUpdateUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            return "form_update";
+        }
+        else{
+            ClientDto clientDto=apiService.updateClient(userDto.getClient());
+            User user = objectMapper.convertValue(userDto, User.class);
+            User userNew=userDetailsService.updateUser(user.getId(), user);
+            UserDto userDtoNew = objectMapper.convertValue(user, UserDto.class);
+            userDtoNew.setClient(clientDto);
+            return "redirect:/profile";
+        }
     }
 
     @GetMapping(value ="/flight/{id}")
@@ -85,14 +92,19 @@ public class SalesController {
     @GetMapping(value ="/ticket/{id}")
     public String formTicket(@PathVariable("id") long id, Model model){
         TicketDto ticketDto=getTicket(id);
-        model.addAttribute("ticket", ticketDto);
+        model.addAttribute("ticketDto", ticketDto);
         return "ticket";
     }
 
     @PostMapping(value ="/ticket/book")
-    public String bookTicket(@ModelAttribute TicketDto ticketDto, Model model){
-        apiService.bookTicket(ticketDto);
-        return "redirect:/ticket/list";
+    public String bookTicket(@Valid  @ModelAttribute TicketDto ticketDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "ticket";
+        }
+        else{
+            apiService.bookTicket(ticketDto);
+            return "redirect:/ticket/list";
+        }
     }
 
     @GetMapping(value ="/ticket/list")

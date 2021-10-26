@@ -52,11 +52,13 @@ public class TestUserDetailsServiceImpl {
     public void whenUpdate_returnUser(){
         User user=new User();
         user.setLogin("vova");
+        user.setEmail("vova@gmail.com");
         Mockito.when(userDao.findById(1L)).thenReturn(Optional.ofNullable(new User()));
         Mockito.when(userDao.save(user)).thenReturn(user);
         final  User actual=userDetailsService.updateUser(1L, user);
         final User expected=new User();
         expected.setLogin("vova");
+        expected.setEmail("vova@gmail.com");
         Assertions.assertEquals(expected, actual);
         Mockito.verify(userDao, Mockito.times(1)).findById(1L);
         Mockito.verify(userDao, Mockito.times(1)).save(user);

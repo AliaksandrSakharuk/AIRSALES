@@ -23,6 +23,7 @@ public class BusinessServiceImpl implements BusinessService {
     private final PlaneService planeService;
     private final PassengerService passengerService;
     private final SearcherService searcherService;
+    private final ClientService clientService;
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
@@ -50,6 +51,7 @@ public class BusinessServiceImpl implements BusinessService {
     @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public Ticket bookTicket(Ticket ticket) throws NotCorrectSeat {
         Seat seat=seatSericve.readById(ticket.getSeat().getId());
+        ticket.setClient(clientService.readById(ticket.getClient().getId()));
         if(seat.isBooked()==true) throw new NotCorrectSeat(seat.getNumberSeat());
         seat.setBooked(true);
         ticket.setSeat(seat);

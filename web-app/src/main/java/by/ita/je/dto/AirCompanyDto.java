@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AirCompanyDto {
     private Long id;
-    @Size(min=2, message = "QQQQQQQQQQQ")
+    @Size(min=2, message = "ENTER CORRECT NAME COMPANY")
     private String nameCompany;
     private long phoneNumber;
     private List<PlaneDto> planes;

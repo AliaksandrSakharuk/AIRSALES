@@ -8,11 +8,18 @@
 <body>
 <a th:href="@{/}"> На главную страницу</a>
 <h1>Form</h1>
-<form action="#" th:action="@{/ticket/book}" th:object="${ticket}" method="post">
-    <p>ИМЯ: <input type="text"  required th:field="*{firstNamePassenger}" /></p>
-    <p>ФАМИЛИЯ: <input type="text" required  th:field="*{secondNamePassenger}" /></p>
-    <p>ТЕЛЕФОН: <input type="text"  th:field="*{phoneNumberPassenger}"  /></p>
-    <p>ПАССПОРТ: <input type="text"  th:field="*{passportNumberPassenger}"  /></p>
+<form action="#" th:action="@{/ticket/book}" th:object="${ticketDto}" method="post">
+    <p>ИМЯ: <input type="text" th:field="*{firstNamePassenger}" />
+        <span th:if="${#fields.hasErrors('firstNamePassenger')}" style ="color: red;" class="alert alert-error" th:errors="*{firstNamePassenger}">Name Error</span>
+    </p>
+    <p>ФАМИЛИЯ: <input type="text" th:field="*{secondNamePassenger}" />
+        <span th:if="${#fields.hasErrors('secondNamePassenger')}" style ="color: red;" class="alert alert-error" th:errors="*{secondNamePassenger}">Name Error</span>
+    </p>
+    <p>ТЕЛЕФОН: <input type="text"  th:field="*{phoneNumberPassenger}"  required pattern="(^[0-9]{0,9})+$"/>
+    </p>
+    <p>ПАССПОРТ: <input type="text"  th:field="*{passportNumberPassenger}"  />
+        <span th:if="${#fields.hasErrors('passportNumberPassenger')}" style ="color: red;" class="alert alert-error" th:errors="*{passportNumberPassenger}">Name Error</span>
+    </p>
     <p><input type="text"  th:field="*{seat.id}"  hidden="true"/></p>
     <p><input type="text"  th:field="*{client.id}"  hidden="true"/></p>
     <p><input type="submit" value="ЗАРЕГЕСТРИРОВАТЬ" /> <input type="reset" value="Сбросить" /></p>
@@ -20,7 +27,7 @@
 <br>
 <h1>Список пассажирова для подстановки:</h1>
 <hr>
-<div th:if= "${ticket.client.passengers != null}">
+<div th:if= "${ticketDto.client.passengers != null}">
     <table border="1" width="65%" cellpadding="5">
         <tr>
             <th>ID</th>
@@ -29,7 +36,7 @@
             <th>номер телефона</th>
             <th>номер пасспорта</th>
         </tr>
-        <tr th:each="pass : ${ticket.client.passengers}">
+        <tr th:each="pass : ${ticketDto.client.passengers}">
             <td th:text="${pass.id}">Nothing</td>
             <td th:text="${pass.firstName}">Nothing</td>
             <td th:text="${pass.secondName}">Nothing</td>

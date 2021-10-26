@@ -9,15 +9,19 @@
 <a th:href="@{/}"> На главную страницу</a>
 <h1>ДАННЫЕ ЗАПРОСА ПОИСКА ДЛЯ ИЗМЕНЕНИЯ ДАННЫХ:</h1>
 
-<form action="#" th:action="@{/profile/update}" th:object="${user}"  method="post">
-    <p> ID: <input size="2" type="text"  th:field= ${user.id} readonly /></p>
-    <p>   ЛОГИН: <input type="text" th:field=${user.login}  required pattern="^[a-zA-Z0-9-_]+$"/></p>
-    <p>   ПАРОЛЬ: <input type="password" th:field=${user.password} pattern="^[a-zA-Z0-9]+$"/></p>
-    <p>  EMAIL: <input type="text" th:field=${user.email} required pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"/></p>
-    <p>   ID: <input type="text" th:field=${user.client.id} readonly/></p>
-    <p>  ИМЯ: <input type="text" th:field=${user.client.firstName} required pattern="^[a-zA-Z]+$"/></p>
-    <p>   ФАМИЛИЯ: <input type="text" th:field=${user.client.secondName} required pattern="^[a-zA-Z]+$"/></p>
-    <p>   ТЕЛЕФОН: <input type="text" th:field=${user.client.phoneNumber} required pattern="(^[0-9]{0,9})+$"/></p>
+<form action="#" th:action="@{/profile/update}" th:object="${userDto}"  method="post">
+    <p> ID: <input size="2" type="text"  th:field= "*{id}" readonly /></p>
+    <p>   ЛОГИН: <input type="text" th:field="*{login}"/>
+        <span th:if="${#fields.hasErrors('login')}" style ="color: red;" class="alert alert-error" th:errors="*{login}">Name Error</span></p>
+    </p>
+    <p>   ПАРОЛЬ: <input type="password" th:field="*{password}" pattern="^[a-zA-Z0-9]+$"/></p>
+    <p>  EMAIL: <input type="text" required th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}" style ="color: red;" class="alert alert-error" th:errors="*{email}">Name Error</span>
+    </p>
+    <p>   ID: <input type="text" th:field="*{client.id}" readonly/></p>
+    <p>  ИМЯ: <input type="text" th:field="*{client.firstName}" required pattern="^[a-zA-Z]+$"/></p>
+    <p>   ФАМИЛИЯ: <input type="text" th:field="*{client.secondName}" required pattern="^[a-zA-Z]+$"/></p>
+    <p>   ТЕЛЕФОН: <input type="text" th:field="*{client.phoneNumber}" required pattern="(^[0-9]{0,9})+$"/></p>
     <p><input type="submit" value="Изменить" />
 </form>
 </body>

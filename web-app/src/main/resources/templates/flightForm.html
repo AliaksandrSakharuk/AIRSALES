@@ -8,14 +8,18 @@
 <body>
 <a th:href="@{/}"> На главную страницу</a>
 <h1>Form</h1>
-<form action="#" th:action="@{/admin/flight/new}" th:object="${flight}" method="post">
+<form action="#" th:action="@{/admin/flight/new}" th:object="${flightDto}" method="post">
     <p>НОМЕР РЕЙСА: <input type="text"  th:field="*{numberFlight}" />
-        <span th:if="${#fields.hasErrors('numberFlight')}" th:errors="*{numberFlight}">Name Error</span>
+        <span th:if="${#fields.hasErrors('numberFlight')}" style ="color: red;" class="alert alert-error" th:errors="*{numberFlight}">Name Error</span>
     </p>
 
-    <p>ГОРОД ОТПРАВЛЕНИЯ: <input type="text"   th:field="*{departureCity}" pattern="^[a-zA-Z]+$"/></p>
+    <p>ГОРОД ОТПРАВЛЕНИЯ: <input type="text"   th:field="*{departureCity}" pattern="^[a-zA-Z]+$"/>
+        <span th:if="${#fields.hasErrors('departureCity')}" style ="color: red;" class="alert alert-error" th:errors="*{departureCity}">Name Error</span>
+    </p>
     <p>ДАТА И ВРЕМЯ ОТПРАВЛЕНИЯ: <input type="text"   readonly th:field="*{departureDateTime}"  /></p>
-    <p>ГОРОД ПРИБЫТИЯ: <input type="text"  th:field="*{arriveCity}"  pattern="^[a-zA-Z]+$"/></p>
+    <p>ГОРОД ПРИБЫТИЯ: <input type="text"  th:field="*{arriveCity}"  pattern="^[a-zA-Z]+$"/>
+        <span th:if="${#fields.hasErrors('arriveCity')}" style ="color: red;" class="alert alert-error" th:errors="*{arriveCity}">Name Error</span>
+    </p>
     <p>ДАТА И ВРЕМЯ ПРИБЫТИЯ: <input type="text"  readonly th:field="*{arriveDateTime}"  /></p>
     <p>ID самолета: <input type="text"  th:field="*{plane.id}" pattern="^[0-9]+$"  required/></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>

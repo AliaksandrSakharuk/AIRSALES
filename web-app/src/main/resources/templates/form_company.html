@@ -8,13 +8,13 @@
 <a th:href="@{/}"> На главную страницу</a>
 <br>
 <h1>NEW AIR COMPANY</h1>
-<form action="#" th:action="@{/admin/aircompany/save}"  method="post">
+<form action="#" th:action="@{/admin/aircompany/save}" th:object="${airCompanyDto}"  method="post">
 
-    <p>НАЗВАНИЕ АВИАКОМПАНИИ: <input type="text" required th:field="*{company.nameCompany}" pattern="^[a-zA-Z0-9]+$"/>
-        <p th:if="${#fields.hasErrors('${company.nameCompany}')}" th:errors="*{company.nameCompany}">Name Error</p>
+    <p>НАЗВАНИЕ АВИАКОМПАНИИ: <input type="text" required th:field="*{nameCompany}" pattern="^[a-zA-Z0-9]+$"/>
+        <span th:if="${#fields.hasErrors('nameCompany')}" style ="color: red;" class="alert alert-error" th:errors="*{nameCompany}">Name Error</span>
     </p>
-
-    <p>ТЕЛЕФОН: <input type="text" required  th:field="*{company.phoneNumber}"  pattern="(^[0-9]{0,9})+$"/></p>
+    <p>ТЕЛЕФОН: <input type="text"  th:field="*{phoneNumber}" />
+        <span th:if="${#fields.hasErrors('phoneNumber')}" style ="color: red;" class="alert alert-error" th:errors="*{phoneNumber}">Name Error</span></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
 </form>
 

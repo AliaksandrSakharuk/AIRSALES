@@ -48,14 +48,14 @@ public class AdminController {
         flightDto.setPlane(plane);
         flightDto.setDepartureDateTime(LocalDateTime.parse(dateFrom));
         flightDto.setArriveDateTime(LocalDateTime.parse(dateTo));
-        model.addAttribute("flight", flightDto);
+        model.addAttribute("flightDto", flightDto);
         return "flightForm";
     }
 
     @PostMapping(value = "/admin/flight/new")
     public String createFlight( @ModelAttribute @Valid FlightDto flightDtoNew, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
-            return "redirect:/admin";
+            return "flightForm";
         }
         else {
             FlightDto flightDto=apiService.createFlight(flightDtoNew);
@@ -65,20 +65,18 @@ public class AdminController {
 
     @GetMapping(value = "/admin/aircompany/form")
     public String getFormForNewAirCompany(Model model){
-        AirCompanyDto companyDto=new AirCompanyDto();
-        model.addAttribute("company", companyDto);
+        AirCompanyDto airCompanyDto=new AirCompanyDto();
+        model.addAttribute("airCompanyDto", airCompanyDto);
         return "form_company";
     }
 
     @PostMapping(value = "/admin/aircompany/save")
-    public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto companyDto, BindingResult bindingResult, Model model){
+    public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto airCompanyDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
-            AirCompanyDto companyD=new AirCompanyDto();
-            model.addAttribute("company", companyD);
             return "form_company";
         }
         else {
-            apiService.saveNewAirCompany(companyDto);
+            apiService.saveNewAirCompany(airCompanyDto);
             return "redirect:/admin";
         }
 

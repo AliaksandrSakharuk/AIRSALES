@@ -25,5 +25,4 @@ public class FlightDto {
     private LocalDateTime arriveDateTime;
     private PlaneDto plane;
     private List<SeatDto> seats;
-
 }

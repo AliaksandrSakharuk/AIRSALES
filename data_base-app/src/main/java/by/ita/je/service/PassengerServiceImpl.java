@@ -20,7 +20,6 @@ public class PassengerServiceImpl implements PassengerService {
     public Passenger savePassenger(Passenger passenger) {
         if(passenger.getFirstName()==null || passenger.getFirstName()=="") throw new NotCorrectData("Passnger");
         if(passenger.getSecondName()==null || passenger.getSecondName()=="") throw new NotCorrectData("Passenger");
-        if(passenger.getPhoneNumber()==0) throw new NotCorrectData("Passnger");
         if(passenger.getPassportNumber()==null || passenger.getPassportNumber()=="") throw new NotCorrectData("Passnger");
         return passengerDao.save(passenger);
     }

@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "7449d880-6a79-46a7-9bae-fd901291685d",
+		"name": "JE_140_SAKHARUK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create AirCompany",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"nameCompany\": \"LUFHANSA\",\r\n    \"phoneNumber\": 292001211\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/company",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"company"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindAllCompany",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nameCar\": \"LADA\",\r\n\"fromDataTimeStartWork\": \"2016-05-12T00:00:00.000000+03:00\",\r\n\"toDataTimeStartWork\": \"2018-02-01T00:00:00.000000+03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/company/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"company",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewFlight",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"numberFlight\": \"FK700\",\r\n    \"departureCity\": \"BARANOVICHI\",\r\n    \"departureDateTime\": \"2021-11-02T15:00\",\r\n    \"arriveCity\": \"MOGILEV\",\r\n    \"arriveDateTime\": \"2021-11-02T15:45\",\r\n    \"plane\":{\r\n        \"id\": 1\r\n    }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/flight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"flight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK TICKET",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"bookedDateTime\": \"2021-10-01T14:50\",\r\n        \"firstNamePassenger\": \"Ruslan\",\r\n        \"secondNamePassenger\": \"Zavizenec\",\r\n        \"phoneNumberPassenger\": 295643201,\r\n        \"passportNumberPassenger\": \"AB 3840101\",\r\n        \"seat\": {\r\n            \"id\": 84,\r\n            \"numberSeat\": \"3D\"\r\n        },\r\n        \"client\":{\r\n            \"id\": 4\r\n        }\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/ticket/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"ticket",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelTicket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/ticket/book/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"ticket",
+						"book",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIND ALL FLIGHTS",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/flight/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"flight",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createNewClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\": \"Aliaksandr\",\r\n\"secondName\": \"Sakharuk\",\r\n\"phoneNumber\": 292001211\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CLIENT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/client/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"client",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIND FLIGHT BY CONDITION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"startData\": \"2021-11-01\",\r\n    \"departureCity\": \"BREST\",\r\n    \"arriveCity\": \"MOSCOW\",\r\n    \"nameCompany\": \"AEROFLOT\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/flight/list/conditions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"flight",
+						"list",
+						"conditions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"firstName\": \"efe\",\r\n    \"secondName\": \"ewfew\",\r\n    \"phoneNumber\": 2020202\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/client/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"client",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FinfFreeSeatBiPlaneId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/flight/4/seat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"flight",
+						"4",
+						"seat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindTicketForClient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/data_base-app/sales/ticket/list/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"data_base-app",
+						"sales",
+						"ticket",
+						"list",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

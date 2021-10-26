@@ -121,6 +121,9 @@ public class UserDetailsServiceImpl implements UserService {
         if(!userNew.getLogin().equals(userFromDB.getLogin())){
             userFromDB.setLogin(userNew.getLogin());
         }
+        if(!userNew.getEmail().equals(userFromDB.getEmail())){
+            userFromDB.setEmail(userNew.getEmail());
+        }
        if (userNew.getPassword()!="") userFromDB.setPassword(bCryptPasswordEncoder.encode(userNew.getPassword()));
 
             return userDao.save(userFromDB);
