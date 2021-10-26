@@ -17,10 +17,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Isolation;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Isolation;
 
 @Service
 @NoArgsConstructor
@@ -34,7 +36,6 @@ public class UserDetailsServiceImpl implements UserService {
     @Autowired
     private MessageService messageService;
 
-
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user=userDao.findByLogin(login);
@@ -43,21 +44,27 @@ public class UserDetailsServiceImpl implements UserService {
         }
         return new UserDetail(user);
     }
-    @Transactional
+
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public boolean saveUser(User user) {
         User userFromDB = userDao.findByLogin(user.getLogin());
         if (userFromDB != null) {
             return false;
         }
-        user.setRoles(Collections.singleton(new Role("READER")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
-        userDao.save(user);
-        return true;
+        else{
+            user.setLogin(user.getLogin().trim());
+            user.setPassword(user.getPassword().trim());
+            user.setRoles(Collections.singleton(new Role("READER")));
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            user.setEnabled(true);
+            userDao.save(user);
+            return true;
+        }
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
     public boolean renewalPassword(FieldUserDto fieldUserDto){
         User userFromDB = userDao.findByLogin(fieldUserDto.getLogin());
         if (userFromDB != null && userFromDB.getEmail().equals(fieldUserDto.getEmail())) {
@@ -73,6 +80,7 @@ public class UserDetailsServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
     public void userBlockAndUnBlockedEnabled(long id){
         User user=userDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("User"));
@@ -90,20 +98,23 @@ public class UserDetailsServiceImpl implements UserService {
 
             System.out.println(roles);}
     }
-
+    @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
     public List<User> findAllUsers(){
         final Spliterator<User> result = userDao.findAll().spliterator();
         return StreamSupport.stream(result, false).collect(Collectors.toList());
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
     public User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return userDao.findByLogin(auth.getName());
     }
 
-    @Transactional
+
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
     public User updateUser(Long id, User userNew) {
         User userFromDB = userDao.findById(id)
                 .orElseThrow(() -> new NotFoundData( "User"));

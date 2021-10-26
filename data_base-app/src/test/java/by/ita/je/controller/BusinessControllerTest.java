@@ -248,6 +248,7 @@ class BusinessControllerTest {
         Seat seat=getSeat();
         seat.setId(98L);
         ticket.setSeat(seat);
+        ticket.setClient(getClient());
         mockMvc.perform(post("/sales/ticket/book")
                         .content(objectMapper.writeValueAsString(ticket))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -335,7 +336,18 @@ class BusinessControllerTest {
         ticket.setPassportNumberPassenger("AB1112233");
         ticket.setFirstNamePassenger("Roma");
         ticket.setSecondNamePassenger("Golosko");
+        ticket.setPhoneNumberPassenger(292001211);
         return ticket;
+    }
+
+    private Client getClient(){
+        Client client=Client.builder()
+                .id(4l)
+                .firstName("roma")
+                .secondName("salapura")
+                .phoneNumber(297229238)
+                .build();
+        return client;
     }
 
     private Seat getSeat(){

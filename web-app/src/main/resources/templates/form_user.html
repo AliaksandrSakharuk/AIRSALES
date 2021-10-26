@@ -10,14 +10,14 @@
 <br>
 <h1>NEW USER</h1>
 <form action="#" th:action="@{/users/save}" th:object="${users}" method="post">
-    <p>LOGIN: <input type="text" required th:field="*{login}" /></p>
-    <p>PASSWORD: <input type="password" required  th:field="*{password}" /></p>
-    <p>E-MAIL: <input type="text"  th:field="*{email}"/>
+    <p>LOGIN: <input type="text" required th:field="*{login}" pattern="^[a-zA-Z0-9-_]+$"/></p>
+    <p>PASSWORD: <input type="password" required  th:field="*{password}" pattern="^[a-zA-Z0-9]+$" /></p>
+    <p>E-MAIL: <input type="text"  th:field="*{email}" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"/>
     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</span>
     </p>
-    <p>FIRST NAME: <input type="text"  th:field="*{client.firstName}"/></p>
-    <p>SECOND NAME: <input type="text"  th:field="*{client.secondName}"/></p>
-    <p>PHONE NUMBER: <input type="text"  th:field="*{client.phoneNumber}"/></p>
+    <p>FIRST NAME: <input type="text"  th:field="*{client.firstName}" pattern="^[a-zA-Z]+$"/></p>
+    <p>SECOND NAME: <input type="text"  th:field="*{client.secondName}" pattern="^[a-zA-Z]+$"/></p>
+    <p>PHONE NUMBER: <input type="text"  th:field="*{client.phoneNumber}" pattern="(^[0-9]{0,9})+$"/></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
 </form>
 

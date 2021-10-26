@@ -84,6 +84,7 @@ class BusinessServiceImplTest {
         Seat seat=getSeat();
         seat.setId(100L);
         expected.setSeat(seat);
+        expected.setClient(getClient());
         final Ticket actual=businessService.bookTicket(expected);
         expected.setBookedDateTime(actual.getBookedDateTime());
         Assertions.assertNotNull(actual);
@@ -164,10 +165,21 @@ class BusinessServiceImplTest {
         ticket.setPassportNumberPassenger("AB1112233");
         ticket.setFirstNamePassenger("Roma");
         ticket.setSecondNamePassenger("Golosko");
+        ticket.setPhoneNumberPassenger(292001211);
         return ticket;
     }
 
     private Seat getSeat(){
         return new Seat();
+    }
+
+    private Client getClient(){
+        Client client=Client.builder()
+                .id(4l)
+                .firstName("roma")
+                .secondName("salapura")
+                .phoneNumber(297229238)
+                .build();
+        return client;
     }
 }

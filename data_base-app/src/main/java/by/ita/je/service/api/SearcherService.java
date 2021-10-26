@@ -2,10 +2,7 @@ package by.ita.je.service.api;
 
 import by.ita.je.dto.FieldSearcherDto;
 import by.ita.je.exception.NotFoundData;
-import by.ita.je.model.Flight;
-import by.ita.je.model.Plane;
-import by.ita.je.model.Seat;
-import by.ita.je.model.Ticket;
+import by.ita.je.model.*;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -20,4 +17,7 @@ public interface SearcherService {
     List<Seat> findFreeSeat(long flight_id) throws NotFoundData;
 
     public List<Flight> findFlightByConditions(FieldSearcherDto searcherDto);
+
+
+    public List<Passenger> findPassengerByPassport(long client_id, String passportNumber);
 }

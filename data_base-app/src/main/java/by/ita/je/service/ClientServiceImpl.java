@@ -18,6 +18,7 @@ public class ClientServiceImpl implements ClientService {
     public Client save(Client client) throws NotCorrectData {
         if(client.getFirstName()==null || client.getFirstName()=="") throw new NotCorrectData("Client");
         if(client.getSecondName()==null || client.getSecondName()=="") throw new NotCorrectData("Client");
+
         return clientDao.save(client);
     }
 

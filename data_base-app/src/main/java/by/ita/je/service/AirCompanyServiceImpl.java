@@ -4,6 +4,7 @@ import by.ita.je.dao.AirCompanyDao;
 import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.AirCompany;
+import by.ita.je.model.Passenger;
 import by.ita.je.service.api.AirCompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

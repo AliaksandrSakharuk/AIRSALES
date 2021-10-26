@@ -609,17 +609,17 @@ INSERT INTO seat(booked, number_seat, flight_id)
 values(false, '12D', 6);
 
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Vadim', 'Kazak', 'AB 3234455', 297903271, 3);
+values('Vadim', 'Kazak', 'AB3234455', 297903271, 3);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Maksim', 'Fedeev', 'AB 3457901', 296330195, 3);
+values('Maksim', 'Fedeev', 'AB3457901', 296330195, 3);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Semen', 'Dron', 'AB 6540394', 292250081, 3);
+values('Semen', 'Dron', 'AB6540394', 292250081, 3);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Ruslan', 'Zavizenec', 'AB 3840101', 295643201, 4);
+values('Ruslan', 'Zavizenec', 'AB3840101', 295643201, 4);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Zaur', 'Martirosian', 'AB 3110401', 291230673, 4);
+values('Zaur', 'Martirosian', 'AB3110401', 291230673, 4);
 INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, client_id)
-values('Igor', 'Olechovich', 'AB 5349591', 296446666, 4);
+values('Igor', 'Olechovich', 'AB5349591', 296446666, 4);
 
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time,   seat_id, client_id)
 values('Vadim', 'Kazak', 'AB 3234455', 297903271, '2021-10-01 14:50:00', 1, 3);

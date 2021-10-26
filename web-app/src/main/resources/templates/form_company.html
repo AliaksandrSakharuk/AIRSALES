@@ -10,11 +10,11 @@
 <h1>NEW AIR COMPANY</h1>
 <form action="#" th:action="@{/admin/aircompany/save}"  method="post">
 
-    <p>НАЗВАНИЕ АВИАКОМПАНИИ: <input type="text" required th:field="*{company.nameCompany}" />
+    <p>НАЗВАНИЕ АВИАКОМПАНИИ: <input type="text" required th:field="*{company.nameCompany}" pattern="^[a-zA-Z0-9]+$"/>
         <p th:if="${#fields.hasErrors('${company.nameCompany}')}" th:errors="*{company.nameCompany}">Name Error</p>
     </p>
 
-    <p>ТЕЛЕФОН: <input type="text" required  th:field="*{company.phoneNumber}" /></p>
+    <p>ТЕЛЕФОН: <input type="text" required  th:field="*{company.phoneNumber}"  pattern="(^[0-9]{0,9})+$"/></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
 </form>
 

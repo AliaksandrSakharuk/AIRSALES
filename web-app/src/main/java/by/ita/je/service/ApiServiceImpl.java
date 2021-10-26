@@ -55,8 +55,8 @@ public class ApiServiceImpl implements ApiService {
     @Override
     public List<FlightDto> getListFlightByConditions(FieldSearcherDto fieldDto){
         String urlBusiness=url +"/sales/flight/list/conditions";
-        fieldDto.setNameCompany(fieldDto.getNameCompany().toUpperCase());
-        fieldDto.setDepartureCity(fieldDto.getDepartureCity().toUpperCase());
+        fieldDto.setNameCompany(fieldDto.getNameCompany().trim().toUpperCase());
+        fieldDto.setDepartureCity(fieldDto.getDepartureCity().trim().toUpperCase());
         fieldDto.setArriveCity(fieldDto.getArriveCity().toUpperCase());
         ResponseEntity<FlightDto[]> responseEntity = restTemplate.postForEntity(urlBusiness, fieldDto, FlightDto[].class);
         return Arrays.asList(responseEntity.getBody());

@@ -21,6 +21,8 @@ public class BusinessServiceImpl implements BusinessService {
     private final SeatSericve seatSericve;
     private final TicketService ticketService;
     private final PlaneService planeService;
+    private final PassengerService passengerService;
+    private final SearcherService searcherService;
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
@@ -32,13 +34,14 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
     public AirCompany createNewAirCompany(AirCompany company){
         createIfNotRelationshipAirCompanyToPlanes(company);
         return companyService.save(company);
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
     public List<AirCompany> getAllAirCompany(){
         return companyService.readAll();
     }
@@ -52,6 +55,13 @@ public class BusinessServiceImpl implements BusinessService {
         ticket.setSeat(seat);
         ticket.setBookedDateTime(LocalDateTime.now());
         seatSericve.update(ticket.getSeat().getId(),ticket.getSeat());
+
+        if(searcherService.findPassengerByPassport(ticket.getClient().getId(), ticket.getPassportNumberPassenger()).isEmpty()){
+            Passenger passenger=createPassnger(ticket.getFirstNamePassenger(), ticket.getSecondNamePassenger()
+                    , ticket.getPassportNumberPassenger(), ticket.getPhoneNumberPassenger());
+            passenger.setClient(ticket.getClient());
+            passengerService.savePassenger(passenger);
+        }
         return ticketService.save(ticket);
     }
 
@@ -106,5 +116,15 @@ public class BusinessServiceImpl implements BusinessService {
                 .quantityLines(19)
                 .invertorNumber(7777777L)
                 .build();
+    }
+
+    private Passenger createPassnger(String firstName, String secondName, String numberPassport, long phoneNumber){
+        Passenger passenger=Passenger.builder()
+                .firstName(firstName)
+                .secondName(secondName)
+                .passportNumber(numberPassport)
+                .phoneNumber(phoneNumber)
+                .build();
+        return  passenger;
     }
 }

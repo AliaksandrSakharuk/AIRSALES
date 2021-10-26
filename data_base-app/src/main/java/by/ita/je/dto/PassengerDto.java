@@ -14,5 +14,4 @@ public class PassengerDto {
     private String secondName;
     private long phoneNumber;
     private String passportNumber;
-    private List<TicketDto> tickets;
 }

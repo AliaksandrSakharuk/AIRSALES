@@ -6,8 +6,8 @@
 </head>
 <body>
 <form action="#" th:action="@{/users/password/renewal}" method="post">
-    <p>LOGIN: <input type="text" required th:field="*{fielduser.login}" /></p>
-    <p>EMAIL: <input type="text" required  th:field="*{fielduser.email}" /></p>
+    <p>LOGIN: <input type="text" required th:field="*{fielduser.login}" pattern="^[a-zA-Z0-9-_]+$"/></p>
+    <p>EMAIL: <input type="text" required  th:field="*{fielduser.email}" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"/></p>
     <p><input type="submit" value="ПОЛУЧИТЬ НОВЫЙ ПАРОЛЬ" /> <input type="reset" value="Сбросить" /></p>
 <br>
     <form method="get" th:action="@{/login}">

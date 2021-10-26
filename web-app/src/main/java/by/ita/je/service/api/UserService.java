@@ -18,4 +18,6 @@ public interface UserService extends UserDetailsService{
     public User getCurrentUser();
 
     public User updateUser(Long id, User userNew);
+
+    public List<User> findAllUsers();
 }
