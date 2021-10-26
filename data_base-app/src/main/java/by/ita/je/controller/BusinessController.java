@@ -16,6 +16,7 @@ public class BusinessController {
     private final BusinessService businessService;
     private final SearcherService searcherService;
     private final ClientService clientService;
+    private final PlaneService planeService;
 
     @PostMapping("/client")
     public ClientDto createNewClient(@RequestBody ClientDto clientDto){
@@ -25,15 +26,15 @@ public class BusinessController {
     }
 
     @GetMapping("/client/{id}")
-    public ClientDto finedClient(@PathVariable("id") String id){
-        final Client client=clientService.readById(Long.valueOf(id));
+    public ClientDto finedClient(@PathVariable("id") long id){
+        final Client client=clientService.readById(id);
         return objectMapper.convertValue(client, ClientDto.class);
     }
 
     @PostMapping("/client/{client_id}")
-    public ClientDto updateClient(@PathVariable("client_id") String id, @RequestBody ClientDto clientDto){
+    public ClientDto updateClient(@PathVariable("client_id") long id, @RequestBody ClientDto clientDto){
         final Client clientNew=objectMapper.convertValue(clientDto, Client.class);
-        final Client client=clientService.update(Long.valueOf(id),clientNew);
+        final Client client=clientService.update(id,clientNew);
         return objectMapper.convertValue(client, ClientDto.class);
     }
 
@@ -98,8 +99,8 @@ public class BusinessController {
     }
 
     @DeleteMapping("/sales/ticket/book/{id}")
-    public void cancelTicket(@PathVariable("id") String id){
-        businessService.cancelBookedTicket(Long.valueOf(id));
+    public void cancelTicket(@PathVariable("id") long id){
+        businessService.cancelBookedTicket(id);
     }
 
     @GetMapping("/sales/ticket/list/{client_id}")
@@ -110,4 +111,5 @@ public class BusinessController {
                 .collect(Collectors.toList());
         return tickets;
     }
+
 }

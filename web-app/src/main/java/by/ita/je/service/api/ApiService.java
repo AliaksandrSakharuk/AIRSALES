@@ -20,7 +20,7 @@ public interface ApiService {
 
     public void bookTicket(TicketDto ticketDto);
 
-    public void cancelBookTicket(String ticket_id);
+    public void cancelBookTicket(long ticket_id);
 
     public List<TicketDto> listTicketForClient(long client_id);
 
@@ -29,4 +29,5 @@ public interface ApiService {
     public List<AirCompanyDto> getAllAirCompany();
 
     public List<FlightDto> getListFlightByConditions(FieldSearcherDto fieldDto);
+
 }

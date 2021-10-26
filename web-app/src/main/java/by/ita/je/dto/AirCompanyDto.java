@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Builder
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AirCompanyDto {
     private Long id;
+    @Size(min=2, message = "QQQQQQQQQQQ")
     private String nameCompany;
     private long phoneNumber;
     private List<PlaneDto> planes;

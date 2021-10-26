@@ -1,5 +1,6 @@
 package by.ita.je.model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class User {
     private String login;
     private String password;
     private boolean enabled;
+    @NotNull
     private String email;
     private long clientId;
 

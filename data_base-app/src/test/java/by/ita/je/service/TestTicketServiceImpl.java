@@ -4,7 +4,6 @@ import by.ita.je.dao.TicketDao;
 import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Ticket;
-import by.ita.je.service.TicketServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

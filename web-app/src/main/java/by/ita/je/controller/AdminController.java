@@ -1,21 +1,22 @@
 package by.ita.je.controller;
 
-
-
-import by.ita.je.dto.AirCompanyDto;
-import by.ita.je.dto.ClientDto;
-import by.ita.je.dto.FlightDto;
-import by.ita.je.dto.UserDto;
+import by.ita.je.dto.*;
 import by.ita.je.model.User;
 import by.ita.je.service.UserDetailsServiceImpl;
 import by.ita.je.service.api.ApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,32 +40,48 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/flight")
-    public String getFormFlight(@RequestParam(value = "date_from", required = false) String dateFrom
-            ,@RequestParam(value = "date_to", required = false) String dateTo
+    public String getFormFlight(@RequestParam(value = "date_from") String dateFrom
+            ,@RequestParam(value = "date_to") String dateTo
             , Model model) {
         FlightDto flightDto=new FlightDto();
+        PlaneDto plane=new PlaneDto();
+        flightDto.setPlane(plane);
         flightDto.setDepartureDateTime(LocalDateTime.parse(dateFrom));
         flightDto.setArriveDateTime(LocalDateTime.parse(dateTo));
-        model.addAttribute("flights", flightDto);
+        model.addAttribute("flight", flightDto);
         return "flightForm";
     }
 
     @PostMapping(value = "/admin/flight/new")
-    public String createFlight(@ModelAttribute FlightDto flightDtoNew, Model model) {
-        FlightDto flightDto=apiService.createFlight(flightDtoNew);
-        return "redirect:/";
+    public String createFlight( @ModelAttribute @Valid FlightDto flightDtoNew, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()){
+            return "redirect:/admin";
+        }
+        else {
+            FlightDto flightDto=apiService.createFlight(flightDtoNew);
+            return "redirect:/";
+        }
     }
 
     @GetMapping(value = "/admin/aircompany/form")
     public String getFormForNewAirCompany(Model model){
-        model.addAttribute("company", new AirCompanyDto());
+        AirCompanyDto companyDto=new AirCompanyDto();
+        model.addAttribute("company", companyDto);
         return "form_company";
     }
 
     @PostMapping(value = "/admin/aircompany/save")
-    public String saveNewAirCompany(@ModelAttribute AirCompanyDto companyDto, Model model){
-        apiService.saveNewAirCompany(companyDto);
-        return "redirect:/admin";
+    public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto companyDto, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()) {
+            AirCompanyDto companyD=new AirCompanyDto();
+            model.addAttribute("company", companyD);
+            return "form_company";
+        }
+        else {
+            apiService.saveNewAirCompany(companyDto);
+            return "redirect:/admin";
+        }
+
     }
 
     @GetMapping(value = "/admin/user/list")

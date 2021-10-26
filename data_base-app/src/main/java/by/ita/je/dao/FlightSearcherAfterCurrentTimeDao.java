@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface FlightSearcherAfterCurrentTimeDao extends JpaRepository<Flight, Long> {
-    @Query(value="select * FROM Flight WHERE flight.departure_date_time >= CURRENT_TIMESTAMP"
+    @Query(value="select * FROM Flight WHERE flight.departure_date_time >= CURRENT_TIMESTAMP ORDER BY departure_date_time"
             , nativeQuery = true)
     public List<Flight> findAllAfterCurrentTime();
 }

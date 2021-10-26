@@ -1,6 +1,7 @@
 package by.ita.je.service;
 
 import by.ita.je.dto.*;
+import by.ita.je.excepetion.NotCorrectData;
 import by.ita.je.service.api.ApiService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,7 @@ public class ApiServiceImpl implements ApiService {
     @Override
     public FlightDto createFlight(FlightDto flightDto){
         String urlBusiness=url + "/sales/flight";
+        if(flightDto.getArriveDateTime().isBefore(flightDto.getDepartureDateTime())) throw  new NotCorrectData("Flight");
         final FlightDto flightDtoNew=restTemplate.postForObject(urlBusiness, flightDto, FlightDto.class);
         return flightDtoNew;
     }
@@ -70,15 +72,15 @@ public class ApiServiceImpl implements ApiService {
     @Override
     public void bookTicket(TicketDto ticketDto){
         String urlBusiness=url + "/sales/ticket/book";
-        restTemplate.postForObject(urlBusiness, ticketDto, TicketDto.class);
+        ResponseEntity<TicketDto> responseEntity =restTemplate.postForEntity(urlBusiness, ticketDto, TicketDto.class);
+        System.out.println(responseEntity.getStatusCodeValue());
     }
 
     @Override
-    public void cancelBookTicket(String ticket_id) {
+    public void cancelBookTicket(long ticket_id) {
         String urlBusiness=url + "/sales/ticket/book/" + ticket_id;
         restTemplate.delete(urlBusiness);
     }
-
 
     @Override
     public List<TicketDto> listTicketForClient(long client_id){
@@ -86,15 +88,16 @@ public class ApiServiceImpl implements ApiService {
         ResponseEntity<TicketDto[]> responseEntity = restTemplate.getForEntity(urlBusiness, TicketDto[].class);
         return Arrays.asList(responseEntity.getBody());
     }
-
+    @Override
     public void saveNewAirCompany(AirCompanyDto companyDto){
         String urlBusiness=url + "/company";
         restTemplate.postForObject(urlBusiness, companyDto, AirCompanyDto.class);
     }
-
+    @Override
     public List<AirCompanyDto> getAllAirCompany(){
         String urlBusiness=url + "/company/list";
         ResponseEntity<AirCompanyDto[]> responseEntity = restTemplate.getForEntity(urlBusiness, AirCompanyDto[].class);
         return Arrays.asList(responseEntity.getBody());
     }
+
 }

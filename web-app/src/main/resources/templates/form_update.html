@@ -12,7 +12,7 @@
 <form action="#" th:action="@{/profile/update}" th:object="${user}"  method="post">
     <p> ID: <input size="2" type="text"  th:field= ${user.id} readonly /></p>
     <p>   ЛОГИН: <input type="text" th:field=${user.login}  required/></p>
-    <p>   ПАРОЛЬ: <input type="text" th:field=${user.password} /></p>
+    <p>   ПАРОЛЬ: <input type="password" th:field=${user.password} /></p>
     <p>  EMAIL: <input type="text" th:field=${user.email} required/></p>
     <p>   ID: <input type="text" th:field=${user.client.id} readonly/></p>
     <p>  ИМЯ: <input type="text" th:field=${user.client.firstName} required/></p>

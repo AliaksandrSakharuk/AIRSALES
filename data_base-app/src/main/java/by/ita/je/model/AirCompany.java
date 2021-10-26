@@ -19,7 +19,6 @@ public class AirCompany {
     private Long id;
     private String nameCompany;
     private long phoneNumber;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     private List<Plane> planes;

@@ -9,13 +9,15 @@
 <a th:href="@{/}"> На главную страницу</a>
 <br>
 <h1>NEW USER</h1>
-<form action="#" th:action="@{/users/save}" method="post">
-    <p>LOGIN: <input type="text" required th:field="*{users.login}" /></p>
-    <p>PASSWORD: <input type="text" required  th:field="*{users.password}" /></p>
-    <p>E-MAIL: <input type="text"  th:field="*{users.email}"/></p>
-    <p>FIRST NAME: <input type="text"  th:field="*{users.client.firstName}"/></p>
-    <p>SECOND NAME: <input type="text"  th:field="*{users.client.secondName}"/></p>
-    <p>PHONE NUMBER: <input type="text"  th:field="*{users.client.phoneNumber}"/></p>
+<form action="#" th:action="@{/users/save}" th:object="${users}" method="post">
+    <p>LOGIN: <input type="text" required th:field="*{login}" /></p>
+    <p>PASSWORD: <input type="password" required  th:field="*{password}" /></p>
+    <p>E-MAIL: <input type="text"  th:field="*{email}"/>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</span>
+    </p>
+    <p>FIRST NAME: <input type="text"  th:field="*{client.firstName}"/></p>
+    <p>SECOND NAME: <input type="text"  th:field="*{client.secondName}"/></p>
+    <p>PHONE NUMBER: <input type="text"  th:field="*{client.phoneNumber}"/></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
 </form>
 

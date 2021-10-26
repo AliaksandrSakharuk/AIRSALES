@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html   xmlns:th="http://www.thymeleaf.org"
-        lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>ERROR</title>
 </head>
 <body>
 <a th:href="@{/}"> На главную страницу</a>
-<h3>Произошла ошибка :  <t th:text="${messege}" /></h3>
-<h3>СТАТУС ОШИБКИ :  <t th:text="${number}" /></h3>
+<!--<h3>Произошла ошибка :  <t th:text="${messege}" /></h3>-->
+<!--<h3>СТАТУС ОШИБКИ :  <t th:text="${number}" /></h3>-->
+<h3>СТАТУС ОШИБКИ : <t th:text="${except.errorCode}" /></h3>
+<h3>СТАТУС ОШИБКИ :  <t th:text="${except.typeException}" /></h3>
+<h3>ИНФОРМАЦИЯ :  <t th:text="${except.info}" /></h3>
+
 </body>
 </html>

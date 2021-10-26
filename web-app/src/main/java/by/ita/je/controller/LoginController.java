@@ -11,10 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.annotations.ApiIgnore;
+
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -41,13 +45,18 @@ public class LoginController {
     }
 
     @PostMapping(value = "/users/save")
-    public String resultCreateUser(@ModelAttribute UserDto userDto, Model model) {
-        ClientDto responce=apiService.saveClient(userDto.getClient());
-        User user = objectMapper.convertValue(userDto, User.class);
-        user.setClientId(responce.getId());
-        boolean result=userDetailsService.saveUser(user);
-        model.addAttribute("result", result);
-        return "registr";
+    public String resultCreateUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult , Model model) {
+        if(bindingResult.hasErrors()) {
+            return "redirect:/users/new";
+        }
+        else{
+            ClientDto responce=apiService.saveClient(userDto.getClient());
+            User user = objectMapper.convertValue(userDto, User.class);
+            user.setClientId(responce.getId());
+            boolean result=userDetailsService.saveUser(user);
+            model.addAttribute("result", result);
+            return "registr";
+        }
     }
 
     @GetMapping("/users/password")

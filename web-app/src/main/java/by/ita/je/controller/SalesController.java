@@ -103,7 +103,7 @@ public class SalesController {
     }
 
     @GetMapping(value ="/ticket/cancel/{id}")
-    public String cancelBookedTicket(@PathVariable("id") String id){
+    public String cancelBookedTicket(@PathVariable("id") long id){
         apiService.cancelBookTicket(id);
         return "redirect:/ticket/list";
     }

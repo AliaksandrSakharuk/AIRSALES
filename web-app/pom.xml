@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>2.3.3.RELEASE</version>
+<!--            <version>2.3.3.RELEASE</version>-->
         </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>
@@ -39,6 +39,10 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
             <version>3.0.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.0.Final</version>
+        </dependency>
     </dependencies>
-
 </project>

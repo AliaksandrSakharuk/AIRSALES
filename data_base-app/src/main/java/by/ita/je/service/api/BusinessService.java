@@ -4,6 +4,7 @@ import by.ita.je.exception.NotCorrectSeat;
 import by.ita.je.model.AirCompany;
 import by.ita.je.model.Flight;
 import by.ita.je.model.Ticket;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

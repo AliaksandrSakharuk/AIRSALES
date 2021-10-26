@@ -5,10 +5,12 @@ import by.ita.je.model.*;
 import by.ita.je.service.api.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +23,7 @@ public class BusinessServiceImpl implements BusinessService {
     private final PlaneService planeService;
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
     public Flight createNewFlight(Flight flight) {
         Plane plane=planeService.readById(flight.getPlane().getId());
         flight.setPlane(plane);
@@ -29,6 +32,7 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
     public AirCompany createNewAirCompany(AirCompany company){
         createIfNotRelationshipAirCompanyToPlanes(company);
         return companyService.save(company);
@@ -40,6 +44,7 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public Ticket bookTicket(Ticket ticket) throws NotCorrectSeat {
         Seat seat=seatSericve.readById(ticket.getSeat().getId());
         if(seat.isBooked()==true) throw new NotCorrectSeat(seat.getNumberSeat());
@@ -51,6 +56,7 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public void cancelBookedTicket(long idTicket){
         Ticket ticket= ticketService.readById(idTicket);
         Seat seat=ticket.getSeat();

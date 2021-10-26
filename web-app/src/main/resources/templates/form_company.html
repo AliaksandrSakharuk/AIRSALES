@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>NEW AIRCOMPANY</title>
@@ -9,8 +8,12 @@
 <a th:href="@{/}"> На главную страницу</a>
 <br>
 <h1>NEW AIR COMPANY</h1>
-<form action="#" th:action="@{/admin/aircompany/save}" method="post">
-    <p>НАЗВАНИЕ АВИАКОМПАНИИ: <input type="text" required th:field="*{company.nameCompany}" /></p>
+<form action="#" th:action="@{/admin/aircompany/save}"  method="post">
+
+    <p>НАЗВАНИЕ АВИАКОМПАНИИ: <input type="text" required th:field="*{company.nameCompany}" />
+        <p th:if="${#fields.hasErrors('${company.nameCompany}')}" th:errors="*{company.nameCompany}">Name Error</p>
+    </p>
+
     <p>ТЕЛЕФОН: <input type="text" required  th:field="*{company.phoneNumber}" /></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
 </form>
