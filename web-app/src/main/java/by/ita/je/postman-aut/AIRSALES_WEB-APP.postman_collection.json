@@ -1,0 +1,586 @@
+{
+	"info": {
+		"_postman_id": "751014dd-7bee-4f51-9c4b-9797b9e59ea5",
+		"name": "AIRSALES_WEB-APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE FLIGHT (ADMIN)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "numberFlight",
+							"value": "FK001",
+							"type": "text"
+						},
+						{
+							"key": "departureCity",
+							"value": "FK001",
+							"type": "text"
+						},
+						{
+							"key": "departureDateTime",
+							"value": "2021-11-01T10:38",
+							"type": "text"
+						},
+						{
+							"key": "arriveCity",
+							"value": "2021-11-01T10:38",
+							"type": "text"
+						},
+						{
+							"key": "arriveDateTime",
+							"value": "2021-11-02T10:38",
+							"type": "text"
+						},
+						{
+							"key": "plane.id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5002/web-app/admin/flight/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"admin",
+						"flight",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE NEW AIR-COMPANY (ADMIN)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nameCompany",
+							"value": "LUFHANSA",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "495345321",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5002/web-app/admin/aircompany/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"admin",
+						"aircompany",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UsersList (ADMIN)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/admin/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"admin",
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BLOCK USER (ADMIN)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/admin/user/enabled/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"admin",
+						"user",
+						"enabled",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GER PASSENGERS (READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/profile/passengers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"profile",
+						"passengers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET PROFILE(READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE USER (READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "login",
+							"value": "roma",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "salapura@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "client.id",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "client.firstName",
+							"value": "roma",
+							"type": "text"
+						},
+						{
+							"key": "client.secondName",
+							"value": "salapura",
+							"type": "text"
+						},
+						{
+							"key": "client.phoneNumber",
+							"value": "297229238",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5002/web-app/profile/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"profile",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOAD FLIGHT(READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/flight/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"flight",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIND FLIGHT BY CONDITIONS  (READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "startData",
+							"value": "2021-11-01",
+							"type": "text"
+						},
+						{
+							"key": "departureCity",
+							"value": "BREST",
+							"type": "text"
+						},
+						{
+							"key": "arriveCity",
+							"value": "MINSK",
+							"type": "text"
+						},
+						{
+							"key": "nameCompany",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5002/web-app/flight/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"flight",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK TICKET  (READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstNamePassenger",
+							"value": "Ruslan",
+							"type": "text"
+						},
+						{
+							"key": "secondNamePassenger",
+							"value": "Sakharuk",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumberPassenger",
+							"value": "29202020",
+							"type": "text"
+						},
+						{
+							"key": "passportNumberPassenger",
+							"value": "AB1010101",
+							"type": "text"
+						},
+						{
+							"key": "seat.id",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "client.id",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5002/web-app/ticket/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"ticket",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET TICKET LIST  (READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/ticket/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"ticket",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CANCEL BOOL TICKET (READER)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "roma",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "roma",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/web-app/ticket/cancel/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"web-app",
+						"ticket",
+						"cancel",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

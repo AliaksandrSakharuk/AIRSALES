@@ -11,7 +11,6 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlaneDto {
-    @Positive
     private Long id;
     private Long invertorNumber;
     private String namePlane;

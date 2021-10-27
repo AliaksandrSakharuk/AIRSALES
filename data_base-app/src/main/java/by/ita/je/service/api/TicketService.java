@@ -12,5 +12,4 @@ public interface TicketService {
     public Ticket update(Long id, Ticket ticketNew) throws NotFoundData;
 
     public void deleteById(Long id) throws NotFoundData;
-
 }

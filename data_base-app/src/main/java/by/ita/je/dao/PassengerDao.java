@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PassengerDao  extends CrudRepository<Passenger, Long> {
-//    Passenger findByNumberPassport(String passportNumber);
 }

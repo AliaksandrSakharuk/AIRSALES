@@ -3,6 +3,7 @@ package by.ita.je.excepetion;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -38,5 +39,10 @@ public class ExceptionController{
         fieldException.setErrorCode(numberStatus);
         model.addAttribute("except", fieldException);
         return "error";
+    }
+
+    @GetMapping("/403")
+    public String error403() {
+        return "403";
     }
 }

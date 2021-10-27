@@ -1,6 +1,7 @@
 package by.ita.je.service;
 
 import by.ita.je.configuration.UserDetail;
+import by.ita.je.dao.RoleDao;
 import by.ita.je.dao.UserDao;
 import by.ita.je.dto.FieldUserDto;
 import by.ita.je.excepetion.NotFoundData;
@@ -8,8 +9,7 @@ import by.ita.je.model.Role;
 import by.ita.je.model.User;
 import by.ita.je.service.api.MessageService;
 import by.ita.je.service.api.UserService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,11 +22,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.annotation.Isolation;
 
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserService {
 
     @Autowired
@@ -35,6 +33,8 @@ public class UserDetailsServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private RoleDao roleDao;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -55,7 +55,7 @@ public class UserDetailsServiceImpl implements UserService {
         else{
             user.setLogin(user.getLogin().trim());
             user.setPassword(user.getPassword().trim());
-            user.setRoles(Collections.singleton(new Role("READER")));
+            user.setRoles(Collections.singleton(roleDao.findByRoleName("READER")));
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             user.setEnabled(true);
             userDao.save(user);
@@ -95,8 +95,7 @@ public class UserDetailsServiceImpl implements UserService {
                 user.setEnabled(true);
             }
             userDao.save(user);
-
-            System.out.println(roles);}
+            }
     }
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
@@ -132,9 +131,10 @@ public class UserDetailsServiceImpl implements UserService {
     private String getTemporaryPassword(){
         String[] elements={"dgd","ett","dgd","dff","d7g","4f2","3fd",
                 "3rf","3fg","44f","d45","d80","34d","fd3","ef2",};
-        StringBuilder password=new StringBuilder("777");
-        for (int num=1;num<=3;num++){
-            password.append(elements[(int)Math.random()*15]);
+        StringBuilder password=new StringBuilder();
+        Arrays.stream(elements).limit(4).forEach((el) ->password.append(el));
+        for (int num=1;num<=4;num++){
+            password.append(elements[(int)(Math.random()*15)]);
         }
         return password.toString();
     }

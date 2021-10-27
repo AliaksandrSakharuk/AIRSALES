@@ -66,7 +66,6 @@ public class BusinessController {
 
     @PostMapping("/sales/flight/list/conditions")
     public List<FlightDto> findFlightByCondition(@RequestBody FieldSearcherDto fieldSearcherDto){
-        System.out.println(fieldSearcherDto);
         List <Flight> list=searcherService.findFlightByConditions(fieldSearcherDto);
         List<FlightDto> flights=list.stream()
                 .map(flight -> objectMapper.convertValue(flight, FlightDto.class))
@@ -111,5 +110,4 @@ public class BusinessController {
                 .collect(Collectors.toList());
         return tickets;
     }
-
 }

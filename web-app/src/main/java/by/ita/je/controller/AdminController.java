@@ -79,7 +79,6 @@ public class AdminController {
             apiService.saveNewAirCompany(airCompanyDto);
             return "redirect:/admin";
         }
-
     }
 
     @GetMapping(value = "/admin/user/list")

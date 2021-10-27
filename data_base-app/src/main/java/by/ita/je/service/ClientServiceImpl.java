@@ -14,6 +14,7 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientDao clientDao;
 
+
     @Override
     public Client save(Client client) throws NotCorrectData {
         if(client.getFirstName()==null || client.getFirstName()=="") throw new NotCorrectData("Client");

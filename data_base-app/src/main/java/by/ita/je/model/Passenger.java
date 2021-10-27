@@ -28,5 +28,4 @@ public class Passenger {
     @JoinColumn(name = "client_id")
     @JsonIgnore
     private Client client;
-
 }

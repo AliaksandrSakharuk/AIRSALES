@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class FlightDto {
     private Long id;
-    @Size(min=5,  message = "ENTER THIS FIELD")
+    @Size(min=5,  message = "THIS FIELD MUST BE MORE THEN 5 SYMBOLS")
     private String numberFlight;
     @NotBlank(message = "ENTER THIS FIELD")
     private String departureCity;

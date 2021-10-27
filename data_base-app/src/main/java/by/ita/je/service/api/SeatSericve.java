@@ -8,5 +8,4 @@ public interface SeatSericve {
     Seat update(Long id, Seat seatNew) throws NotFoundData;
 
     Seat readById(Long id) throws NotFoundData;
-
 }

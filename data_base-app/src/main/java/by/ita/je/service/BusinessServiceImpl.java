@@ -26,7 +26,7 @@ public class BusinessServiceImpl implements BusinessService {
     private final ClientService clientService;
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public Flight createNewFlight(Flight flight) {
         Plane plane=planeService.readById(flight.getPlane().getId());
         flight.setPlane(plane);

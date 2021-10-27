@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlaneDao extends CrudRepository<Plane, Long> {
-    public Plane findPlaneByNamePlane(String namePlane);
 }

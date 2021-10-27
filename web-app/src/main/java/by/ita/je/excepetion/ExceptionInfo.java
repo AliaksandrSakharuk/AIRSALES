@@ -7,5 +7,4 @@ public class ExceptionInfo {
     private int errorCode;
     private String typeException;
     private String info;
-
 }
