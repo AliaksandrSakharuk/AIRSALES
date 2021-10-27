@@ -5,6 +5,10 @@ import by.ita.je.model.User;
 import by.ita.je.service.UserDetailsServiceImpl;
 import by.ita.je.service.api.ApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -15,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -23,6 +28,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
+@Api(tags = "Controller Business API for ticket-sales")
 public class AdminController {
 
     @Autowired
@@ -40,6 +46,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/flight")
+    @ApiIgnore
     public String getFormFlight(@RequestParam(value = "date_from") String dateFrom
             ,@RequestParam(value = "date_to") String dateTo
             , Model model) {
@@ -53,6 +60,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/flight/new")
+    @ApiOperation(value = "Create new Flight")
     public String createFlight( @ModelAttribute @Valid FlightDto flightDtoNew, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             return "flightForm";
@@ -64,6 +72,11 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/aircompany/form")
+    @ApiOperation(value = "Enter form for new AirCompany")
+    @ApiImplicitParams({@ApiImplicitParam(name = "nameCompany", value = "NAME OF COMPANY", required = true,
+                    dataType = "String", example = "LUFHANSA"),
+            @ApiImplicitParam (name = "phoneNumber", value = "NUMBER PHONE. MUST BE MORE THEN 9 FIGURE"
+                    , required = true, dataType = "long", example = "297210000")})
     public String getFormForNewAirCompany(Model model){
         AirCompanyDto airCompanyDto=new AirCompanyDto();
         model.addAttribute("airCompanyDto", airCompanyDto);
@@ -71,6 +84,11 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/aircompany/save")
+    @ApiOperation(value = "Add in the dataBase new AirCompany")
+    @ApiImplicitParams({@ApiImplicitParam(name = "nameCompany", value = "NAME OF COMPANY", required = true,
+            dataType = "String", example = "LUFHANSA"),
+            @ApiImplicitParam (name = "phoneNumber", value = "NUMBER PHONE. MUST BE MORE THEN 9 FIGURE"
+                    , required = true, dataType = "long", example = "297210000")})
     public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto airCompanyDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return "form_company";
@@ -82,8 +100,8 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/user/list")
+    @ApiOperation(value = "Get List of Users.")
     public String getUsersList(Model model){
-        System.out.println(userDetailsService.findAllUsers());
         List<User> users=userDetailsService.findAllUsers();
         List<UserDto> listUserDto=new ArrayList<UserDto>();
         for(User user: users){
@@ -97,6 +115,7 @@ public class AdminController {
     }
 
     @GetMapping (value = "/admin/user/enabled/{id}")
+    @ApiOperation(value = "Block and unblock User")
     public String blockUnBlockUser(@PathVariable("id") long id){
     userDetailsService.userBlockAndUnBlockedEnabled(id);
         return "redirect:/admin/user/list";

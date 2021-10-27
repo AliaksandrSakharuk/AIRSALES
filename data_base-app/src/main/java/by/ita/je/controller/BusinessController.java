@@ -3,6 +3,8 @@ import by.ita.je.dto.*;
 import by.ita.je.model.*;
 import by.ita.je.service.api.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -26,6 +28,7 @@ public class BusinessController {
     }
 
     @GetMapping("/client/{id}")
+    @ApiOperation(value = "Create New Client")
     public ClientDto finedClient(@PathVariable("id") long id){
         final Client client=clientService.readById(id);
         return objectMapper.convertValue(client, ClientDto.class);
