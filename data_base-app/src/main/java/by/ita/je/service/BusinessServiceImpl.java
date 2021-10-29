@@ -35,14 +35,14 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public AirCompany createNewAirCompany(AirCompany company){
         createIfNotRelationshipAirCompanyToPlanes(company);
         return companyService.save(company);
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<AirCompany> getAllAirCompany(){
         return companyService.readAll();
     }
@@ -68,7 +68,7 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public void cancelBookedTicket(long idTicket){
         Ticket ticket= ticketService.readById(idTicket);
         Seat seat=ticket.getSeat();

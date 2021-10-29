@@ -15,7 +15,6 @@ import javax.mail.internet.MimeMessage;
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
-    @Qualifier("sendEmail")
     private final Properties prop;
 
     @Override

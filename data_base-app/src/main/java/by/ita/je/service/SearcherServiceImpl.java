@@ -28,20 +28,20 @@ public class SearcherServiceImpl implements SearcherService {
     private final SearcherPassengerByNumberPassport searcherPassengerByNumberPassport;
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<Ticket> findTicketForClient(long client_id){
         return ticketForClient.findTicketForClient(client_id);
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<Flight> findFlightAfterCurrentTime() {
         return flightAfterCurrentTimeDao.findAllAfterCurrentTime();
     }
 
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<Seat> findFreeSeat(long flight_id) throws NotFoundData {
         List<Seat> seats=seatOnFlightDao.findFreeSeatOnFlight(flight_id);
         if(seats.isEmpty()) throw new NotFoundData("Flight");
@@ -49,12 +49,12 @@ public class SearcherServiceImpl implements SearcherService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<Flight> findFlightByConditions(FieldSearcherDto searcherDto){
         return searcherFlightByConditionDao.findFlight(searcherDto);
     }
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<Passenger> findPassengerByPassport(long client_id, String passportNumber){
         return searcherPassengerByNumberPassport.findPassengerByPassport(client_id, passportNumber);
     }

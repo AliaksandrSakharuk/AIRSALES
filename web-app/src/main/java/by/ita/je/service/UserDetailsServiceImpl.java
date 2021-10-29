@@ -64,7 +64,7 @@ public class UserDetailsServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public boolean renewalPassword(FieldUserDto fieldUserDto){
         User userFromDB = userDao.findByLogin(fieldUserDto.getLogin());
         if (userFromDB != null && userFromDB.getEmail().equals(fieldUserDto.getEmail())) {
