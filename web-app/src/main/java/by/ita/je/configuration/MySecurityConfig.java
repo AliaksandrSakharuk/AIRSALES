@@ -40,11 +40,9 @@ public class MySecurityConfig  extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
-                        "/configuration/**", "/swagger-ui.html/**", "/webjars/**").permitAll()
                 .antMatchers("/users/**").not().fullyAuthenticated()
                 .antMatchers("/").hasAnyAuthority("READER", "EDITOR", "ADMIN")
-                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/admin/**", "/swagger-ui.html/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

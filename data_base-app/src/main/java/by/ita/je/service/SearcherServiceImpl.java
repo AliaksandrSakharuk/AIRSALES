@@ -54,7 +54,7 @@ public class SearcherServiceImpl implements SearcherService {
         return searcherFlightByConditionDao.findFlight(searcherDto);
     }
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<Passenger> findPassengerByPassport(long client_id, String passportNumber){
         return searcherPassengerByNumberPassport.findPassengerByPassport(client_id, passportNumber);
     }

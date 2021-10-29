@@ -28,7 +28,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-@Api(tags = "Controller Business API for ticket-sales")
+@Api(value = "admin resources")
 public class AdminController {
 
     @Autowired
@@ -60,7 +60,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/flight/new")
-    @ApiOperation(value = "Create new Flight")
+    @ApiOperation(value = "Create new Flight", response = FlightDto.class)
     public String createFlight( @ModelAttribute @Valid FlightDto flightDtoNew, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             return "flightForm";
@@ -84,11 +84,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/aircompany/save")
-    @ApiOperation(value = "Add in the dataBase new AirCompany")
-    @ApiImplicitParams({@ApiImplicitParam(name = "nameCompany", value = "NAME OF COMPANY", required = true,
-            dataType = "String", example = "LUFHANSA"),
-            @ApiImplicitParam (name = "phoneNumber", value = "NUMBER PHONE. MUST BE MORE THEN 9 FIGURE"
-                    , required = true, dataType = "long", example = "297210000")})
+    @ApiOperation(value = "Add in the dataBase new AirCompany", response = AirCompanyDto.class)
     public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto airCompanyDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return "form_company";
