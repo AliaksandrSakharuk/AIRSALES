@@ -91,19 +91,19 @@ INSERT INTO plane(invertor_number, name_plane, name_pilot, quantity_seats, seats
 values(111111, 'AH 24', 'Mishustin', 48, 4, 12, 2);
 
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK256', 'BREST', '2021-11-01 14:00:00', 50, 'GOMEL', '2021-11-01 14:50:00', 1);
+values('FK256', 'BREST', '2021-11-03 14:00:00', 50, 'GOMEL', '2021-11-03 14:50:00', 1);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK333', 'BREST', '2021-11-01 14:00:00', 45, 'MINSK', '2021-11-01 14:45:00', 2);
+values('FK333', 'BREST', '2021-11-03 14:00:00', 45, 'MINSK', '2021-11-03 14:45:00', 2);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK123', 'MINSK', '2021-11-01 16:00:00', 60, 'GOMEL', '2021-11-01 17:00:00', 3);
+values('FK123', 'MINSK', '2021-11-03 16:00:00', 60, 'GOMEL', '2021-11-03 17:00:00', 3);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK777', 'BREST', '2021-11-01 19:00:00', 80, 'GRODNO', '2021-11-01 20:20:00', 4);
+values('FK777', 'BREST', '2021-11-03 19:00:00', 80, 'GRODNO', '2021-11-03 20:20:00', 4);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK999', 'BREST', '2021-11-01 10:00:00', 80, 'MINSK', '2021-11-01 11:00:00', 5);
+values('FK999', 'BREST', '2021-11-03 10:00:00', 80, 'MINSK', '2021-11-03 11:00:00', 5);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK567', 'MINSK', '2021-11-01 20:00:00', 80, 'MOGILEV', '2021-11-01 21:20:00', 6);
+values('FK567', 'MINSK', '2021-11-03 20:00:00', 80, 'MOGILEV', '2021-11-03 21:20:00', 6);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK171', 'GRODNO', '2021-11-02 10:00:00', 80, 'GOMEL', '2021-11-02 11:10:00', 1);
+values('FK171', 'GRODNO', '2021-11-04 10:00:00', 80, 'GOMEL', '2021-11-04 11:10:00', 1);
 
 
 INSERT INTO client (first_name, second_name,  phone_number) VALUES ('sasha', 'sakahruk',  292001211);
