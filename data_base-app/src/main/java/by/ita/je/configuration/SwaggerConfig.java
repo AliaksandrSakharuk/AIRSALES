@@ -26,7 +26,7 @@ public class SwaggerConfig {
     public ApiInfo apiInfo() {
         final ApiInfoBuilder builder = new ApiInfoBuilder();
         builder.title("Example Swagger Api").version("0.0.1-SNAPSHOT")
-                .description("List of all the APIs of My Web application App through Swagger UI")
+                .description("List of all the APIs of My DATA_BASE-APP application App through Swagger UI")
                 .contact(new Contact("Sakharuk Aliaksandr", "", "sakharukaliaksandr@gmail.com"));
         return builder.build();
     }
