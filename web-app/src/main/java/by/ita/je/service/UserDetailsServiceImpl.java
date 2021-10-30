@@ -80,7 +80,7 @@ public class UserDetailsServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public void userBlockAndUnBlockedEnabled(long id){
         User user=userDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("User"));
@@ -98,14 +98,14 @@ public class UserDetailsServiceImpl implements UserService {
             }
     }
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public List<User> findAllUsers(){
         final Spliterator<User> result = userDao.findAll().spliterator();
         return StreamSupport.stream(result, false).collect(Collectors.toList());
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return userDao.findByLogin(auth.getName());
@@ -113,7 +113,7 @@ public class UserDetailsServiceImpl implements UserService {
 
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+    @Transactional(rollbackFor=Exception.class)
     public User updateUser(Long id, User userNew) {
         User userFromDB = userDao.findById(id)
                 .orElseThrow(() -> new NotFoundData( "User"));

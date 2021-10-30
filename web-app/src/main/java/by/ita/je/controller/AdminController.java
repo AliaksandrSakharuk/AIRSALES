@@ -7,15 +7,10 @@ import by.ita.je.service.api.ApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -83,7 +78,6 @@ public class AdminController {
 
     @GetMapping(value = "/admin/user/list")
     public String getUsersList(Model model){
-        System.out.println(userDetailsService.findAllUsers());
         List<User> users=userDetailsService.findAllUsers();
         List<UserDto> listUserDto=new ArrayList<UserDto>();
         for(User user: users){

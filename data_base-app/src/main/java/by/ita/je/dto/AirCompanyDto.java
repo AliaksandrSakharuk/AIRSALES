@@ -1,5 +1,7 @@
 package by.ita.je.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +12,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel(value = "class for Flight")
 public class AirCompanyDto {
     private Long id;
+    @ApiModelProperty(value = "name of AirCompany", example = "LUFHANSA" , dataType = "String", required = true)
     private String nameCompany;
+    @ApiModelProperty(value = "phone number of AirCompany", example = "292020202" , dataType = "long")
     private long phoneNumber;
     private List<PlaneDto> planes;
 }
