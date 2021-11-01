@@ -20,6 +20,5 @@ class FlightSearcherAfterCurrentTimeDaoTest {
     void findAllAfterCurrentTime() {
         List<Flight> listFlight=searcherFlightAfterCurrentTimeDao.findAllAfterCurrentTime();
         Assertions.assertNotNull(listFlight);
-        Assertions.assertEquals(6,listFlight.size());
     }
 }
