@@ -48,7 +48,7 @@ public class UserDetailsServiceImpl implements UserService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public boolean saveUser(User user) {
-        User userFromDB = userDao.findByLogin(user.getLogin());
+        User userFromDB = userDao.findByLogin(user.getLogin().trim());
         if (userFromDB != null) {
             return false;
         }

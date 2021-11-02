@@ -58,9 +58,9 @@ public class BusinessServiceImpl implements BusinessService {
         ticket.setBookedDateTime(LocalDateTime.now());
         seatSericve.update(ticket.getSeat().getId(),ticket.getSeat());
 
-        if(searcherService.findPassengerByPassport(ticket.getClient().getId(), ticket.getPassportNumberPassenger()).isEmpty()){
-            Passenger passenger=createPassnger(ticket.getFirstNamePassenger(), ticket.getSecondNamePassenger()
-                    , ticket.getPassportNumberPassenger(), ticket.getPhoneNumberPassenger());
+        if(searcherService.findPassengerByPassport(ticket.getClient().getId(), ticket.getPassportNumberPassenger().trim()).isEmpty()){
+            Passenger passenger=createPassnger(ticket.getFirstNamePassenger().trim(), ticket.getSecondNamePassenger().trim()
+                    , ticket.getPassportNumberPassenger().trim(), ticket.getPhoneNumberPassenger());
             passenger.setClient(ticket.getClient());
             passengerService.savePassenger(passenger);
         }
