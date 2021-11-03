@@ -14,7 +14,7 @@ spring:
       data-locations: classpath*:data.sql
       mode: always
   datasource:
-    url: jdbc:postgresql://databaseDB:5432/linesdb
+    url: jdbc:postgresql://localhost:5432/linesdb
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres

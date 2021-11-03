@@ -15,7 +15,7 @@
             <th>USER ID:</th>
             <th>ЛОГИН: </th>
             <th>EMAIL: </th>
-            <th>ДОСТУП: </th>
+            <th>СТАТУС: </th>
             <th>CLIENT ID: </th>
             <th>ИМЯ:</th>
             <th>ФАМИЛИЯ</th>
@@ -26,7 +26,7 @@
             <td th:text="${us.id}">Nothing</td>
             <td th:text="${us.login}">Nothing</td>
             <td th:text="${us.email}">Nothing</td>
-            <td th:text="${us.enabled}">Nothing</td>
+            <td th:text="${us.roles.get(0).getRoleName()}">Nothing</td>
             <td th:text="${us.client.id}">Nothing</td>
             <td th:text="${us.client.firstName}">Nothing</td>
             <td th:text="${us.client.secondName}">Nothing</td>

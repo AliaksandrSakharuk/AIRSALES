@@ -51,11 +51,10 @@ public class UserDetailsServiceImpl implements UserService {
         User userFromDB = userDao.findByLogin(user.getLogin().trim());
         if (userFromDB != null) {
             return false;
-        }
-        else{
+        }   else{
             user.setLogin(user.getLogin().trim());
             user.setPassword(user.getPassword().trim());
-            user.setRoles(Collections.singleton(roleDao.findByRoleName("READER")));
+            user.setRoles(List.of(roleDao.findByRoleName("READER")));
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             user.setEnabled(true);
             userDao.save(user);
@@ -73,8 +72,7 @@ public class UserDetailsServiceImpl implements UserService {
             userDao.save(userFromDB);
             messageService.sendMessage(password, fieldUserDto.getEmail());
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -84,15 +82,13 @@ public class UserDetailsServiceImpl implements UserService {
     public void userBlockAndUnBlockedEnabled(long id){
         User user=userDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("User"));
-        List<Role> roles=user.getRoles().stream()
-                .filter((a)->a.getRoleName().equals("ADMIN"))
-                .collect(Collectors.toList());
-        if(roles.size()<1) {
-            if(user.isEnabled()) {
-                user.setEnabled(false);
-            }
-            else{
-                user.setEnabled(true);
+        if(!user.getRoles().contains(roleDao.findByRoleName("ADMIN"))) {
+            if(user.getRoles().contains(roleDao.findByRoleName("READER"))) {
+                user.getRoles().add(roleDao.findByRoleName("BLOCKED"));
+                user.getRoles().remove(roleDao.findByRoleName("READER"));
+            }else{
+                user.getRoles().add(roleDao.findByRoleName("READER"));
+                user.getRoles().remove(roleDao.findByRoleName("BLOCKED"));
             }
             userDao.save(user);
             }
@@ -116,16 +112,16 @@ public class UserDetailsServiceImpl implements UserService {
     @Transactional(rollbackFor=Exception.class)
     public User updateUser(Long id, User userNew) {
         User userFromDB = userDao.findById(id)
-                .orElseThrow(() -> new NotFoundData( "User"));
-        if(!userNew.getLogin().equals(userFromDB.getLogin())){
+                .orElseThrow(() -> new NotFoundData("User"));
+        if (!userNew.getLogin().equals(userFromDB.getLogin())) {
             userFromDB.setLogin(userNew.getLogin());
         }
-        if(!userNew.getEmail().equals(userFromDB.getEmail())){
+        if (!userNew.getEmail().equals(userFromDB.getEmail())) {
             userFromDB.setEmail(userNew.getEmail());
         }
-       if (userNew.getPassword()!="") userFromDB.setPassword(bCryptPasswordEncoder.encode(userNew.getPassword()));
+        if (userNew.getPassword() != "") userFromDB.setPassword(bCryptPasswordEncoder.encode(userNew.getPassword()));
 
-            return userDao.save(userFromDB);
+        return userDao.save(userFromDB);
     }
 
     private String getTemporaryPassword(){

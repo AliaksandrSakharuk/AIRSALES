@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @EnableWebSecurity
-public class MySecurityConfig  extends WebSecurityConfigurerAdapter{
+public class  MySecurityConfig  extends WebSecurityConfigurerAdapter{
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -41,7 +41,7 @@ public class MySecurityConfig  extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/users/**").not().fullyAuthenticated()
-                .antMatchers("/").hasAnyAuthority("READER", "EDITOR", "ADMIN")
+                .antMatchers("/").hasAnyAuthority("READER", "BLOCKED", "ADMIN")
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()

@@ -91,19 +91,19 @@ INSERT INTO plane(invertor_number, name_plane, name_pilot, quantity_seats, seats
 values(111111, 'AH 24', 'Mishustin', 48, 4, 12, 2);
 
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK256', 'BREST', '2021-11-03 14:00:00', 50, 'GOMEL', '2021-11-03 14:50:00', 1);
+values('FK256', 'BREST', '2021-11-15 14:00:00', 50, 'GOMEL', '2021-11-15 14:50:00', 1);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK333', 'BREST', '2021-11-03 14:00:00', 45, 'MINSK', '2021-11-03 14:45:00', 2);
+values('FK333', 'BREST', '2021-11-15 14:00:00', 45, 'MINSK', '2021-11-15 14:45:00', 2);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK123', 'MINSK', '2021-11-03 16:00:00', 60, 'GOMEL', '2021-11-03 17:00:00', 3);
+values('FK123', 'MINSK', '2021-11-15 16:00:00', 60, 'GOMEL', '2021-11-15 17:00:00', 3);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK777', 'BREST', '2021-11-03 19:00:00', 80, 'GRODNO', '2021-11-03 20:20:00', 4);
+values('FK777', 'BREST', '2021-11-15 19:00:00', 80, 'GRODNO', '2021-11-15 20:20:00', 4);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK999', 'BREST', '2021-11-03 10:00:00', 80, 'MINSK', '2021-11-03 11:00:00', 5);
+values('FK999', 'BREST', '2021-11-15 10:00:00', 80, 'MINSK', '2021-11-15 11:00:00', 5);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK567', 'MINSK', '2021-11-03 20:00:00', 80, 'MOGILEV', '2021-11-03 21:20:00', 6);
+values('FK567', 'MINSK', '2021-11-16 20:00:00', 80, 'MOGILEV', '2021-11-16 21:20:00', 6);
 INSERT INTO flight(number_flight, departure_city, departure_date_time, duration_flight, arrive_city, arrive_date_time, plane_id)
-values('FK171', 'GRODNO', '2021-11-04 10:00:00', 80, 'GOMEL', '2021-11-04 11:10:00', 1);
+values('FK171', 'GRODNO', '2021-11-16 10:00:00', 80, 'GOMEL', '2021-11-16 11:10:00', 1);
 
 
 INSERT INTO client (first_name, second_name,  phone_number) VALUES ('sasha', 'sakahruk',  292001211);
@@ -468,14 +468,14 @@ INSERT INTO PASSENGER(first_name, second_name, passport_number, phone_number, cl
 values('Igor', 'Olechovich', 'AB5349591', 296446666, 4);
 
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time,   seat_id, client_id)
-values('Vadim', 'Kazak', 'AB 3234455', 297903271, '2021-10-01 14:50:00', 1, 3);
+values('Vadim', 'Kazak', 'AB 3234455', 297903271, '2021-11-01 14:50:00', 1, 3);
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time, seat_id, client_id)
-values('Maksim', 'Fedeev', 'AB 3457901', 296330195, '2021-10-01 14:50:00', 58, 3);
+values('Maksim', 'Fedeev', 'AB 3457901', 296330195, '2021-11-01 14:50:00', 58, 3);
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time, seat_id, client_id)
-values('Semen', 'Dron', 'AB 6540394', 292250081, '2021-10-01 14:50:00', 104, 3);
+values('Semen', 'Dron', 'AB 6540394', 292250081, '2021-11-01 14:50:00', 104, 3);
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time, seat_id, client_id)
-values('Ruslan', 'Zavizenec', 'AB 3840101', 295643201, '2021-10-01 14:50:00', 156, 4);
+values('Ruslan', 'Zavizenec', 'AB 3840101', 295643201, '2021-11-01 14:50:00', 156, 4);
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time, seat_id, client_id)
-values('Zaur', 'Martirosian', 'AB 3110401', 291230673, '2021-10-01 14:50:00', 179 ,4);
+values('Zaur', 'Martirosian', 'AB 3110401', 291230673, '2021-11-01 14:50:00', 179 ,4);
 INSERT INTO ticket(first_name_passenger, second_name_passenger, passport_number_passenger, phone_number_passenger, booked_date_time, seat_id, client_id)
-values('Igor', 'Olechovich', 'AB 5349591', 296446666, '2021-10-01 14:50:00', 203, 4);
+values('Igor', 'Olechovich', 'AB 5349591', 296446666, '2021-11-01 14:50:00', 203, 4);

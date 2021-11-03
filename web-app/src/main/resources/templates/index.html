@@ -9,7 +9,13 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="EXIT" />
 </form>
+<div sec:authorize="hasAuthority('BLOCKED')">
+    <br>
+   ВЫ ЗАБЛОКИРОВАНЫ!!!
+    За подробнастями обратитесь к администратору: airsales777@gmail.com
+</div>
 <br>
+<div sec:authorize="hasAuthority('READER')">
 <br>
 <a th:href="@{/ticket/list}"> Мои билеты</a>
 <br>
@@ -21,7 +27,6 @@
 <a th:href="@{/admin}"> КАБИНЕТ АДМИНИСТРАТОРА</a>
 </div>
 <br>
-
 
 <br>
 <table border="1" width="60%" cellpadding="5">
@@ -69,6 +74,7 @@
             </td>
         </tr>
     </table>
+</div>
 </div>
 </body>
 </html>

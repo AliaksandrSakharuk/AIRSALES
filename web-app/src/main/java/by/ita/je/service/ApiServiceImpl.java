@@ -16,8 +16,8 @@ import java.util.List;
 public class ApiServiceImpl implements ApiService {
 
     private final RestTemplate restTemplate;
-//    private final String url = "http://localhost:5001/data_base-app";
-    private final String url = "http://database-app:5001/data_base-app";
+    private final String url = "http://localhost:5001/data_base-app";
+//    private final String url = "http://database-app:5001/data_base-app";
 
     @Override
     public ClientDto saveClient(ClientDto clientDto) {

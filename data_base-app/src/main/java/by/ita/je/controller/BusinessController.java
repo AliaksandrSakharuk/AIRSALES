@@ -54,7 +54,6 @@ public class BusinessController {
 
 
     @GetMapping("/sales/flight/{id}/seat")
-
     @ApiOperation(value = "Find all free seats in the selected plane by id_plane in the data base")
     public List<SeatDto> findFreeSeatByIdPlane(@PathVariable("id") long id){
         final List<Seat> seats=searcherService.findFreeSeat(id);
