@@ -14,7 +14,7 @@ spring:
       data-locations: classpath*:security.sql
       mode: always
   datasource:
-    url: jdbc:postgresql://localhost:5432/securdb
+    url: jdbc:postgresql://securityDB:5432/securdb
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
