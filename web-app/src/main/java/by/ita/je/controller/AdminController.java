@@ -35,14 +35,10 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/flight")
-    public String getFormFlight(@RequestParam(value = "date_from") String dateFrom
-            ,@RequestParam(value = "date_to") String dateTo
-            , Model model) {
-        FlightDto flightDto=new FlightDto();
-        PlaneDto plane=new PlaneDto();
+    public String getFormFlight(Model model) {
+        FlightDto flightDto = new FlightDto();
+        PlaneDto plane = new PlaneDto();
         flightDto.setPlane(plane);
-        flightDto.setDepartureDateTime(LocalDateTime.parse(dateFrom));
-        flightDto.setArriveDateTime(LocalDateTime.parse(dateTo));
         model.addAttribute("flightDto", flightDto);
         return "flightForm";
     }
@@ -53,7 +49,7 @@ public class AdminController {
             return "flightForm";
         }
         else {
-            FlightDto flightDto=apiService.createFlight(flightDtoNew);
+            apiService.createFlight(flightDtoNew);
             return "redirect:/";
         }
     }

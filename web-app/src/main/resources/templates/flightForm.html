@@ -16,11 +16,11 @@
     <p>ГОРОД ОТПРАВЛЕНИЯ: <input type="text"   th:field="*{departureCity}" pattern="^[a-zA-Z]+$"/>
         <span th:if="${#fields.hasErrors('departureCity')}" style ="color: red;" class="alert alert-error" th:errors="*{departureCity}">Name Error</span>
     </p>
-    <p>ДАТА И ВРЕМЯ ОТПРАВЛЕНИЯ: <input type="text"   readonly th:field="*{departureDateTime}"  /></p>
+    <p>ДАТА И ВРЕМЯ ОТПРАВЛЕНИЯ:  <input type="datetime-local" th:field="*{departureDateTime}" required>
     <p>ГОРОД ПРИБЫТИЯ: <input type="text"  th:field="*{arriveCity}"  pattern="^[a-zA-Z]+$"/>
         <span th:if="${#fields.hasErrors('arriveCity')}" style ="color: red;" class="alert alert-error" th:errors="*{arriveCity}">Name Error</span>
     </p>
-    <p>ДАТА И ВРЕМЯ ПРИБЫТИЯ: <input type="text"  readonly th:field="*{arriveDateTime}"  /></p>
+    <p>ДАТА И ВРЕМЯ ПРИБЫТИЯ: <input type="datetime-local" th:field="*{arriveDateTime}" required>
     <p>ID самолета: <input type="text"  th:field="*{plane.id}" pattern="^[0-9]+$"  required/></p>
     <p><input type="submit" value="Создать" /> <input type="reset" value="Сбросить" /></p>
 </form>

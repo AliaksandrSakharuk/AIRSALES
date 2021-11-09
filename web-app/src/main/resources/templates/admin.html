@@ -9,24 +9,8 @@
 <a th:href="@{/}"> На главную страницу</a>
 <br>
 <br>
-<table border="1" width="60%" cellpadding="5">
-    <tr>
-        <td>
-            <h2>ВЫБРАТЬ ДЕНЬ И ВРЕМЯ ДЛЯ НОВОГО РЕЙСА:</h2>
-            <form id="field" method="get">
-                <label for="date_from">ДАТА И ВРЕМЯ ОПРАВЛЕНИЯ:</label>
-                <input id="date_from" type="datetime-local" required name="date_from" >
-
-                <label for="date_to">ДАТА И ВРЕМЯ ПРИБЫТИЯ:</label>
-                <input id="date_to" type="datetime-local" required name="date_to" >
-            </form>
-            <br>
-            <p>
-                <button type="submit" form="field" formaction="/web-app/admin/flight" >СОЗДАТЬ РЕЙС</button>
-            </p>
-        </td>
-    </tr>
-</table>
+<a th:href="@{/admin/flight}"> Добваить новый рейс</a>
+<br>
 <br>
 <a th:href="@{/admin/aircompany/form}"> Добавить новую АВИАКОМПАНИЮ</a>
 <br>
