@@ -1,6 +1,7 @@
 package by.ita.je.service;
 
 import by.ita.je.service.api.MessageService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,11 +12,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
-    private final Properties prop;
+    private Properties prop;
 
     @Override
     public void sendMessage(String password, String mail) {

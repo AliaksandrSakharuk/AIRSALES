@@ -4,6 +4,7 @@ import by.ita.je.dto.*;
 import by.ita.je.excepetion.NotCorrectData;
 import by.ita.je.service.api.ApiService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ApiServiceImpl implements ApiService {
 
     private final RestTemplate restTemplate;

@@ -19,11 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class SalesController {
-    @Autowired
+
     private final UserDetailsServiceImpl userDetailsService;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping(value = "/")
     public String home(Model model) {

@@ -16,11 +16,4 @@ public class AppConfiguration {
                 .registerModule(new JavaTimeModule());
         return objectMapper;
     }
-
-    @Bean
-    public RestTemplate objectRestTemplate(){
-        return new RestTemplate();
-    }
-
-
 }

@@ -6,7 +6,6 @@ import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Flight;
 import by.ita.je.service.api.FlightService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.temporal.ChronoUnit;
 
@@ -14,8 +13,7 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 public class FlightServiceImpl implements FlightService {
 
-    @Autowired
-    private FlightDao flightDao;
+    private final FlightDao flightDao;
 
     @Override
     public Flight save(Flight flight) throws NotCorrectData {

@@ -8,12 +8,11 @@ import by.ita.je.service.api.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
     private final ClientDao clientDao;
-
 
     @Override
     public Client save(Client client) throws NotCorrectData {
@@ -27,7 +26,6 @@ public class ClientServiceImpl implements ClientService {
     public Client update(Long id, Client clientNew) {
         Client client = clientDao.findById(id)
                 .orElseThrow(() -> new NotFoundData( "Client"));
-        System.out.println(clientNew);
         if(clientNew.getFirstName()!=null || clientNew.getFirstName()!="") client.setFirstName(clientNew.getFirstName());
         if(clientNew.getSecondName()!=null || clientNew.getSecondName()!="") client.setSecondName(clientNew.getSecondName());
         if(clientNew.getPhoneNumber()!=0) client.setPhoneNumber(clientNew.getPhoneNumber());

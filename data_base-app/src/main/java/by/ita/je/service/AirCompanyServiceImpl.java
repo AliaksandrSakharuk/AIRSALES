@@ -4,21 +4,18 @@ import by.ita.je.dao.AirCompanyDao;
 import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.AirCompany;
-import by.ita.je.model.Passenger;
 import by.ita.je.service.api.AirCompanyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AirCompanyServiceImpl implements AirCompanyService {
 
-    @Autowired
-    private AirCompanyDao companyServiceDao;
+    private final AirCompanyDao companyServiceDao;
 
     @Override
     public AirCompany save(AirCompany company) throws NotCorrectData {

@@ -5,11 +5,9 @@ import by.ita.je.dao.RoleDao;
 import by.ita.je.dao.UserDao;
 import by.ita.je.dto.FieldUserDto;
 import by.ita.je.excepetion.NotFoundData;
-import by.ita.je.model.Role;
 import by.ita.je.model.User;
 import by.ita.je.service.api.MessageService;
 import by.ita.je.service.api.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,17 +22,17 @@ import java.util.stream.StreamSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserService {
 
     @Autowired
-    private  UserDao userDao;
+    private UserDao userDao;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private MessageService messageService;
     @Autowired
     private RoleDao roleDao;
+
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -63,7 +61,7 @@ public class UserDetailsServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(rollbackFor=Exception.class)
+    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public boolean renewalPassword(FieldUserDto fieldUserDto){
         User userFromDB = userDao.findByLogin(fieldUserDto.getLogin());
         if (userFromDB != null && userFromDB.getEmail().equals(fieldUserDto.getEmail())) {
@@ -109,7 +107,7 @@ public class UserDetailsServiceImpl implements UserService {
 
 
     @Override
-    @Transactional(rollbackFor=Exception.class)
+    @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public User updateUser(Long id, User userNew) {
         User userFromDB = userDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("User"));

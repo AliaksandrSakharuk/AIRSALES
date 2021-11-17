@@ -9,7 +9,6 @@ import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Data
 @Entity
 @Table(name = "roles")

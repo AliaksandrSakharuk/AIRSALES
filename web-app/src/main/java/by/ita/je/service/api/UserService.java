@@ -1,7 +1,6 @@
 package by.ita.je.service.api;
 
 import by.ita.je.dto.FieldUserDto;
-import by.ita.je.dto.UserDto;
 import by.ita.je.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

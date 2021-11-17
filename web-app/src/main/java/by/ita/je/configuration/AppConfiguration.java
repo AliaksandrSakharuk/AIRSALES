@@ -1,8 +1,5 @@
 package by.ita.je.configuration;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -13,7 +10,6 @@ import java.util.Properties;
 public class AppConfiguration {
 
     @Primary
-    @Bean(name="sendEmail")
     public Properties objectPropertiesEmail(){
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", "true");

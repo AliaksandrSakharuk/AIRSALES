@@ -20,11 +20,8 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    @Autowired
     private final ApiService apiService;
-    @Autowired
     private final UserDetailsServiceImpl userDetailsService;
-    @Autowired
     private final ObjectMapper objectMapper;
 
 

@@ -4,16 +4,13 @@ import by.ita.je.dao.PassengerDao;
 import by.ita.je.exception.NotCorrectData;
 import by.ita.je.model.Passenger;
 import by.ita.je.service.api.PassengerService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class PassengerServiceImpl implements PassengerService {
 
-    @Autowired
     private final PassengerDao passengerDao;
 
     @Override

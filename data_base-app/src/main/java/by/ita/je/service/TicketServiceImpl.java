@@ -5,16 +5,15 @@ import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Ticket;
 import by.ita.je.service.api.TicketService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
+
 @Service
+@RequiredArgsConstructor
 public class TicketServiceImpl implements TicketService {
 
-    @Autowired
     private final TicketDao ticketDao;
 
     @Override

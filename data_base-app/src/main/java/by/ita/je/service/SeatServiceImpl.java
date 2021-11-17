@@ -1,19 +1,17 @@
 package by.ita.je.service;
 
 import by.ita.je.dao.SeatDao;
-import by.ita.je.exception.NotCorrectData;
 import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Seat;
 import by.ita.je.service.api.SeatSericve;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
+
 @Service
+@RequiredArgsConstructor
 public class SeatServiceImpl implements SeatSericve {
 
-    @Autowired
     private final SeatDao seatDao;
 
     @Override

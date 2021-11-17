@@ -23,12 +23,9 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class LoginController {
 
-    @Autowired
     private final UserDetailsServiceImpl userDetailsService;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
-    private final RestTemplate restTemplate;
-
 
     @GetMapping("/login")
     public String get(Model model) {

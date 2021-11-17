@@ -10,11 +10,8 @@ import by.ita.je.model.Seat;
 import by.ita.je.model.Ticket;
 import by.ita.je.service.api.SearcherService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
