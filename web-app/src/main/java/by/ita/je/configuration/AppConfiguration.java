@@ -9,6 +9,7 @@ import java.util.Properties;
 @Configuration
 public class AppConfiguration {
 
+    @Bean
     @Primary
     public Properties objectPropertiesEmail(){
         Properties prop = new Properties();

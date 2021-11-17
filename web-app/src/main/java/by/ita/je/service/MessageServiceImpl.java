@@ -15,7 +15,6 @@ import javax.mail.internet.MimeMessage;
 @AllArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-    @Autowired
     private Properties prop;
 
     @Override
