@@ -126,7 +126,6 @@ public class UserDetailsServiceImpl implements UserService {
         String[] elements={"dgd","ett","dgd","dff","d7g","4f2","3fd",
                 "3rf","3fg","44f","d45","d80","34d","fd3","ef2",};
         StringBuilder password=new StringBuilder();
-        Arrays.stream(elements).limit(4).forEach((el) ->password.append(el));
         for (int num=1;num<=4;num++){
             password.append(elements[(int)(Math.random()*15)]);
         }
