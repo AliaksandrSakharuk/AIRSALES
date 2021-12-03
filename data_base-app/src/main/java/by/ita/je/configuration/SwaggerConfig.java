@@ -24,11 +24,11 @@ public class SwaggerConfig {
     }
     @Bean
     public ApiInfo apiInfo() {
-        final ApiInfoBuilder builder = new ApiInfoBuilder();
-        builder.title("Example Swagger Api").version("0.0.1-SNAPSHOT")
+        return new ApiInfoBuilder()
+                .title("Example Swagger Api").version("0.0.1-SNAPSHOT")
                 .description("List of all the APIs of My DATA_BASE-APP application App through Swagger UI")
-                .contact(new Contact("Sakharuk Aliaksandr", "", "sakharukaliaksandr@gmail.com"));
-        return builder.build();
+                .contact(new Contact("Sakharuk Aliaksandr", "", "sakharukaliaksandr@gmail.com"))
+                .build();
     }
 
 }

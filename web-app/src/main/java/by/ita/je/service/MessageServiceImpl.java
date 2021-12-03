@@ -3,6 +3,7 @@ package by.ita.je.service;
 import by.ita.je.configuration.MailAppProperties;
 import by.ita.je.service.api.MessageService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.Properties;
 import javax.mail.*;
@@ -10,10 +11,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-    private MailAppProperties mailAppProperties;
+    private final MailAppProperties mailAppProperties;
 
     @Override
     public void sendMessage(String password, String mail) {
