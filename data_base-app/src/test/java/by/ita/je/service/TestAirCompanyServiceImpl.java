@@ -30,12 +30,12 @@ public class TestAirCompanyServiceImpl {
     public void whenCreate_returnAirCompany() {
         AirCompany airCompany=new AirCompany();
         airCompany.setNameCompany("BELAVIA");
-        airCompany.setPhoneNumber(292001211);
+        airCompany.setPhoneNumber(292001211L);
         Mockito.when(airCompanyDao.save(airCompany)).thenReturn(airCompany);
         final AirCompany actual=airCompanyService.save(airCompany);
         AirCompany expected=getAirCompany();
         expected.setNameCompany("BELAVIA");
-        expected.setPhoneNumber(292001211);
+        expected.setPhoneNumber(292001211L);
         Assertions.assertEquals(expected ,actual);
         Mockito.verify(airCompanyDao, Mockito.times(1)).save(airCompany);
     }

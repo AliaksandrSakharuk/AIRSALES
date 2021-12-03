@@ -16,6 +16,6 @@ public class AirCompanyDto {
     @ApiModelProperty(value = "name of AirCompany", example = "LUFHANSA" , dataType = "String", required = true)
     private String nameCompany;
     @ApiModelProperty(value = "phone number of AirCompany", example = "292020202" , dataType = "long")
-    private long phoneNumber;
+    private Long phoneNumber;
     private List<PlaneDto> planes;
 }

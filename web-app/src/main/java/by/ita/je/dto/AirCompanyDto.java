@@ -15,6 +15,6 @@ public class AirCompanyDto {
     private Long id;
     @Size(min=2, message = "ENTER CORRECT NAME COMPANY")
     private String nameCompany;
-    private long phoneNumber;
+    private Long phoneNumber;
     private List<PlaneDto> planes;
 }

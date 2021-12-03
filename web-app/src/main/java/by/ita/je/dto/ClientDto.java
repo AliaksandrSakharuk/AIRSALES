@@ -12,7 +12,7 @@ public class ClientDto {
     private Long id;
     private String firstName;
     private String secondName;
-    private long phoneNumber;
-    private long userId;
+    private Long phoneNumber;
+    private Long userId;
     private List<PassengerDto> passengers;
 }

@@ -6,9 +6,9 @@ import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Ticket;
 import by.ita.je.service.api.TicketService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +25,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket save(Ticket ticket) {
-        if(ticket.getFirstNamePassenger()==null || ticket.getFirstNamePassenger()=="") throw new NotCorrectData("Ticket");
-        if(ticket.getSecondNamePassenger()==null || ticket.getSecondNamePassenger()=="") throw new NotCorrectData("Ticket");
-        if(ticket.getPassportNumberPassenger()==null || ticket.getPassportNumberPassenger()=="") throw new NotCorrectData("Ticket");
+        if(StringUtils.isEmpty(ticket.getFirstNamePassenger())) throw new NotCorrectData("Ticket");
+        if(StringUtils.isEmpty(ticket.getSecondNamePassenger())) throw new NotCorrectData("Ticket");
+        if(StringUtils.isEmpty(ticket.getPassportNumberPassenger())) throw new NotCorrectData("Ticket");
         ticket.setBookedDateTime(LocalDateTime.now());
         return ticketDao.save(ticket);
     }

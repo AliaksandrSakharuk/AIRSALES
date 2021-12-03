@@ -7,7 +7,6 @@ import by.ita.je.service.api.SeatSericve;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @RequiredArgsConstructor
 public class SeatServiceImpl implements SeatSericve {

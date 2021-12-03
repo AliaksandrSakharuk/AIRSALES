@@ -19,7 +19,7 @@ public class Client {
     private Long id;
     private String firstName;
     private String secondName;
-    private long phoneNumber;
+    private Long phoneNumber;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "client")
     private List<Passenger> passengers;

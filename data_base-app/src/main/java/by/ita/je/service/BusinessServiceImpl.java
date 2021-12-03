@@ -59,7 +59,7 @@ public class BusinessServiceImpl implements BusinessService {
         seatSericve.update(ticket.getSeat().getId(),ticket.getSeat());
 
         if(searcherService.findPassengerByPassport(ticket.getClient().getId(), ticket.getPassportNumberPassenger().trim()).isEmpty()){
-            Passenger passenger=createPassnger(ticket.getFirstNamePassenger().trim(), ticket.getSecondNamePassenger().trim()
+            Passenger passenger=createPassenger(ticket.getFirstNamePassenger().trim(), ticket.getSecondNamePassenger().trim()
                     , ticket.getPassportNumberPassenger().trim(), ticket.getPhoneNumberPassenger());
             passenger.setClient(ticket.getClient());
             passengerService.savePassenger(passenger);
@@ -120,13 +120,12 @@ public class BusinessServiceImpl implements BusinessService {
                 .build();
     }
 
-    private Passenger createPassnger(String firstName, String secondName, String numberPassport, long phoneNumber){
-        Passenger passenger=Passenger.builder()
+    private Passenger createPassenger(String firstName, String secondName, String numberPassport, long phoneNumber){
+        return  Passenger.builder()
                 .firstName(firstName)
                 .secondName(secondName)
                 .passportNumber(numberPassport)
                 .phoneNumber(phoneNumber)
                 .build();
-        return  passenger;
     }
 }

@@ -17,7 +17,7 @@ public class Ticket {
     private LocalDateTime bookedDateTime;
     private String firstNamePassenger;
     private String secondNamePassenger;
-    private long phoneNumberPassenger;
+    private Long phoneNumberPassenger;
     private String passportNumberPassenger;
 
     @ManyToOne

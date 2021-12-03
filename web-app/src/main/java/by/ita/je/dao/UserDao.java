@@ -1,11 +1,8 @@
 package by.ita.je.dao;
 
 import by.ita.je.model.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface UserDao extends CrudRepository<User, Long> {
+public interface UserDao extends JpaRepository<User, Long> {
     User findByLogin (String login);
 }

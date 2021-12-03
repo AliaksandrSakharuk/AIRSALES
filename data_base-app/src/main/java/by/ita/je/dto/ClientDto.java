@@ -19,7 +19,7 @@ public class ClientDto {
     @ApiModelProperty(value = "surname of Client", example = "Salapura", dataType = "String", required = true)
     private String secondName;
     @ApiModelProperty(value = "phoneNumber of Client", example = "297209238", dataType = "Long")
-    private long phoneNumber;
+    private Long phoneNumber;
     private List<PassengerDto> passengers;
 
 }

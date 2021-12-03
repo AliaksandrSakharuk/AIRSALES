@@ -1,7 +1,7 @@
 import by.ita.je.dao.UserDao;
 import by.ita.je.excepetion.NotFoundData;
 import by.ita.je.model.User;
-import by.ita.je.service.UserDetailsServiceImpl;
+import by.ita.je.service.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +22,7 @@ public class TestUserDetailsServiceImpl {
     @Mock
     private BCryptPasswordEncoder passwordEncoder;
     @InjectMocks
-    private UserDetailsServiceImpl userDetailsService;
+    private UserServiceImpl userDetailsService;
 
     @Test
     public void whenGetAll_emptyList(){

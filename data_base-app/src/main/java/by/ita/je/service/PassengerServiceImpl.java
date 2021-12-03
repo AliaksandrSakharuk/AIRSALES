@@ -5,6 +5,7 @@ import by.ita.je.exception.NotCorrectData;
 import by.ita.je.model.Passenger;
 import by.ita.je.service.api.PassengerService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +16,9 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger savePassenger(Passenger passenger) {
-        if(passenger.getFirstName()==null || passenger.getFirstName()=="") throw new NotCorrectData("Passnger");
-        if(passenger.getSecondName()==null || passenger.getSecondName()=="") throw new NotCorrectData("Passenger");
-        if(passenger.getPassportNumber()==null || passenger.getPassportNumber()=="") throw new NotCorrectData("Passnger");
+        if(StringUtils.isEmpty(passenger.getFirstName())) throw new NotCorrectData("Passnger");
+        if(StringUtils.isEmpty(passenger.getSecondName())) throw new NotCorrectData("Passenger");
+        if(StringUtils.isEmpty(passenger.getPassportNumber())) throw new NotCorrectData("Passnger");
         return passengerDao.save(passenger);
     }
 }

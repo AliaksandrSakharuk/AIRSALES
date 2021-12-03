@@ -140,7 +140,7 @@ class BusinessServiceImplTest {
     private AirCompany getAirCompany(){
         AirCompany company=new AirCompany();
         company.setNameCompany("ZARA");
-        company.setPhoneNumber(7771100);
+        company.setPhoneNumber(7771100L);
         return company;
     }
 
@@ -166,7 +166,7 @@ class BusinessServiceImplTest {
         ticket.setPassportNumberPassenger("AB1112233");
         ticket.setFirstNamePassenger("Roma");
         ticket.setSecondNamePassenger("Golosko");
-        ticket.setPhoneNumberPassenger(292001211);
+        ticket.setPhoneNumberPassenger(292001211L);
         return ticket;
     }
 
@@ -179,7 +179,7 @@ class BusinessServiceImplTest {
                 .id(4l)
                 .firstName("roma")
                 .secondName("salapura")
-                .phoneNumber(297229238)
+                .phoneNumber(297229238L)
                 .build();
         return client;
     }

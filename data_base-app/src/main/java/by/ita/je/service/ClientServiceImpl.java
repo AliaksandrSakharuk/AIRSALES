@@ -6,6 +6,7 @@ import by.ita.je.exception.NotFoundData;
 import by.ita.je.model.Client;
 import by.ita.je.service.api.ClientService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,9 +17,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client) throws NotCorrectData {
-        if(client.getFirstName()==null || client.getFirstName()=="") throw new NotCorrectData("Client");
-        if(client.getSecondName()==null || client.getSecondName()=="") throw new NotCorrectData("Client");
-
+        if(StringUtils.isEmpty(client.getFirstName())) throw new NotCorrectData("Client");
+        if(StringUtils.isEmpty(client.getSecondName())) throw new NotCorrectData("Client");
         return clientDao.save(client);
     }
 
@@ -26,16 +26,15 @@ public class ClientServiceImpl implements ClientService {
     public Client update(Long id, Client clientNew) {
         Client client = clientDao.findById(id)
                 .orElseThrow(() -> new NotFoundData( "Client"));
-        if(clientNew.getFirstName()!=null || clientNew.getFirstName()!="") client.setFirstName(clientNew.getFirstName());
-        if(clientNew.getSecondName()!=null || clientNew.getSecondName()!="") client.setSecondName(clientNew.getSecondName());
-        if(clientNew.getPhoneNumber()!=0) client.setPhoneNumber(clientNew.getPhoneNumber());
+        if(StringUtils.isEmpty(client.getFirstName())) client.setFirstName(clientNew.getFirstName());
+        if(StringUtils.isEmpty(client.getSecondName())) client.setSecondName(clientNew.getSecondName());
+        if(clientNew.getPhoneNumber()!=null) client.setPhoneNumber(clientNew.getPhoneNumber());
         return clientDao.save(client);
     }
 
     @Override
     public Client readById(Long id) throws NotFoundData {
-        final Client client=clientDao.findById(id)
+        return clientDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("Client"));
-        return client;
     }
 }

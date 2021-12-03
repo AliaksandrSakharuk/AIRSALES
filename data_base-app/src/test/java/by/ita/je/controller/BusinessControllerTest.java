@@ -94,7 +94,7 @@ class BusinessControllerTest {
     @Test
     @SneakyThrows
     void updateClient_thenOk(){
-        long id = 5l;
+        Long id = 5l;
         Client client = new Client();
         client.setFirstName("GLEB");
         client.setSecondName("OREL");
@@ -104,7 +104,7 @@ class BusinessControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("GLEB"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("petia"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("297229238"));
     }
 
@@ -331,7 +331,7 @@ class BusinessControllerTest {
     private AirCompany getAirCompany() {
         AirCompany company = new AirCompany();
         company.setNameCompany("ZARA");
-        company.setPhoneNumber(7771100);
+        company.setPhoneNumber(7771100L);
         return company;
     }
 
@@ -358,7 +358,7 @@ class BusinessControllerTest {
         ticket.setPassportNumberPassenger("AB1112233");
         ticket.setFirstNamePassenger("Roma");
         ticket.setSecondNamePassenger("Golosko");
-        ticket.setPhoneNumberPassenger(292001211);
+        ticket.setPhoneNumberPassenger(292001211L);
         return ticket;
     }
 
@@ -367,7 +367,7 @@ class BusinessControllerTest {
                 .id(4l)
                 .firstName("roma")
                 .secondName("salapura")
-                .phoneNumber(297229238)
+                .phoneNumber(297229238L)
                 .build();
         return client;
     }

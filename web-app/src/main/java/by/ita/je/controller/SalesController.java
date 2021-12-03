@@ -2,17 +2,14 @@ package by.ita.je.controller;
 
 import by.ita.je.dto.*;
 import by.ita.je.model.User;
-import by.ita.je.service.UserDetailsServiceImpl;
 import by.ita.je.service.api.ApiService;
+import by.ita.je.service.api.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -20,7 +17,7 @@ import java.util.List;
 @Controller
 public class SalesController {
 
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserService userDetailsService;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
 

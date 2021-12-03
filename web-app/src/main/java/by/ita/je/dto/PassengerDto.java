@@ -13,6 +13,6 @@ public class PassengerDto {
     private Long id;
     private String firstName;
     private String secondName;
-    private long phoneNumber;
+    private Long phoneNumber;
     private String passportNumber;
 }

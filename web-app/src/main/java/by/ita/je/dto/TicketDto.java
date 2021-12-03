@@ -20,7 +20,7 @@ public class TicketDto {
     private String firstNamePassenger;
     @NotBlank(message = "ENTER THIS FIELD")
     private String secondNamePassenger;
-    private long phoneNumberPassenger;
+    private Long phoneNumberPassenger;
     @NotBlank(message = "ENTER THIS FIELD")
     private String passportNumberPassenger;
     private SeatDto seat;

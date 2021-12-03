@@ -25,7 +25,7 @@ public class TicketDto {
     @ApiModelProperty(value = "surname of passenger", example = "Olechovich", dataType = "String", required = true)
     private String secondNamePassenger;
     @ApiModelProperty(value = "phone number of passenger", example = "296446666", dataType = "long", required = true)
-    private long phoneNumberPassenger;
+    private Long phoneNumberPassenger;
     @ApiModelProperty(value = "number passport of passenger", example = "AB5349591", dataType = "String", required = true)
     private String passportNumberPassenger;
     private SeatDto seat;

@@ -19,7 +19,7 @@ public class PassengerDto {
     @ApiModelProperty(value = "surname of passenger", example = "Olechovich", dataType = "String", required = true)
     private String secondName;
     @ApiModelProperty(value = "phone number of passenger", example = "296446666", dataType = "long")
-    private long phoneNumber;
+    private Long phoneNumber;
     @ApiModelProperty(value = "number passport of passenger", example = "AB5349591", dataType = "String", required = true)
     private String passportNumber;
 }
