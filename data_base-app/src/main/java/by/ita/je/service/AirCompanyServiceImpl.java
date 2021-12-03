@@ -8,6 +8,7 @@ import by.ita.je.service.api.AirCompanyService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
 
 @Service
@@ -18,13 +19,13 @@ public class AirCompanyServiceImpl implements AirCompanyService {
 
     @Override
     public AirCompany save(AirCompany company) throws NotCorrectData {
-    if(StringUtils.isEmpty(company.getNameCompany())) throw new NotCorrectData("AirCompany");
+        if (StringUtils.isEmpty(company.getNameCompany())) throw new NotCorrectData("AirCompany");
         return companyServiceDao.save(company);
     }
 
     @Override
-    public AirCompany readById(Long id) throws NotFoundData{
-        final AirCompany company=companyServiceDao.findById(id)
+    public AirCompany readById(Long id) throws NotFoundData {
+        final AirCompany company = companyServiceDao.findById(id)
                 .orElseThrow(() -> new NotFoundData("AirCompany"));
         return company;
     }
