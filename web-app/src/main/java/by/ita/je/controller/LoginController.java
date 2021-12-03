@@ -1,5 +1,6 @@
 package by.ita.je.controller;
 
+import by.ita.je.configuration.MailAppProperties;
 import by.ita.je.dto.ClientDto;
 import by.ita.je.dto.FieldUserDto;
 import by.ita.je.dto.UserDto;
@@ -7,7 +8,7 @@ import by.ita.je.model.User;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LoginController {
 
     private final UserService userDetailsService;
