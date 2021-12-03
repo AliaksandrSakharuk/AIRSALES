@@ -20,6 +20,7 @@ public class UserDto {
     private String password;
     @Email(message = "NOT CORRECT EMAIL")
     private String email;
+    private Long clientId;
     private boolean enabled;
     private ClientDto client;
     private List<Role> roles;

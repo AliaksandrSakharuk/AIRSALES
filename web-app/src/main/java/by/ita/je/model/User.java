@@ -21,7 +21,7 @@ public class User {
     private boolean enabled;
     @NotNull
     private String email;
-    private long clientId;
+    private Long clientId;
 
     @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name ="users_roles"
