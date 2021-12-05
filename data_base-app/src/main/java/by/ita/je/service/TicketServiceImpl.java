@@ -25,9 +25,6 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket save(Ticket ticket) {
-        if(StringUtils.isEmpty(ticket.getFirstNamePassenger())) throw new NotCorrectData("Ticket");
-        if(StringUtils.isEmpty(ticket.getSecondNamePassenger())) throw new NotCorrectData("Ticket");
-        if(StringUtils.isEmpty(ticket.getPassportNumberPassenger())) throw new NotCorrectData("Ticket");
         ticket.setBookedDateTime(LocalDateTime.now());
         return ticketDao.save(ticket);
     }

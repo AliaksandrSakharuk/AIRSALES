@@ -18,7 +18,6 @@ public class AirCompanyServiceImpl implements AirCompanyService {
 
     @Override
     public AirCompany save(AirCompany company) throws NotCorrectData {
-    if(StringUtils.isEmpty(company.getNameCompany())) throw new NotCorrectData("AirCompany");
         return companyServiceDao.save(company);
     }
 

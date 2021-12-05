@@ -7,6 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +24,7 @@ public class BusinessController {
 
     @PostMapping("/client")
     @ApiOperation(value = "Add in the dataBase new Client fot application", response = ClientDto.class)
-    public ClientDto createNewClient(@RequestBody ClientDto clientDto){
+    public ClientDto createNewClient(@Valid @RequestBody ClientDto clientDto){
         Client clientNew= objectMapper.convertValue(clientDto, Client.class);
         final Client client=clientService.save(clientNew);
         return objectMapper.convertValue(client, ClientDto.class);
@@ -37,7 +39,7 @@ public class BusinessController {
 
     @PostMapping("/client/{client_id}")
     @ApiOperation(value = "Update information of Client in DATA BASE", response = ClientDto.class)
-    public ClientDto updateClient(@PathVariable("client_id") long id, @RequestBody ClientDto clientDto){
+    public ClientDto updateClient(@Valid @PathVariable("client_id") long id, @RequestBody ClientDto clientDto){
         final Client clientNew=objectMapper.convertValue(clientDto, Client.class);
         final Client client=clientService.update(id,clientNew);
         return objectMapper.convertValue(client, ClientDto.class);
@@ -45,7 +47,7 @@ public class BusinessController {
 
     @PostMapping("/sales/flight")
     @ApiOperation(value = "Add new flight into the schedule", response = FlightDto.class)
-    public FlightDto createNewFlight(@RequestBody FlightDto flightDto){
+    public FlightDto createNewFlight(@Valid @RequestBody FlightDto flightDto){
         System.out.println(flightDto);
         final Flight flightNew = objectMapper.convertValue(flightDto, Flight.class);
         final Flight flight=businessService.createNewFlight(flightNew);
@@ -85,7 +87,7 @@ public class BusinessController {
 
     @PostMapping("/company")
     @ApiOperation(value = "Add new AirCompany into the data base")
-    public AirCompanyDto createNewAirCompany(@RequestBody AirCompanyDto companyDto){
+    public AirCompanyDto createNewAirCompany(@Valid @RequestBody AirCompanyDto companyDto){
         final AirCompany companyNew = objectMapper.convertValue(companyDto, AirCompany.class);
         final AirCompany company=businessService.createNewAirCompany(companyNew);
         return objectMapper.convertValue(company, AirCompanyDto.class);
@@ -103,7 +105,7 @@ public class BusinessController {
 
     @PostMapping("/sales/ticket/book")
     @ApiOperation(value = "Book ticket for the selected flight")
-    public TicketDto bookTicket(@RequestBody TicketDto ticketDto){
+    public TicketDto bookTicket(@Valid @RequestBody TicketDto ticketDto){
         final Ticket ticketNew= objectMapper.convertValue(ticketDto, Ticket.class);
         final Ticket ticket=businessService.bookTicket(ticketNew);
         return objectMapper.convertValue(ticket, TicketDto.class);

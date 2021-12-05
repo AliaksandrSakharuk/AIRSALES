@@ -16,9 +16,6 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger savePassenger(Passenger passenger) {
-        if(StringUtils.isEmpty(passenger.getFirstName())) throw new NotCorrectData("Passnger");
-        if(StringUtils.isEmpty(passenger.getSecondName())) throw new NotCorrectData("Passenger");
-        if(StringUtils.isEmpty(passenger.getPassportNumber())) throw new NotCorrectData("Passnger");
         return passengerDao.save(passenger);
     }
 }
