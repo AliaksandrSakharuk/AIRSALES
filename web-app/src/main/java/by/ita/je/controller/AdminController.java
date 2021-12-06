@@ -4,6 +4,7 @@ import by.ita.je.dto.*;
 import by.ita.je.model.User;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
+import by.ita.je.util.ObjectMapperUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,7 @@ public class AdminController {
 
     private final ApiService apiService;
     private final UserService userDetailsService;
-    private final ObjectMapper objectMapper;
-
+//    private final ObjectMapper objectMapper;
 
     @GetMapping()
     public String getAdmin(Model model) {
@@ -66,9 +66,7 @@ public class AdminController {
     @GetMapping(value = "/user/list")
     public String getUsersList(Model model){
         List<User> users=userDetailsService.findAllUsers();
-        List<UserDto> listUserDto = users.stream()
-                .map(user -> (objectMapper.convertValue(user, UserDto.class)))
-                .collect(Collectors.toList());
+        List<UserDto> listUserDto = ObjectMapperUtil.convertEToD(users, UserDto.class);
         listUserDto.stream()
         .forEach(userDto -> userDto.setClient(apiService.findByIdClient(userDto.getClientId())));
         model.addAttribute("users", listUserDto);

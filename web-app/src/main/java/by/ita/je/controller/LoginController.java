@@ -1,6 +1,5 @@
 package by.ita.je.controller;
 
-import by.ita.je.configuration.MailAppProperties;
 import by.ita.je.dto.ClientDto;
 import by.ita.je.dto.FieldUserDto;
 import by.ita.je.dto.UserDto;
@@ -31,9 +30,7 @@ public class LoginController {
     }
 
     @GetMapping("/users/new")
-    public String createNewLogin(Model model) {
-        UserDto userDto=new UserDto();
-        userDto.setClient(new ClientDto());
+    public String createNewLogin(@ModelAttribute("userDto") UserDto userDto, Model model) {
         model.addAttribute("userDto", userDto);
         return "form_user";
     }
@@ -65,4 +62,12 @@ public class LoginController {
         model.addAttribute("result", result);
         return "renewal";
     }
+
+    @ModelAttribute("userDto")
+    private UserDto getUserDto(){
+        UserDto userDto=new UserDto();
+        userDto.setClient(new ClientDto());
+        return userDto;
+    }
+
 }
