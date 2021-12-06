@@ -69,5 +69,4 @@ public class LoginController {
         userDto.setClient(new ClientDto());
         return userDto;
     }
-
 }

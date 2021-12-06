@@ -4,6 +4,7 @@ import by.ita.je.dto.*;
 import by.ita.je.model.User;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
+import by.ita.je.util.ObjectMapperUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,6 @@ public class SalesController {
 
     private final UserService userDetailsService;
     private final ApiService apiService;
-    private final ObjectMapper objectMapper;
 
     @GetMapping(value = "/")
     public String home(Model model) {
@@ -33,7 +33,7 @@ public class SalesController {
     public String getProfile(Model model) {
     User user=userDetailsService.getCurrentUser();
     ClientDto clientDto=apiService.findByIdClient(user.getClientId());
-    UserDto userDto = objectMapper.convertValue(user, UserDto.class);
+    UserDto userDto = ObjectMapperUtil.convertEToD(user, UserDto.class);
     userDto.setClient(clientDto);
     model.addAttribute("user", userDto);
         return "profile";
@@ -51,7 +51,7 @@ public class SalesController {
     public String getFormUpdate(Model model){
         final User user=userDetailsService.getCurrentUser();
         ClientDto clientDto=apiService.findByIdClient(user.getClientId());
-        UserDto userDto = objectMapper.convertValue(user, UserDto.class);
+        UserDto userDto = ObjectMapperUtil.convertEToD(user, UserDto.class);
         userDto.setPassword("");
         userDto.setClient(clientDto);
         model.addAttribute("userDto", userDto);
@@ -65,9 +65,9 @@ public class SalesController {
         }
         else{
             ClientDto clientDto=apiService.updateClient(userDto.getClient());
-            User user = objectMapper.convertValue(userDto, User.class);
+            User user = ObjectMapperUtil.convertEToD(userDto, User.class);
             User userNew=userDetailsService.updateUser(user.getId(), user);
-            UserDto userDtoNew = objectMapper.convertValue(user, UserDto.class);
+            UserDto userDtoNew = ObjectMapperUtil.convertEToD(user, UserDto.class);
             userDtoNew.setClient(clientDto);
             return "redirect:/profile";
         }
