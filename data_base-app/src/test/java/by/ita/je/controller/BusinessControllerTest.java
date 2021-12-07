@@ -141,21 +141,21 @@ class BusinessControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.plane.id").isNumber());
     }
 
-//    @Test
-//    @SneakyThrows
-//    void createNewFlight_thenNotFoundDataFlight(){
-//        Flight flight = getFlight();
-//        Plane plane = new Plane();
-//        plane.setId(11l);
-//        flight.setPlane(plane);
-//        mockMvc.perform(post("/sales/flight")
-//                        .content(objectMapper.writeValueAsString(flight))
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isNotFound())
-//                .andExpect(result -> assertTrue(result.getResolvedException() instanceof NotFoundData))
-//                .andExpect(result -> assertEquals("Такой записи для Plane в базе данных не существует"
-//                        , result.getResolvedException().getMessage()));
-//    }
+    @Test
+    @SneakyThrows
+    void createNewFlight_thenNotFoundDataFlight(){
+        Flight flight = getFlight();
+        Plane plane = new Plane();
+        plane.setId(11l);
+        flight.setPlane(plane);
+        mockMvc.perform(post("/sales/flight")
+                        .content(objectMapper.writeValueAsString(flight))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof NotFoundData))
+                .andExpect(result -> assertEquals("Такой записи для Plane в базе данных не существует"
+                        , result.getResolvedException().getMessage()));
+    }
 
     @Test
     @SneakyThrows
