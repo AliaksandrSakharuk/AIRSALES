@@ -41,15 +41,6 @@ public class TestAirCompanyServiceImpl {
     }
 
     @Test
-    public void whenCreate_returnNotCorrectData(){
-        AirCompany airCompany=new AirCompany();
-        airCompany.setNameCompany("");
-        NotCorrectData notCorrectData=Assertions.assertThrows(NotCorrectData.class, () -> airCompanyService.save(airCompany));
-        Assertions.assertEquals(notCorrectData.getMessage(), "Введены некорректные данные для AirCompany");
-        Mockito.verify(airCompanyDao, Mockito.times(0)).save(airCompany);
-    }
-
-    @Test
     public void whenREadById_returnAirCompany(){
         Mockito.when(airCompanyDao.findById(1L)).thenReturn(Optional.ofNullable(new AirCompany()));
         final AirCompany actual=airCompanyService.readById(1L);

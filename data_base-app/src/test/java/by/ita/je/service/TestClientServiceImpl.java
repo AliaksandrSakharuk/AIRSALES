@@ -37,16 +37,6 @@ public class TestClientServiceImpl {
     }
 
     @Test
-    public void whenSave_returnNotCorrectData(){
-        Client client=new Client();
-        client.setFirstName("");
-        client.setSecondName("");
-        NotCorrectData notCorrectData=Assertions.assertThrows(NotCorrectData.class, () -> clientService.save(client));
-        Assertions.assertEquals(notCorrectData.getMessage(), "Введены некорректные данные для Client");
-        Mockito.verify(clientDao, Mockito.times(0)).save(client);
-    }
-
-    @Test
     public void whenUpdate_returnClient(){
         Client client=new Client();
         Mockito.when(clientDao.findById(1L)).thenReturn(Optional.ofNullable(new Client()));
