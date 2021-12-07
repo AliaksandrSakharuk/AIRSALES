@@ -1,9 +1,7 @@
 package by.ita.je;
 
-import by.ita.je.service.KafkaConsumer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
 public class DataBase {

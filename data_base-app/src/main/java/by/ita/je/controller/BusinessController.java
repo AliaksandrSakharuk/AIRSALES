@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,6 @@ public class BusinessController {
     private final BusinessService businessService;
     private final SearcherService searcherService;
     private final ClientService clientService;
-//    private final KafkaConsumer kafkaConsumer;
 
     @PostMapping("/client")
     @ApiOperation(value = "Add in the dataBase new Client fot application", response = ClientDto.class)
