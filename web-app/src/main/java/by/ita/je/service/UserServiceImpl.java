@@ -8,6 +8,7 @@ import by.ita.je.model.User;
 import by.ita.je.service.api.MessageService;
 import by.ita.je.service.api.UserService;
 import lombok.AllArgsConstructor;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private MessageService messageService;
     private RoleDao roleDao;
     private UserDao userDao;
+    private KafkaProducer kafkaProducer;
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
@@ -39,6 +41,9 @@ public class UserServiceImpl implements UserService {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             user.setEnabled(true);
             userDao.save(user);
+
+            kafkaProducer.send("msg", "You created user");
+
             return true;
         }
     }
