@@ -29,6 +29,7 @@ public class BusinessServiceImpl implements BusinessService {
     @Transactional(isolation = Isolation.REPEATABLE_READ, rollbackFor=Exception.class)
     public Flight createNewFlight(Flight flight) {
         Plane plane=planeService.readById(flight.getPlane().getId());
+        System.out.println(plane);
         flight.setPlane(plane);
         createSeat(flight);
         return flightService.save(flight);

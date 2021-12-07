@@ -4,6 +4,7 @@ import by.ita.je.dto.*;
 import by.ita.je.model.*;
 import by.ita.je.service.api.*;
 import by.ita.je.util.ObjectMapperUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class BusinessController {
     private final BusinessService businessService;
     private final SearcherService searcherService;
     private final ClientService clientService;
+    private final ObjectMapper objectMapper;
 
     @PostMapping("/client")
     @ApiOperation(value = "Add in the dataBase new Client fot application", response = ClientDto.class)
@@ -46,9 +48,9 @@ public class BusinessController {
     @PostMapping("/sales/flight")
     @ApiOperation(value = "Add new flight into the schedule", response = FlightDto.class)
     public FlightDto createNewFlight(@RequestBody FlightDto flightDto) {
-        final Flight flightNew = ObjectMapperUtil.convertEToD(flightDto, Flight.class);
+        final Flight flightNew = objectMapper.convertValue(flightDto, Flight.class);
         final Flight flight = businessService.createNewFlight(flightNew);
-        return ObjectMapperUtil.convertEToD(flight, FlightDto.class);
+        return objectMapper.convertValue(flight, FlightDto.class);
     }
 
 
