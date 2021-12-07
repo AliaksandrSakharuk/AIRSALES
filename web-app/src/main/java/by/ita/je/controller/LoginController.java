@@ -4,6 +4,7 @@ import by.ita.je.dto.ClientDto;
 import by.ita.je.dto.FieldUserDto;
 import by.ita.je.dto.UserDto;
 import by.ita.je.model.User;
+import by.ita.je.service.KafkaProducer;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +24,7 @@ public class LoginController {
     private final UserService userDetailsService;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
+    private KafkaProducer kafkaProducer;
 
     @GetMapping("/login")
     public String get(Model model) {
@@ -43,6 +45,11 @@ public class LoginController {
             return "form_user";
         }
         else{
+
+
+            kafkaProducer.send("msg", "You created user");
+
+
             ClientDto responce=apiService.saveClient(userDto.getClient());
             User user = objectMapper.convertValue(userDto, User.class);
             user.setClientId(responce.getId());
