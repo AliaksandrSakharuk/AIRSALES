@@ -2,6 +2,7 @@ package by.ita.je.controller;
 
 import by.ita.je.dto.*;
 import by.ita.je.model.User;
+import by.ita.je.service.KafkaProducerService;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,10 +23,12 @@ public class AdminController {
     private final ApiService apiService;
     private final UserService userDetailsService;
     private final ObjectMapper objectMapper;
-
+    private final KafkaProducerService producerService;
 
     @GetMapping()
     public String getAdmin(Model model) {
+
+        this.producerService.sendMessage("Create User");
         model.addAttribute("companies",apiService.getAllAirCompany());
         return "admin";
     }

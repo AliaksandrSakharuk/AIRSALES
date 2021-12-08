@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaConsumerService {
+
     private final Logger logger =
             LoggerFactory.getLogger(KafkaConsumerService.class);
 

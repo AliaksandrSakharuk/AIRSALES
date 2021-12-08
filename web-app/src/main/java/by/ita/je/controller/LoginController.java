@@ -41,7 +41,7 @@ public class LoginController {
 
     @GetMapping("/users/test")
     public void test() {
-        producerService.sendMessage("Create User");
+        this.producerService.sendMessage("Create User");
     }
 
     @PostMapping(value = "/users/save")
