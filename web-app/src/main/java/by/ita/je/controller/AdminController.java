@@ -70,10 +70,13 @@ public class AdminController {
     public String getUsersList(Model model){
         List<User> users=userDetailsService.findAllUsers();
         List<UserDto> listUserDto = users.stream()
-                .map(user -> (objectMapper.convertValue(user, UserDto.class)))
+                .map(user -> {
+                   UserDto userDto = objectMapper.convertValue(user, UserDto.class);
+                   ClientDto clientDto=apiService.findByIdClient(userDto.getClientId());
+                   userDto.setClient(clientDto);
+                   return userDto;
+                })
                 .collect(Collectors.toList());
-        listUserDto.stream()
-        .forEach(userDto -> userDto.setClient(apiService.findByIdClient(userDto.getClientId())));
         model.addAttribute("users", listUserDto);
         return "list_users";
     }

@@ -15,8 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -107,8 +110,9 @@ public class UserServiceImpl implements UserService {
 
     private String getTemporaryPassword(){
         StringBuilder password=new StringBuilder();
-        new Random().ints(8, 1,10)
-                .forEach(el -> password.append(el));
+        Stream.generate(() -> {
+            return (int) (Math.random() * LocalDateTime.now().getSecond());
+        }).limit(6).forEach(el -> password.append(el));
         return password.toString();
     }
 }
