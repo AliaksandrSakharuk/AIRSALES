@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -67,9 +68,7 @@ class BusinessControllerTest {
                         .content(objectMapper.writeValueAsString(client))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof NotCorrectData))
-                .andExpect(result -> assertEquals("Введены некорректные данные для Client"
-                        , result.getResolvedException().getMessage()));
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof MethodArgumentNotValidException));
     }
 
     @Test
@@ -245,9 +244,7 @@ class BusinessControllerTest {
                         .content(objectMapper.writeValueAsString(company))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof NotCorrectData))
-                .andExpect(result -> assertEquals("Введены некорректные данные для AirCompany"
-                        , result.getResolvedException().getMessage()));
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof MethodArgumentNotValidException));
     }
 
     @Test
@@ -316,7 +313,7 @@ class BusinessControllerTest {
         Flight flight = new Flight();
         flight.setNumberFlight("FA777");
         flight.setDepartureCity("BREST");
-        flight.setDepartureDateTime(LocalDateTime.now());
+        flight.setDepartureDateTime(LocalDateTime.now().plusHours(1));
         flight.setArriveCity("MINSK");
         flight.setArriveDateTime(flight.getDepartureDateTime().plusMinutes(45));
         return flight;

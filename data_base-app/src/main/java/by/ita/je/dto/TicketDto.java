@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -21,12 +24,18 @@ public class TicketDto {
     @ApiModelProperty(value = "date time when booked this ticket", example = "2021-10-29T15:00" , dataType = "date-time", required = true)
     private LocalDateTime bookedDateTime;
     @ApiModelProperty(value = "name of passenger", example = "Igor", dataType = "String", required = true)
+    @NotNull
+    @NotBlank
     private String firstNamePassenger;
     @ApiModelProperty(value = "surname of passenger", example = "Olechovich", dataType = "String", required = true)
+    @NotNull
+    @NotBlank
     private String secondNamePassenger;
     @ApiModelProperty(value = "phone number of passenger", example = "296446666", dataType = "long", required = true)
     private Long phoneNumberPassenger;
     @ApiModelProperty(value = "number passport of passenger", example = "AB5349591", dataType = "String", required = true)
+    @NotNull
+    @NotBlank
     private String passportNumberPassenger;
     private SeatDto seat;
     private ClientDto client;

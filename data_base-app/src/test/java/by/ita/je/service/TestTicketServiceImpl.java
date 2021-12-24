@@ -57,14 +57,6 @@ public class TestTicketServiceImpl {
     }
 
     @Test
-    public void whenSave_returnNotCorrectData(){
-        Ticket ticket=new Ticket();
-        NotCorrectData notCorrectData=Assertions.assertThrows(NotCorrectData.class, () -> ticketService.save(ticket));
-        Assertions.assertEquals(notCorrectData.getMessage(), "Введены некорректные данные для Ticket");
-        Mockito.verify(ticketDao, Mockito.times(0)).save(ticket);
-    }
-
-    @Test
     public void whenUpdate_returnTicket(){
         Ticket ticket=new Ticket();
         Mockito.when(ticketDao.findById(1L)).thenReturn(Optional.ofNullable(new Ticket()));

@@ -10,6 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.Valid;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,10 +27,10 @@ public class BusinessController {
 
     @PostMapping("/client")
     @ApiOperation(value = "Add in the dataBase new Client fot application", response = ClientDto.class)
-    public ClientDto createNewClient(@RequestBody ClientDto clientDto) {
-        Client clientNew = ObjectMapperUtil.convertEToD(clientDto, Client.class);
-        final Client client = clientService.save(clientNew);
-        return ObjectMapperUtil.convertEToD(client, ClientDto.class);
+    public ClientDto createNewClient(@Valid @RequestBody ClientDto clientDto){
+        Client clientNew= objectMapper.convertValue(clientDto, Client.class);
+        final Client client=clientService.save(clientNew);
+        return objectMapper.convertValue(client, ClientDto.class);
     }
 
     @GetMapping("/client/{id}")
@@ -39,15 +42,15 @@ public class BusinessController {
 
     @PostMapping("/client/{client_id}")
     @ApiOperation(value = "Update information of Client in DATA BASE", response = ClientDto.class)
-    public ClientDto updateClient(@PathVariable("client_id") long id, @RequestBody ClientDto clientDto) {
-        final Client clientNew = ObjectMapperUtil.convertEToD(clientDto, Client.class);
-        final Client client = clientService.update(id, clientNew);
-        return ObjectMapperUtil.convertEToD(client, ClientDto.class);
+        public ClientDto updateClient(@Valid @PathVariable("client_id") long id, @RequestBody ClientDto clientDto){
+        final Client clientNew=objectMapper.convertValue(clientDto, Client.class);
+        final Client client=clientService.update(id,clientNew);
+        return objectMapper.convertValue(client, ClientDto.class);
     }
 
     @PostMapping("/sales/flight")
     @ApiOperation(value = "Add new flight into the schedule", response = FlightDto.class)
-    public FlightDto createNewFlight(@RequestBody FlightDto flightDto) {
+    public FlightDto createNewFlight(@Valid @RequestBody FlightDto flightDto){
         final Flight flightNew = objectMapper.convertValue(flightDto, Flight.class);
         final Flight flight = businessService.createNewFlight(flightNew);
         return objectMapper.convertValue(flight, FlightDto.class);
@@ -77,10 +80,10 @@ public class BusinessController {
 
     @PostMapping("/company")
     @ApiOperation(value = "Add new AirCompany into the data base")
-    public AirCompanyDto createNewAirCompany(@RequestBody AirCompanyDto companyDto) {
-        final AirCompany companyNew = ObjectMapperUtil.convertEToD(companyDto, AirCompany.class);
-        final AirCompany company = businessService.createNewAirCompany(companyNew);
-        return ObjectMapperUtil.convertEToD(company, AirCompanyDto.class);
+    public AirCompanyDto createNewAirCompany(@Valid @RequestBody AirCompanyDto companyDto){
+        final AirCompany companyNew = objectMapper.convertValue(companyDto, AirCompany.class);
+        final AirCompany company=businessService.createNewAirCompany(companyNew);
+        return objectMapper.convertValue(company, AirCompanyDto.class);
     }
 
     @GetMapping("/company/list")
@@ -92,10 +95,10 @@ public class BusinessController {
 
     @PostMapping("/sales/ticket/book")
     @ApiOperation(value = "Book ticket for the selected flight")
-    public TicketDto bookTicket(@RequestBody TicketDto ticketDto) {
-        final Ticket ticketNew = ObjectMapperUtil.convertEToD(ticketDto, Ticket.class);
-        final Ticket ticket = businessService.bookTicket(ticketNew);
-        return ObjectMapperUtil.convertEToD(ticket, TicketDto.class);
+    public TicketDto bookTicket(@Valid @RequestBody TicketDto ticketDto){
+        final Ticket ticketNew= objectMapper.convertValue(ticketDto, Ticket.class);
+        final Ticket ticket=businessService.bookTicket(ticketNew);
+        return objectMapper.convertValue(ticket, TicketDto.class);
     }
 
     @DeleteMapping("/sales/ticket/book/{id}")

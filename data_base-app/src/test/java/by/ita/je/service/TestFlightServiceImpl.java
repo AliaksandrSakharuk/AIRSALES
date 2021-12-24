@@ -43,17 +43,6 @@ public class TestFlightServiceImpl {
     }
 
     @Test
-    public void whenSave_returnNotCorrectData(){
-        Flight flight=new Flight();
-        flight.setNumberFlight("");
-        flight.setDepartureCity("");
-        flight.setArriveCity("");
-        NotCorrectData notCorrectData=Assertions.assertThrows(NotCorrectData.class, () -> flightService.save(flight));
-        Assertions.assertEquals(notCorrectData.getMessage(), "Введены некорректные данные для Flight");
-        Mockito.verify(flightDao, Mockito.times(0)).save(flight);
-    }
-
-    @Test
     public void whenFindById_returnFlight(){
         Mockito.when(flightDao.findById(1L)).thenReturn(Optional.ofNullable(new Flight()));
         final Flight actual=flightService.readById(1L);

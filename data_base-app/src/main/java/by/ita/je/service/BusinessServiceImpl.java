@@ -60,11 +60,9 @@ public class BusinessServiceImpl implements BusinessService {
         ticket.setBookedDateTime(LocalDateTime.now());
         seatSericve.update(ticket.getSeat().getId(),ticket.getSeat());
 
-        if(searcherService.findPassengerByPassport(ticket.getClient().getId(), ticket.getPassportNumberPassenger().trim()).isEmpty()){
-            Passenger passenger=createPassenger(ticket.getFirstNamePassenger().trim(), ticket.getSecondNamePassenger().trim()
-                    , ticket.getPassportNumberPassenger().trim(), ticket.getPhoneNumberPassenger());
-            passenger.setClient(ticket.getClient());
-            passengerService.savePassenger(passenger);
+        if(searcherService.findPassengerByPassport(ticket.getClient().getId()
+                , ticket.getPassportNumberPassenger().trim()).isEmpty()){
+            passengerService.savePassenger(createPassenger(ticket));
         }
         return ticketService.save(ticket);
     }
@@ -122,12 +120,12 @@ public class BusinessServiceImpl implements BusinessService {
                 .build();
     }
 
-    private Passenger createPassenger(String firstName, String secondName, String numberPassport, long phoneNumber){
+    private Passenger createPassenger(Ticket ticket){
         return  Passenger.builder()
-                .firstName(firstName)
-                .secondName(secondName)
-                .passportNumber(numberPassport)
-                .phoneNumber(phoneNumber)
+                .firstName(ticket.getFirstNamePassenger().trim())
+                .secondName(ticket.getSecondNamePassenger().trim())
+                .passportNumber(ticket.getPassportNumberPassenger().trim())
+                .phoneNumber(ticket.getPhoneNumberPassenger())
                 .build();
     }
 }
