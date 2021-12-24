@@ -18,7 +18,15 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
-#mail:
-#  email: airsales777@gmail.com
-#  password: 77sales77
+  kafka:
+    consumer:
+      bootstrap-servers: kafka:9092
+      group-id: group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: kafka:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
