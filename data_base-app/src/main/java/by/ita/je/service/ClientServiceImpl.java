@@ -17,8 +17,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client) throws NotCorrectData {
-        if(StringUtils.isEmpty(client.getFirstName())) throw new NotCorrectData("Client");
-        if(StringUtils.isEmpty(client.getSecondName())) throw new NotCorrectData("Client");
         return clientDao.save(client);
     }
 

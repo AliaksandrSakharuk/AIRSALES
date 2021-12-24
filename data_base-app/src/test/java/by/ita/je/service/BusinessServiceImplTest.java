@@ -65,13 +65,6 @@ class BusinessServiceImplTest {
     }
 
     @Test
-    void createNewAirCompany_returnNotCorrectData() {
-        final AirCompany airCompany=new AirCompany();
-        NotCorrectData notCorrectData=Assertions.assertThrows(NotCorrectData.class, () -> businessService.createNewAirCompany(airCompany));
-        Assertions.assertEquals( "Введены некорректные данные для AirCompany", notCorrectData.getMessage());
-    }
-
-    @Test
     void getAllAirCompanyAfterCurrentTime() {
         final List<AirCompany> actualList=businessService.getAllAirCompany();
         Assertions.assertNotNull(actualList);
