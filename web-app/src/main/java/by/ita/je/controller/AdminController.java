@@ -4,15 +4,15 @@ import by.ita.je.dto.*;
 import by.ita.je.model.User;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import by.ita.je.util.ObjectMapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Controller
@@ -21,8 +21,6 @@ public class AdminController {
 
     private final ApiService apiService;
     private final UserService userDetailsService;
-    private final ObjectMapper objectMapper;
-
 
     @GetMapping()
     public String getAdmin(Model model) {
@@ -31,9 +29,8 @@ public class AdminController {
     }
 
     @GetMapping(value = "/flight")
-    public String getFormFlight(Model model) {
-
-        model.addAttribute("flightDto", getFlight());
+    public String getFormFlight(@ModelAttribute("flightDto") FlightDto flightDto, Model model) {
+        model.addAttribute("flightDto", flightDto);
         return "flightForm";
     }
 
@@ -54,7 +51,8 @@ public class AdminController {
     }
 
     @PostMapping(value = "/aircompany/save")
-    public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto airCompanyDto, BindingResult bindingResult, Model model){
+    public String saveNewAirCompany(@Valid @ModelAttribute AirCompanyDto airCompanyDto, BindingResult bindingResult
+                                    , Model model){
         if(bindingResult.hasErrors()) {
             return "form_company";
         }else {
@@ -66,9 +64,7 @@ public class AdminController {
     @GetMapping(value = "/user/list")
     public String getUsersList(Model model){
         List<User> users=userDetailsService.findAllUsers();
-        List<UserDto> listUserDto = users.stream()
-                .map(user -> (objectMapper.convertValue(user, UserDto.class)))
-                .collect(Collectors.toList());
+        List<UserDto> listUserDto = ObjectMapperUtil.convertEToD(users, UserDto.class);
         listUserDto.stream()
         .forEach(userDto -> userDto.setClient(apiService.findByIdClient(userDto.getClientId())));
         model.addAttribute("users", listUserDto);
@@ -81,6 +77,7 @@ public class AdminController {
         return "redirect:/admin/user/list";
     }
 
+    @ModelAttribute("flightDto")
     private FlightDto getFlight(){
         FlightDto flightDto = new FlightDto();
         flightDto.setPlane(new PlaneDto());

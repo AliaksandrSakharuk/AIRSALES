@@ -4,6 +4,7 @@ import by.ita.je.exception.NotCorrectSeat;
 import by.ita.je.model.*;
 import by.ita.je.service.api.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import java.time.LocalDateTime;
@@ -20,7 +21,8 @@ public class BusinessServiceImpl implements BusinessService {
     private final AirCompanyService companyService;
     private final SeatSericve seatSericve;
     private final TicketService ticketService;
-    private final PlaneService planeService;
+    @Autowired
+    private PlaneService planeService;
     private final PassengerService passengerService;
     private final SearcherService searcherService;
     private final ClientService clientService;

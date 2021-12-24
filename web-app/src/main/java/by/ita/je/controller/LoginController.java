@@ -7,7 +7,7 @@ import by.ita.je.model.User;
 import by.ita.je.service.api.ApiService;
 import by.ita.je.service.api.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LoginController {
 
     private final UserService userDetailsService;
@@ -30,9 +30,7 @@ public class LoginController {
     }
 
     @GetMapping("/users/new")
-    public String createNewLogin(Model model) {
-        UserDto userDto=new UserDto();
-        userDto.setClient(new ClientDto());
+    public String createNewLogin(@ModelAttribute("userDto") UserDto userDto, Model model) {
         model.addAttribute("userDto", userDto);
         return "form_user";
     }
@@ -63,5 +61,12 @@ public class LoginController {
         final boolean result=userDetailsService.renewalPassword(fieldUserDto);
         model.addAttribute("result", result);
         return "renewal";
+    }
+
+    @ModelAttribute("userDto")
+    private UserDto getUserDto(){
+        UserDto userDto=new UserDto();
+        userDto.setClient(new ClientDto());
+        return userDto;
     }
 }
